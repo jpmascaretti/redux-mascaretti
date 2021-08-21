@@ -39,8 +39,6 @@ const NewPatientRecord = () => {
       setInputError("Required");
     }
 
-
-
   };
 
 
@@ -49,20 +47,21 @@ const NewPatientRecord = () => {
     <View>
 
       <View style={styles.inputContainer}>
+          <Text style={styles.formText}>Name:</Text>
         <TextInput
-          placeholder="Add Patient"
+          placeholder=" Patient Name"
           style={styles.input}
           onChangeText={handleChangeText}
           value={inputText}
         />
-             <View>
-              <TouchableOpacity onPress={handleAddItem}>
-                <Text>Add</Text>
-              </TouchableOpacity>
-            </View>
+
       </View>
       <Text style={styles.inputError}>{inputError}</Text>
-      
+      <View style={styles.addButtonContainer}>
+             <TouchableOpacity onPress={handleAddItem} style={styles.addButton}> 
+             <Text>Add Patient</Text>
+             </TouchableOpacity>
+        </View>
     </View>
   );
 };
@@ -70,6 +69,22 @@ const NewPatientRecord = () => {
 export default NewPatientRecord;
 
 const styles = StyleSheet.create({
+    addButtonContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+      },
+    formText: {
+        fontWeight: 'bold'
+    },
+    addButton: {
+        backgroundColor: "#BB22B5",
+        height: 30,
+        width: 120,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 5
+    },
     headline: {
         textAlign: 'center', // <-- the magic
         fontWeight: 'bold',
