@@ -3,23 +3,23 @@ import React, { useState, createContext } from "react";
 export const RecordsContext = createContext();
 
 const PatientsContext = (props) => {
-  const [patientState, setPatientState] = useState([]);
+  const [patientsList, setPatientsList] = useState([]);
 
   function addPatient(patientRecord) {
-    const medicalRecord = patientState.find(
+    const medicalRecord = patientsList.find(
       (patient) => patient.name === patientRecord.name
     );
     if (!medicalRecord) {
-      setPatientState([...patient]);
+      setPatientsList([...patientsList, patientRecord]);
     }
   }
 
   return (
     <RecordsContext.Provider
       value={{
-        patientState,
-        setPatientState,
         addPatient,
+        patientsList,
+        setPatientsList
       }}
     >
       {props.children}
