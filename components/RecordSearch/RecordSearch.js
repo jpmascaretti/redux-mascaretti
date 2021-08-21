@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
+import { Searchbar } from "react-native-paper";
 
 import {
   StyleSheet,
@@ -12,64 +13,44 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const NewPatientRecord = () => {
-  const { addPatient } = useContext(RecordsContext);
+const RecordSearch = () => {
+    const { patientsList } =
+    useContext(RecordsContext);
 
-  const [inputText, setInputText] = useState("");
-  const [inputError, setInputError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleChangeText = (text) => {
-    setInputText(text);
-    setInputError("");
-  };
-
-  function combinedPress() {
-    handleAddItem,
-    props.close
-}
-  const handleAddItem = () => {
-    if (inputText) {
-      addPatient({
-        id: Math.random().toString(),
-        name: inputText,
-      });
-      setInputText("");
-      setInputError("");
-    } else {
-      setInputError("Required");
-    }
-
-
-
-  };
-
-
-
-  return (
-    <View>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Add Patient"
-          style={styles.input}
-          onChangeText={handleChangeText}
-          value={inputText}
-        />
-             <View>
-              <TouchableOpacity onPress={handleAddItem}>
-                <Text>Add</Text>
-              </TouchableOpacity>
+  const onChangeSearch = (query) => setSearchQuery(query);
+  
+    return (
+        <View>
+        {patientsList.length > 0 ? (
+            <View style={styles.searchBarContainer}>
+              <Searchbar
+                placeholder="Search Patient"
+                onChangeText={onChangeSearch}
+                value={searchQuery}
+                icon="magnify"
+                style={styles.searchBar}
+              />
             </View>
-      </View>
-      <Text style={styles.inputError}>{inputError}</Text>
-      
-    </View>
-  );
-};
+          ) : (
+            <View style={styles.noRecordsMessage}>
+            <Text style={styles.headline}>No patients found</Text>
+            <Text style={styles.headlineBottom}>Please add patients to medical records </Text>
+            </View>
+          )}
+          </View>
+    )
+}
 
-export default NewPatientRecord;
+export default RecordSearch
 
 const styles = StyleSheet.create({
+    noRecordsMessage: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
     headline: {
         textAlign: 'center', // <-- the magic
         fontWeight: 'bold',

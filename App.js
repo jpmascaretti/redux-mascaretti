@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Feather } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
 import NewPatientRecord from "./components/NewPatientRecord/NewPatientRecord";
 import PatientsContext from "./context/PatientsContext/PatientsContext";
+
 import {
   StyleSheet,
   TextInput,
@@ -13,6 +14,8 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
+import RecordSearch from "./components/RecordSearch/RecordSearch";
+import PatientRecords from "./components/PatientRecords/PatientRecords";
 
 export default function App() {
 
@@ -20,9 +23,11 @@ export default function App() {
   const handleAddPatientModal = () => {
     setAddPatientModalVisible(true);
   };
-  const handleCloseAddPatientModal = () => {
+
+  function handleCloseAddPatientModal() {
     setAddPatientModalVisible(false);
   }
+
   return (
     <PatientsContext>
       <View style={styles.screen}>
@@ -38,19 +43,23 @@ export default function App() {
           </TouchableOpacity>
           <Text style={styles.doseText}>DoSe+</Text>
         </View>
+        <RecordSearch></RecordSearch>
         <Modal animationType="fade" visible={addPatientModalVisible} transparent>
         <View style={styles.modalContainer}>
           <View style={[styles.modalContent, styles.shadow]}>
-          <NewPatientRecord></NewPatientRecord>
-            <Text style={styles.modalMessage}>
-              Agregar Paciente
-            </Text>
-            <View>
-              <Button onPress={handleCloseAddPatientModal} title="CONFIRMAR" />
-            </View>
+          <TouchableOpacity onPress={handleCloseAddPatientModal}>
+          <AntDesign
+              name="close"
+              size={32}
+              color="#BB22B5"
+              style={styles.iconStyle}
+            />
+          </TouchableOpacity>
+          <NewPatientRecord ></NewPatientRecord>
           </View>
         </View>
       </Modal>
+      <PatientRecords></PatientRecords>
       </View>
     </PatientsContext>
   );

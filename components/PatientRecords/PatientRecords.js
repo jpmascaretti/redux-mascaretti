@@ -12,62 +12,67 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const NewPatientRecord = () => {
-  const { addPatient } = useContext(RecordsContext);
 
-  const [inputText, setInputText] = useState("");
-  const [inputError, setInputError] = useState("");
+const PatientRecords = () => {
 
-  const handleChangeText = (text) => {
-    setInputText(text);
-    setInputError("");
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const { patientsList, setPatientsList} =
+    useContext(RecordsContext);
+
+    const [itemSelected, setItemSelected] = useState({});
+
+
+
+  const handleConfirmDelete = () => {
+    const id = itemSelected.id;
+    setPatientsList(patientsList.filter((item) => item.id !== id));
+    setModalVisible(false);
+    setItemSelected({});
   };
 
-  function combinedPress() {
-    handleAddItem,
-    props.close
-}
-  const handleAddItem = () => {
-    if (inputText) {
-      addPatient({
-        id: Math.random().toString(),
-        name: inputText,
-      });
-      setInputText("");
-      setInputError("");
-    } else {
-      setInputError("Required");
-    }
-
-
-
+  const handleModal = (id) => {
+    setItemSelected(patientsList.find((item) => item.id === id));
+    setModalVisible(true);
   };
 
-
-
-  return (
-    <View>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Add Patient"
-          style={styles.input}
-          onChangeText={handleChangeText}
-          value={inputText}
-        />
-             <View>
-              <TouchableOpacity onPress={handleAddItem}>
-                <Text>Add</Text>
-              </TouchableOpacity>
+    return (
+        <View>
+        <FlatList
+        data={patientsList}
+        renderItem={(data) => {
+          return (
+            <View style={[styles.item, styles.shadow]}>
+              <Text>{data.item.name}</Text>
+              <Button
+                title="X"
+                color="#AAAAAA"
+                onPress={() => handleModal(data.item.id)}
+              />
             </View>
-      </View>
-      <Text style={styles.inputError}>{inputError}</Text>
-      
-    </View>
-  );
-};
+          );
+        }}
+        keyExtractor={(item) => item.id.toString()}
+      />
 
-export default NewPatientRecord;
+      <Modal animationType="slide" visible={modalVisible} transparent>
+        <View style={styles.modalContainer}>
+          <View style={[styles.modalContent, styles.shadow]}>
+            <Text style={styles.modalMessage}>
+              ¿Está seguro que desea borrar?
+            </Text>
+            <Text style={styles.modalTitle}>{itemSelected.name}</Text>
+            <View>
+              <Button onPress={handleConfirmDelete} title="CONFIRMAR" />
+            </View>
+          </View>
+        </View>
+      </Modal>
+      </View>
+    )
+}
+
+export default PatientRecords
 
 const styles = StyleSheet.create({
     headline: {
