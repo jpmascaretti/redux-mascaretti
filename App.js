@@ -4,6 +4,7 @@ import { Feather, AntDesign } from "@expo/vector-icons";
 import NewPatientRecord from "./components/NewPatientRecord/NewPatientRecord";
 import PatientsContext from "./context/PatientsContext/PatientsContext";
 
+
 import {
   StyleSheet,
   TextInput,
@@ -18,7 +19,6 @@ import RecordSearch from "./components/RecordSearch/RecordSearch";
 import PatientRecords from "./components/PatientRecords/PatientRecords";
 
 export default function App() {
-
   const [addPatientModalVisible, setAddPatientModalVisible] = useState(false);
   const handleAddPatientModal = () => {
     setAddPatientModalVisible(true);
@@ -44,28 +44,42 @@ export default function App() {
           <Text style={styles.doseText}>DoSe+</Text>
         </View>
         <RecordSearch></RecordSearch>
-        <Modal animationType="fade" visible={addPatientModalVisible} transparent>
-        <View style={styles.modalContainer}>
-          <View style={[styles.modalContent, styles.shadow]}>
-          <TouchableOpacity onPress={handleCloseAddPatientModal}>
-          <AntDesign
-              name="close"
-              size={32}
-              color="#BB22B5"
-              style={styles.iconStyle}
-            />
-          </TouchableOpacity>
-          <NewPatientRecord ></NewPatientRecord>
+        <Modal
+          animationType="fade"
+          visible={addPatientModalVisible}
+          transparent
+        >
+          <View style={styles.modalContainer}>
+            <View style={[styles.modalContent, styles.shadow]}>
+              <TouchableOpacity onPress={handleCloseAddPatientModal} >
+               
+                <AntDesign
+                  name="close"
+                  size={20}
+                  color="#BB22B5"
+                  style={styles.closeStyle} 
+                />
+
+              </TouchableOpacity>
+              <NewPatientRecord></NewPatientRecord>
+            </View>
           </View>
-        </View>
-      </Modal>
-      <PatientRecords></PatientRecords>
+        </Modal>
+        <PatientRecords></PatientRecords>
       </View>
     </PatientsContext>
   );
 }
 
 const styles = StyleSheet.create({
+  flexRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  closeStyle: {
+    marginLeft: 220,
+  },
   searchBar: {
     marginTop: 15,
     borderColor: "#C4C4C4",
@@ -85,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   iconStyle: {
-    alignSelf: "center",
+    alignSelf: "flex-end",
     marginLeft: 8,
   },
   doseText: {
@@ -139,11 +153,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   modalContent: {
-    padding: 30,
+    padding: 10,
     backgroundColor: "white",
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: 15,
   },
   modalMessage: {
     fontSize: 18,

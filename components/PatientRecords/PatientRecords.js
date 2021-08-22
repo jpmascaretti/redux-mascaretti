@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
+import { Entypo, Ionicons } from "@expo/vector-icons";
 
 import {
   StyleSheet,
@@ -12,17 +13,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-
 const PatientRecords = () => {
+  const [modalVisible, setModalVisible] = useState(false);
 
-    const [modalVisible, setModalVisible] = useState(false);
+  const { patientsList, setPatientsList } = useContext(RecordsContext);
 
-    const { patientsList, setPatientsList} =
-    useContext(RecordsContext);
-
-    const [itemSelected, setItemSelected] = useState({});
-
-
+  const [itemSelected, setItemSelected] = useState({});
 
   const handleConfirmDelete = () => {
     const id = itemSelected.id;
@@ -36,24 +32,34 @@ const PatientRecords = () => {
     setModalVisible(true);
   };
 
-    return (
-        <View>
+  return (
+    <View>
+      <View style={styles.flexRow}>
         <FlatList
-        data={patientsList}
-        renderItem={(data) => {
-          return (
-            <View style={[styles.item, styles.shadow]}>
-              <Text>{data.item.name}</Text>
-              <Button
-                title="X"
-                color="#AAAAAA"
-                onPress={() => handleModal(data.item.id)}
-              />
-            </View>
-          );
-        }}
-        keyExtractor={(item) => item.id.toString()}
-      />
+          data={patientsList}
+          renderItem={(data) => {
+            return (
+              <View style={[styles.item, styles.shadow]}>
+                <Ionicons
+                    name="md-male"
+                    size={30}
+                    color="#96EAEF"
+                  />
+                <Text style={styles.patientName}>{data.item.name}</Text>
+                <TouchableOpacity onPress={() => handleModal(data.item.id)}>
+                <Entypo
+                    name="dots-three-vertical"
+                    size={20}
+                    color="#C4C4C4"
+                    style={styles.closeStyle}
+                  />
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
 
       <Modal animationType="slide" visible={modalVisible} transparent>
         <View style={styles.modalContainer}>
@@ -68,29 +74,40 @@ const PatientRecords = () => {
           </View>
         </View>
       </Modal>
-      </View>
-    )
-}
+    </View>
+  );
+};
 
-export default PatientRecords
+export default PatientRecords;
 
 const styles = StyleSheet.create({
-    headline: {
-        textAlign: 'center', // <-- the magic
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginTop: 15,
-        width: 350,
-        color: '#C4C4C4'
-      },
-      headlineBottom: {
-        textAlign: 'center', // <-- the magic
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginTop: 0,
-        width: 350,
-        color: '#C4C4C4'
-      },
+  patientName: {
+    color: '#C4C4C4',
+    fontWeight: 'bold',
+    fontSize: 14,
+    alignSelf: 'flex-start'
+  },
+  flexRow: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  headline: {
+    textAlign: "center", // <-- the magic
+    fontWeight: "bold",
+    fontSize: 18,
+    marginTop: 15,
+    width: 350,
+    color: "#C4C4C4",
+  },
+  headlineBottom: {
+    textAlign: "center", // <-- the magic
+    fontWeight: "bold",
+    fontSize: 18,
+    marginTop: 0,
+    width: 350,
+    color: "#C4C4C4",
+  },
   searchBar: {
     marginTop: 15,
     borderColor: "#C4C4C4",
@@ -150,13 +167,17 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     marginBottom: 10,
+    width: 230,
+    height: 50,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderColor: "black",
+    borderColor: "#C4C4C4",
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: "white",
+    borderTopWidth: 4,
+    borderTopColor: "#96EAEF",
   },
   modalContainer: {
     flex: 1,

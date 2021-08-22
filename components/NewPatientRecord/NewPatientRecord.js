@@ -23,10 +23,6 @@ const NewPatientRecord = () => {
     setInputError("");
   };
 
-  function combinedPress() {
-    handleAddItem,
-    props.close
-}
   const handleAddItem = () => {
     if (inputText) {
       addPatient({
@@ -47,9 +43,9 @@ const NewPatientRecord = () => {
     <View>
 
       <View style={styles.inputContainer}>
-          <Text style={styles.formText}>Name:</Text>
+        <Text style={styles.formText}>Name:</Text>
         <TextInput
-          placeholder=" Patient Name"
+          placeholder="Patient Name"
           style={styles.input}
           onChangeText={handleChangeText}
           value={inputText}
@@ -59,7 +55,7 @@ const NewPatientRecord = () => {
       <Text style={styles.inputError}>{inputError}</Text>
       <View style={styles.addButtonContainer}>
              <TouchableOpacity onPress={handleAddItem} style={styles.addButton}> 
-             <Text>Add Patient</Text>
+             <Text style={styles.whiteBoldText}>Add Patient</Text>
              </TouchableOpacity>
         </View>
     </View>
@@ -76,6 +72,10 @@ const styles = StyleSheet.create({
       },
     formText: {
         fontWeight: 'bold'
+    },
+    whiteBoldText: {
+      fontWeight: 'bold',
+      color: 'white'
     },
     addButton: {
         backgroundColor: "#BB22B5",
@@ -143,12 +143,14 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
+    marginRight: 40
   },
   input: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
-    width: 200,
+    width: 170,
+    marginLeft: 5
   },
   inputError: {
     color: "red",
@@ -172,8 +174,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+
   },
   modalContent: {
+
     padding: 30,
     backgroundColor: "white",
     alignSelf: "center",
