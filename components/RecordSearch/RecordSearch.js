@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 40,
     width: 300,
+    marginBottom: 10,
   },
   searchBarContainer: {
     flexDirection: "row",
