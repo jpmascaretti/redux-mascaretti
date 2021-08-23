@@ -19,7 +19,7 @@ const PatientsContext = (props) => {
       value={{
         addPatient,
         patientsList,
-        setPatientsList
+        setPatientsList,
       }}
     >
       {props.children}
