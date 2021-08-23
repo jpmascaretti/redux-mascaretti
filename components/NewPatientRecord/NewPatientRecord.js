@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
+import { CheckBox } from 'react-native-elements'
 
 import {
   StyleSheet,
@@ -14,29 +15,67 @@ import {
 
 const NewPatientRecord = () => {
   const { addPatient } = useContext(RecordsContext);
-
+  const [maleSelected, setMaleSelection] = useState(false);
+  const [femaleSelected, setFemaleSelection] = useState(false);
+  const [gender, setGender] = useState("");
   const [inputText, setInputText] = useState("");
-  const [inputError, setInputError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [genderError, setGenderError] = useState("");
 
   const handleChangeText = (text) => {
     setInputText(text);
-    setInputError("");
+    setNameError("");
   };
 
   const handleAddItem = () => {
-    if (inputText) {
-      addPatient({
+
+    if (inputText && (gender == "male" || gender == "female")) {
+      addPatient({ 
         id: Math.random().toString(),
         name: inputText,
+        gender: gender
       });
       setInputText("");
-      setInputError("");
-    } else {
-      setInputError("Required");
-    }
+      setNameError("");
+      setGender("");
+      setGenderError("")
+    } else if (!inputText && (gender == "male" || gender == "female")){
+      setNameError("Name Required");
+      setGenderError("")
+    } else if (inputText && (gender != "male" && gender != "female")){
+      setNameError("")
+      setGenderError("Gender Required");
+    } else if (!inputText && (gender != "male" && gender != "female")) {
+      setNameError("Name required")
+      setGenderError("Gender required")
+    } 
 
   };
+  function handleMaleCheckbox () {
+    if (maleSelected) {
+      setMaleSelection(false)
+      setGender("")
+    } else {
+      setMaleSelection(true)
+      setFemaleSelection(false)
+      setGender("male")
+      setGenderError("")
+    }
+    femaleSelected && setFemaleSelection(false)
+  }
+  function handleFemaleCheckbox () {
+    if (femaleSelected) {
+      setFemaleSelection(false)
+      setGender("")
+    } else {
+      setFemaleSelection(true)
+      setMaleSelection(false)
+      setGender("female")
+      setGenderError("")
+    }
 
+    maleSelected && setMaleSelection(false)
+  }
 
 
   return (
@@ -52,7 +91,25 @@ const NewPatientRecord = () => {
         />
 
       </View>
-      <Text style={styles.inputError}>{inputError}</Text>
+      {nameError != "" && <Text style={styles.nameError}>{nameError}</Text>}
+      <View style={styles.checkBoxes}>
+      <Text style={styles.formText}>Gender:</Text>
+      <CheckBox
+          checked={maleSelected}
+          checkedColor="#BB22B5"
+          onPress={handleMaleCheckbox}
+          containerStyle={styles.checkBox}
+        />
+        <Text>Male</Text>
+        <CheckBox
+          checked={femaleSelected}
+          checkedColor="#BB22B5"
+          onPress={handleFemaleCheckbox}
+          containerStyle={styles.checkBox}
+        />
+        <Text>Female</Text>
+      </View>
+      {genderError != "" && <Text style={styles.genderError}>{genderError}</Text>}
       <View style={styles.addButtonContainer}>
              <TouchableOpacity onPress={handleAddItem} style={styles.addButton}> 
              <Text style={styles.whiteBoldText}>Add Patient</Text>
@@ -65,6 +122,17 @@ const NewPatientRecord = () => {
 export default NewPatientRecord;
 
 const styles = StyleSheet.create({
+    checkBoxes: {
+      marginTop: 10,
+      marginBottom: 10,
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+    }, checkBox: {
+
+      margin: 0,
+      padding: 0
+    },
     addButtonContainer: {
         flexDirection: "row",
         justifyContent: "center",
@@ -144,7 +212,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    marginRight: 40
   },
   input: {
     borderBottomColor: "black",
@@ -152,8 +219,15 @@ const styles = StyleSheet.create({
     width: 170,
     marginLeft: 5
   },
-  inputError: {
+  nameError: {
     color: "red",
+    fontWeight: "bold",
+    marginTop: 10
+  },
+  genderError: {
+    color: "red",
+    fontWeight: "bold",
+    marginBottom: 10
   },
   items: {
     marginTop: 80,

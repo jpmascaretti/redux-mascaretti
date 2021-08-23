@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     color: '#C4C4C4',
     fontWeight: 'bold',
     fontSize: 14,
-    alignSelf: 'flex-start'
+    alignSelf: 'center'
   },
   flexRow: {
     flexDirection: "column",
@@ -164,10 +164,10 @@ const styles = StyleSheet.create({
     marginTop: 80,
   },
   item: {
-    padding: 10,
+    padding: 10,  
     marginTop: 10,
     marginBottom: 10,
-    width: 230,
+    width: 300,
     height: 50,
     flexDirection: "row",
     alignItems: "center",
