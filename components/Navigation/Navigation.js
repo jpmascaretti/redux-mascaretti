@@ -3,6 +3,7 @@ import RecordSearch from "../RecordSearch/RecordSearch";
 import PatientRecords from "../PatientRecords/PatientRecords";
 import TabBar from "../BottomNavigation/TabBar";
 import HeaderBar from "../HeaderBar/HeaderBar";
+import { View, Text } from "react-native";
 
 const Navigation = () => {
   const [navPage, setNavPage] = useState({
@@ -14,46 +15,25 @@ const Navigation = () => {
   return (
     <>
       <HeaderBar page={navPage} />
-      {navPage.recordsPage && 
+      {navPage.recordsPage && (
         <>
-          <RecordSearch page={navPage}/>
-          <PatientRecords/>
+          <RecordSearch page={navPage} />
+          <PatientRecords />
         </>
-      }
-      <TabBar page={navPage} setPage={setNavPage}/>
-
+      )}
+      {navPage.dosesPage && (
+        <View>
+          <Text>Doses Page to be developed</Text>
+        </View>
+      )}
+      {navPage.testsPage && (
+        <View>
+          <Text>Tests Page to be developed</Text>
+        </View>
+      )}
+      <TabBar page={navPage} setPage={setNavPage} />
     </>
   );
 };
 
 export default Navigation;
-
-//   const renderPages = () => {
-//     if (navPage.recordsPage) {
-//       return (
-//         <>
-//           <HeaderBar />
-
-//           <TabBar></TabBar>
-//         </>
-//       );
-//     } else if (navPage.dosesPage) {
-//       return (
-//         <>
-//           <HeaderBar />
-//           <RecordSearch></RecordSearch>
-//           <PatientRecords></PatientRecords>
-//           <TabBar></TabBar>
-//         </>
-//       );
-//     } else if (navPage.testsPage) {
-//       return (
-//         <>
-//           <HeaderBar />
-//           <RecordSearch></RecordSearch>
-//           <PatientRecords></PatientRecords>
-//           <TabBar></TabBar>
-//         </>
-//       );
-//     }
-//   };

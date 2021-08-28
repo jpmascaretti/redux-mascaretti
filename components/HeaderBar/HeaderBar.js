@@ -8,7 +8,7 @@ export default HeaderBar = ({page}) => {
 
   return (
     <View>
-      {page.testsPage && <DefaultHeader/>}
+      {(page.testsPage || page.dosesPage) && <DefaultHeader/>}
       {page.recordsPage && <AddPatientContainer/>}
     </View>
   );

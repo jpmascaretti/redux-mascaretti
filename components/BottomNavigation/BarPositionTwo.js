@@ -1,9 +1,6 @@
-import Icon from "react-native-ico-material-design";
 import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
-
-var iconHeight = 26;
-var iconWidth = 26;
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const BarPositionTwo = ({ setPage }) => {
   return (
@@ -19,22 +16,20 @@ const BarPositionTwo = ({ setPage }) => {
         style={styles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}
       >
-        <Icon
-          name="favorite-heart-button"
-          height={iconHeight}
-          width={iconWidth}
+        <FontAwesome5
+          name="clipboard-list"
+          size={25}
           color="#C4C4C4"
         />
       </Pressable>
       <View style={styles.overlay}>
         <Pressable
-          style={styles.IconBehave}
+          style={styles.IconSelectedTwo}
           android_ripple={{ borderless: true, radius: 50 }}
         >
-          <Icon
-            name="chat-bubble"
-            height={iconHeight}
-            width={iconWidth}
+          <FontAwesome5
+            name="syringe"
+            size={25}
             color="#BB22B5"
           />
         </Pressable>
@@ -50,10 +45,9 @@ const BarPositionTwo = ({ setPage }) => {
         style={styles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}
       >
-        <Icon
-          name="user-shape"
-          height={iconHeight}
-          width={iconWidth}
+        <FontAwesome5
+          name="stethoscope"
+          size={25}
           color="#C4C4C4"
         />
       </Pressable>
@@ -88,5 +82,10 @@ const styles = StyleSheet.create({
   IconBehave: {
     marginTop: 2,
     padding: 14,
+  },
+  IconSelectedTwo: {
+    marginTop: 2,
+    padding: 14,
+    paddingLeft: 16
   },
 });
