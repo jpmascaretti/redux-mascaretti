@@ -10,7 +10,6 @@ const BarPositionOne = ({page, setPage}) => {
         <View style={styles.NavBar}>
           <View style={styles.overlay}>
           <Pressable
-            onPress={() => {}}
             style={styles.IconBehave}
             android_ripple={{ borderless: true, radius: 50 }}
           >
@@ -18,13 +17,17 @@ const BarPositionOne = ({page, setPage}) => {
               name="favorite-heart-button"
               height={iconHeight}
               width={iconWidth}
-              color="#C4C4C4"
+              color="#DD41E0"
             />
           </Pressable>
           </View>
 
           <Pressable
-            onPress={() => {}}
+            onPress={() => setPage({
+              recordsPage: false,
+              dosesPage: true,
+              testsPage: false,
+            })}
             style={styles.IconBehave}
             android_ripple={{ borderless: true, radius: 50 }}
           >

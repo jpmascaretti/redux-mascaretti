@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 var iconHeight = 26;
 var iconWidth = 26;
 
-const BarPositionThree = ({ setPage }) => {
+const BarPositionTwo = ({ setPage }) => {
   return (
     <View style={styles.NavBar}>
       <Pressable
@@ -26,41 +26,42 @@ const BarPositionThree = ({ setPage }) => {
           color="#C4C4C4"
         />
       </Pressable>
-
-      <Pressable
-        onPress={() => setPage({
-          recordsPage: false,
-          dosesPage: true,
-          testsPage: false,
-        })}
-        style={styles.IconBehave}
-        android_ripple={{ borderless: true, radius: 50 }}
-      >
-        <Icon
-          name="chat-bubble"
-          height={iconHeight}
-          width={iconWidth}
-          color="#C4C4C4"
-        />
-      </Pressable>
       <View style={styles.overlay}>
         <Pressable
           style={styles.IconBehave}
           android_ripple={{ borderless: true, radius: 50 }}
         >
           <Icon
-            name="user-shape"
+            name="chat-bubble"
             height={iconHeight}
             width={iconWidth}
             color="#C4C4C4"
           />
         </Pressable>
       </View>
+      <Pressable
+        onPress={() =>
+          setPage({
+            recordsPage: false,
+            dosesPage: false,
+            testsPage: true,
+          })
+        }
+        style={styles.IconBehave}
+        android_ripple={{ borderless: true, radius: 50 }}
+      >
+        <Icon
+          name="user-shape"
+          height={iconHeight}
+          width={iconWidth}
+          color="#C4C4C4"
+        />
+      </Pressable>
     </View>
   );
 };
 
-export default BarPositionThree;
+export default BarPositionTwo;
 
 const styles = StyleSheet.create({
   overlay: {

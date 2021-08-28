@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import BarPositionOne from "./BarPositionOne";
 import BarPositionThree from "./BarPositionThree";
-
+import BarPositionTwo from "./BarPositionTwo";
 var iconHeight = 26;
 var iconWidth = 26;
 
@@ -12,8 +12,9 @@ const TabBar = ({page, setPage}) => {
   return (
     <View style={styles.NavContainerFlex}>
       <View style={styles.NavContainer}>
-        {page.recordsPage && <BarPositionOne setPage={setPage} page={page}/>}
-        {page.testsPage && <BarPositionThree setPage={setPage} page={page}/>}
+        {page.recordsPage && <BarPositionOne setPage={setPage}/>}
+        {page.dosesPage && <BarPositionTwo setPage={setPage} />}
+        {page.testsPage && <BarPositionThree setPage={setPage} />}
       </View>
     </View>
   );
