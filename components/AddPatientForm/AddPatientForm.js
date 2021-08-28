@@ -5,20 +5,35 @@ import GenderCheckboxes from "../GenderCheckboxes/GenderCheckboxes";
 import { TextInput, Text, View, TouchableOpacity } from "react-native";
 
 export default AddPatientForm = () => {
-  const { addPatient } = useContext(RecordsContext);
+  const { addPatient, patientsList } = useContext(RecordsContext);
   const [maleSelected, setMaleSelection] = useState(false);
   const [femaleSelected, setFemaleSelection] = useState(false);
   const [inputText, setInputText] = useState("");
   const [nameError, setNameError] = useState("");
   const [genderError, setGenderError] = useState("");
   const [gender, setGender] = useState("");
+  const [duplicateRecordError, setDuplicateRecordError] = useState("");
 
   const handleChangeText = (text) => {
     setInputText(text);
     setNameError("");
+    setDuplicateRecordError("");
   };
 
   const handleAddItem = () => {
+    if (
+      patientsList.find(
+        (patient) => patient.name === inputText && patient.gender === gender
+      )
+    ) {
+      setInputText("");
+      setNameError("");
+      setGender("");
+      setGenderError("");
+      setMaleSelection(false);
+      setFemaleSelection(false);
+      return setDuplicateRecordError("Patient is already in the records");
+    }
     if (inputText && (gender == "male" || gender == "female")) {
       addPatient({
         id: Math.random().toString(),
@@ -29,6 +44,8 @@ export default AddPatientForm = () => {
       setNameError("");
       setGender("");
       setGenderError("");
+      setMaleSelection(false);
+      setFemaleSelection(false);
     } else if (!inputText && (gender == "male" || gender == "female")) {
       setNameError("Name Required");
       setGenderError("");
@@ -97,6 +114,9 @@ export default AddPatientForm = () => {
           <Text style={globalStyles.whiteBoldText}>Add Patient</Text>
         </TouchableOpacity>
       </View>
+      {duplicateRecordError != "" && (
+        <Text style={globalStyles.genderError}>{duplicateRecordError}</Text>
+      )}
     </View>
   );
 };
