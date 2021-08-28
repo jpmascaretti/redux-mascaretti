@@ -1,11 +1,9 @@
-import Icon from "react-native-ico-material-design";
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import BarPositionOne from "./BarPositionOne";
 import BarPositionThree from "./BarPositionThree";
 import BarPositionTwo from "./BarPositionTwo";
-var iconHeight = 26;
-var iconWidth = 26;
+
 
 const TabBar = ({page, setPage}) => {
 

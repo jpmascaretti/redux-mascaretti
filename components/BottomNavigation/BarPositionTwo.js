@@ -35,7 +35,7 @@ const BarPositionTwo = ({ setPage }) => {
             name="chat-bubble"
             height={iconHeight}
             width={iconWidth}
-            color="#C4C4C4"
+            color="#BB22B5"
           />
         </Pressable>
       </View>

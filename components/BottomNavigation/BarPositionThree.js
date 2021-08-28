@@ -52,7 +52,7 @@ const BarPositionThree = ({ setPage }) => {
             name="user-shape"
             height={iconHeight}
             width={iconWidth}
-            color="#C4C4C4"
+            color="#BB22B5"
           />
         </Pressable>
       </View>

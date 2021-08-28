@@ -17,7 +17,7 @@ const BarPositionOne = ({page, setPage}) => {
               name="favorite-heart-button"
               height={iconHeight}
               width={iconWidth}
-              color="#DD41E0"
+              color="#BB22B5"
             />
           </Pressable>
           </View>
