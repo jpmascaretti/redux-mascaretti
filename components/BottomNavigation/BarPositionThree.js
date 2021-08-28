@@ -5,12 +5,16 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 var iconHeight = 26;
 var iconWidth = 26;
 
-const BarPositionTwo = () => {
+const BarPositionThree = ({setPage}) => {
     return (
         <View style={styles.NavBar}>
 
           <Pressable
-            onPress={() => console.log("Icon 1")}
+            onPress={() => setPage({
+              recordsPage: true,
+              dosesPage: false,
+              testsPage: false,
+            })}
             style={styles.IconBehave}
             android_ripple={{ borderless: true, radius: 50 }}
           >
@@ -22,7 +26,7 @@ const BarPositionTwo = () => {
             />
           </Pressable>
           
-          <View style={styles.overlay}>
+          
           <Pressable
             onPress={() => console.log("Icon 2")}
             style={styles.IconBehave}
@@ -35,9 +39,8 @@ const BarPositionTwo = () => {
               color="#C4C4C4"
             />
           </Pressable>
-          </View>
+          <View style={styles.overlay}>
           <Pressable
-            onPress={() => console.log("Icon 3")}
             style={styles.IconBehave}
             android_ripple={{ borderless: true, radius: 50 }}
           >
@@ -48,11 +51,12 @@ const BarPositionTwo = () => {
               color="#C4C4C4"
             />
           </Pressable>
+          </View>
         </View>
     )
 }
 
-export default BarPositionTwo
+export default BarPositionThree
 
 const styles = StyleSheet.create({
     overlay: {

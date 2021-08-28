@@ -1,14 +1,15 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 
 import AddPatientContainer from "../AddPatientContainer/AddPatientContainer";
 import { View } from "react-native";
+import DefaultHeader from "../DefaultHeader/DefaultHeader";
 
-export default HeaderBar = () => {
+export default HeaderBar = ({page}) => {
+
   return (
     <View>
-      <StatusBar backgroundColor="#BB22B5" style="light" />
-      <AddPatientContainer />
+      {page.testsPage && <DefaultHeader/>}
+      {page.recordsPage && <AddPatientContainer/>}
     </View>
   );
 };

@@ -1,21 +1,17 @@
 import React from "react";
 import PatientsContext from "./context/PatientsContext/PatientsContext";
-import RecordSearch from "./components/RecordSearch/RecordSearch";
-import PatientRecords from "./components/PatientRecords/PatientRecords";
 import { globalStyles } from "./styles/globalStyles";
-import HeaderBar from "./components/HeaderBar/HeaderBar";
-import TabBar from "./components/BottomNavigation/TabBar";
-
+import Navigation from "./components/Navigation/Navigation";
 import { View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+
 
 export default function App() {
   return (
     <PatientsContext>
+      <StatusBar backgroundColor="#BB22B5" style="light" />
       <View style={globalStyles.screen}>
-        <HeaderBar />
-        <RecordSearch></RecordSearch>
-        <PatientRecords></PatientRecords>
-        <TabBar></TabBar>
+        <Navigation />
       </View>
     </PatientsContext>
   );
