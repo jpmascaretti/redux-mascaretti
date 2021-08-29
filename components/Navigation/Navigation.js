@@ -3,7 +3,7 @@ import RecordSearch from "../RecordSearch/RecordSearch";
 import PatientRecords from "../PatientRecords/PatientRecords";
 import TabBar from "../BottomNavigation/TabBar";
 import HeaderBar from "../HeaderBar/HeaderBar";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 
 const Navigation = () => {
@@ -24,12 +24,12 @@ const Navigation = () => {
       )}
       {navPage.dosesPage && (
         <View>
-          <Text style={globalStyles.headline}>Doses Page to be developed</Text>
+          <Text style={{ fontFamily: 'pinyon-script-regular', fontSize: 30 }}>Doses Page to be developed</Text>
         </View>
       )}
       {navPage.testsPage && (
         <View>
-          <Text style={globalStyles.headline}>Tests Page to be developed</Text>
+          <Text style={{ fontFamily: 'pinyon-script-regular', fontSize: 30 }}>Tests Page to be developed</Text>
         </View>
       )}
       <TabBar page={navPage} setPage={setNavPage} />
@@ -38,3 +38,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
