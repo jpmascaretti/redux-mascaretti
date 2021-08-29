@@ -4,6 +4,7 @@ import PatientRecords from "../PatientRecords/PatientRecords";
 import TabBar from "../BottomNavigation/TabBar";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import { View, Text } from "react-native";
+import { globalStyles } from "../../styles/globalStyles";
 
 const Navigation = () => {
   const [navPage, setNavPage] = useState({
@@ -23,12 +24,12 @@ const Navigation = () => {
       )}
       {navPage.dosesPage && (
         <View>
-          <Text>Doses Page to be developed</Text>
+          <Text style={globalStyles.headline}>Doses Page to be developed</Text>
         </View>
       )}
       {navPage.testsPage && (
         <View>
-          <Text>Tests Page to be developed</Text>
+          <Text style={globalStyles.headline}>Tests Page to be developed</Text>
         </View>
       )}
       <TabBar page={navPage} setPage={setNavPage} />
