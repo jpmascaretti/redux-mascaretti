@@ -3,8 +3,7 @@ import RecordSearch from "../RecordSearch/RecordSearch";
 import PatientRecords from "../PatientRecords/PatientRecords";
 import TabBar from "../BottomNavigation/TabBar";
 import HeaderBar from "../HeaderBar/HeaderBar";
-import { View, Text, StyleSheet } from "react-native";
-import { globalStyles } from "../../styles/globalStyles";
+import { View, Text, SafeAreaView } from "react-native";
 
 const Navigation = () => {
   const [navPage, setNavPage] = useState({
@@ -17,10 +16,10 @@ const Navigation = () => {
     <>
       <HeaderBar page={navPage} />
       {navPage.recordsPage && (
-        <>
+        <SafeAreaView>
           <RecordSearch page={navPage} />
           <PatientRecords />
-        </>
+        </SafeAreaView>
       )}
       {navPage.dosesPage && (
         <View>

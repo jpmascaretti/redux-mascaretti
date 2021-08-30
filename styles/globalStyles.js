@@ -147,6 +147,7 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 5,
   },
   headline: {
+    fontFamily: "pinyon-script-regular",
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 18,
