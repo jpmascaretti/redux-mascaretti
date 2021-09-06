@@ -2,11 +2,7 @@ import React from "react";
 import PatientsContext from "./context/PatientsContext/PatientsContext";
 import { globalStyles } from "./styles/globalStyles";
 import Navigation from "./components/Navigation/Navigation";
-import {
-  View,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
+import { View, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";

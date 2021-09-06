@@ -4,7 +4,7 @@ import { Searchbar } from "react-native-paper";
 import { globalStyles } from "../../styles/globalStyles";
 import { Text, View } from "react-native";
 
-export default RecordSearch = ({ page }) => {
+export default RecordSearch = () => {
   const { patientsList } = useContext(RecordsContext);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,14 +24,13 @@ export default RecordSearch = ({ page }) => {
           />
         </View>
       ) : (
-        page.recordsPage && (
           <View style={globalStyles.noRecordsMessage}>
             <Text style={globalStyles.headline}>No patients found</Text>
             <Text style={globalStyles.headlineBottom}>
               Please add patients to medical records{" "}
             </Text>
           </View>
-        )
+        
       )}
     </View>
   );
