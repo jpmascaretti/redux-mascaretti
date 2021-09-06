@@ -2,18 +2,18 @@ import React from "react";
 import { View, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { bottomNavStyles } from "../../styles/bottomNavStyles";
+import { useNavigation } from "@react-navigation/native";
+import ROUTES from "../../routes/routes";
 
-const BarPositionTwo = ({ setPage }) => {
+const DosesTab = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={bottomNavStyles.NavBar}>
       <Pressable
-        onPress={() =>
-          setPage({
-            recordsPage: true,
-            dosesPage: false,
-            testsPage: false,
-          })
-        }
+        onPress={() => {
+          navigation.push(ROUTES.RECORDS);
+        }}
         style={bottomNavStyles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}
       >
@@ -28,13 +28,9 @@ const BarPositionTwo = ({ setPage }) => {
         </Pressable>
       </View>
       <Pressable
-        onPress={() =>
-          setPage({
-            recordsPage: false,
-            dosesPage: false,
-            testsPage: true,
-          })
-        }
+        onPress={() => {
+          navigation.push(ROUTES.TESTS);
+        }}
         style={bottomNavStyles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}
       >
@@ -44,4 +40,4 @@ const BarPositionTwo = ({ setPage }) => {
   );
 };
 
-export default BarPositionTwo;
+export default DosesTab;

@@ -173,6 +173,10 @@ export const globalStyles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  safeAreaView: {
+    backgroundColor: "white",
+    flex: 1,
+  },
   noRecordsMessage: {
     flexDirection: "column",
     justifyContent: "center",

@@ -4,7 +4,7 @@ export const bottomNavStyles = StyleSheet.create({
   NavContainerFlex: {
     position: "absolute",
     width: "100%",
-    height: "105%",
+    height: "97%",
     flexDirection: "column",
     display: "flex",
     alignItems: "center",

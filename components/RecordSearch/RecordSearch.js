@@ -12,7 +12,7 @@ export default RecordSearch = () => {
   const onChangeSearch = (query) => setSearchQuery(query);
 
   return (
-    <View>
+    <>
       {patientsList.length > 0 ? (
         <View style={globalStyles.searchBarContainer}>
           <Searchbar
@@ -24,14 +24,13 @@ export default RecordSearch = () => {
           />
         </View>
       ) : (
-          <View style={globalStyles.noRecordsMessage}>
-            <Text style={globalStyles.headline}>No patients found</Text>
-            <Text style={globalStyles.headlineBottom}>
-              Please add patients to medical records{" "}
-            </Text>
-          </View>
-        
+        <View style={globalStyles.noRecordsMessage}>
+          <Text style={globalStyles.headline}>No patients found</Text>
+          <Text style={globalStyles.headlineBottom}>
+            Please add patients to medical records{" "}
+          </Text>
+        </View>
       )}
-    </View>
+    </>
   );
 };

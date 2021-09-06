@@ -36,7 +36,7 @@ const PatientRecords = () => {
   }
 
   return (
-    <View>
+    <>
       <View style={globalStyles.listColumn}>
         <FlatList
           data={patientsList}
@@ -95,7 +95,7 @@ const PatientRecords = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </>
   );
 };
 
