@@ -3,9 +3,11 @@ import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
 import { Searchbar } from "react-native-paper";
 import { globalStyles } from "../../styles/globalStyles";
 import { Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
 export default RecordSearch = () => {
-  const { patientsList } = useContext(RecordsContext);
+
+  const patientsList = useSelector(state => state.patientsRecords.list)
 
   const [searchQuery, setSearchQuery] = useState("");
 

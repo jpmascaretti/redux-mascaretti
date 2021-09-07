@@ -3,9 +3,15 @@ import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
 import { globalStyles } from "../../styles/globalStyles";
 import GenderCheckboxes from "../GenderCheckboxes/GenderCheckboxes";
 import { TextInput, Text, View, TouchableOpacity } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { savePatient } from "../../store/actions/patients.actions";
+
 
 export default AddPatientForm = () => {
-  const { addPatient, patientsList } = useContext(RecordsContext);
+  // const { addPatient, patientsList } = useContext(RecordsContext);
+  const dispatch = useDispatch();
+  const patientsList = useSelector(state => state.patientsRecords.list)
+
   const [maleSelected, setMaleSelection] = useState(false);
   const [femaleSelected, setFemaleSelection] = useState(false);
   const [inputText, setInputText] = useState("");
@@ -35,11 +41,14 @@ export default AddPatientForm = () => {
       return setDuplicateRecordError("Patient is already in the records");
     }
     if (inputText && (gender == "male" || gender == "female")) {
-      addPatient({
-        id: Math.random().toString(),
-        name: inputText,
-        gender: gender,
-      });
+      dispatch(savePatient(
+        {
+          id: Math.random().toString(),
+          name: inputText,
+          gender: gender,
+        }
+      ))
+
       setInputText("");
       setNameError("");
       setGender("");

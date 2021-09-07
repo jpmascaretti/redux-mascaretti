@@ -3,6 +3,7 @@ import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
 import { Entypo, Ionicons, AntDesign } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/globalStyles";
 import { modalStyles } from "../../styles/modalStyles";
+import { useSelector } from "react-redux";
 import {
   Button,
   Text,
@@ -13,9 +14,12 @@ import {
 } from "react-native";
 
 const PatientRecords = () => {
+
+  const patientsList = useSelector(state => state.patientsRecords.list)
+
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
-  const { patientsList, setPatientsList } = useContext(RecordsContext);
+  // const { patientsList, setPatientsList } = useContext(RecordsContext);
 
   const [itemSelected, setItemSelected] = useState({});
 
