@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
-import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
+import React, { useState } from "react";
 import { Entypo, Ionicons, AntDesign } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/globalStyles";
 import { modalStyles } from "../../styles/modalStyles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deletePatient } from "../../store/actions/patients.actions";
 import {
   Button,
   Text,
@@ -14,24 +14,22 @@ import {
 } from "react-native";
 
 const PatientRecords = () => {
+  const patientsList = useSelector((state) => state.patientsRecords.list);
 
-  const patientsList = useSelector(state => state.patientsRecords.list)
+  const dispatch = useDispatch();
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
-  // const { patientsList, setPatientsList } = useContext(RecordsContext);
-
-  const [itemSelected, setItemSelected] = useState({});
+  const [patientSelected, setPatientSelected] = useState({});
 
   const handleConfirmDelete = () => {
-    const id = itemSelected.id;
-    setPatientsList(patientsList.filter((item) => item.id !== id));
+    dispatch(deletePatient(patientSelected));
     setDeleteModalVisible(false);
-    setItemSelected({});
+    setPatientSelected({});
   };
 
   const handleModal = (id) => {
-    setItemSelected(patientsList.find((item) => item.id === id));
+    setPatientSelected(patientsList.find((item) => item.id === id));
     setDeleteModalVisible(true);
   };
 
@@ -88,7 +86,7 @@ const PatientRecords = () => {
             <Text style={modalStyles.modalMessage}>
               Delete medical record of:
             </Text>
-            <Text style={modalStyles.modalTitle}>{itemSelected.name}</Text>
+            <Text style={modalStyles.modalTitle}>{patientSelected.name}</Text>
             <View>
               <Button
                 onPress={handleConfirmDelete}

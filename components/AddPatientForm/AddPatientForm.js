@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
+import React, { useState } from "react";
 import { globalStyles } from "../../styles/globalStyles";
 import GenderCheckboxes from "../GenderCheckboxes/GenderCheckboxes";
 import { TextInput, Text, View, TouchableOpacity } from "react-native";
@@ -8,7 +7,7 @@ import { savePatient } from "../../store/actions/patients.actions";
 
 
 export default AddPatientForm = () => {
-  // const { addPatient, patientsList } = useContext(RecordsContext);
+
   const dispatch = useDispatch();
   const patientsList = useSelector(state => state.patientsRecords.list)
 

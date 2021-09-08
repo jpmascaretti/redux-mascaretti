@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { RecordsContext } from "../../context/PatientsContext/PatientsContext";
+import React, { useState } from "react";
 import { Searchbar } from "react-native-paper";
 import { globalStyles } from "../../styles/globalStyles";
 import { Text, View } from "react-native";
