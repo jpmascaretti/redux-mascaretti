@@ -21,7 +21,7 @@ const RecordsTab = () => {
 
       <Pressable
         onPress={() => {
-          navigation.push(ROUTES.DOSES);
+          navigation.navigate(ROUTES.DOSES);
         }}
         style={bottomNavStyles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}
@@ -30,7 +30,7 @@ const RecordsTab = () => {
       </Pressable>
       <Pressable
         onPress={() => {
-          navigation.push(ROUTES.TESTS);
+          navigation.navigate(ROUTES.TESTS);
         }}
         style={bottomNavStyles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}

@@ -12,7 +12,7 @@ const DosesTab = () => {
     <View style={bottomNavStyles.NavBar}>
       <Pressable
         onPress={() => {
-          navigation.push(ROUTES.RECORDS);
+          navigation.navigate(ROUTES.RECORDS);
         }}
         style={bottomNavStyles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}
@@ -29,7 +29,7 @@ const DosesTab = () => {
       </View>
       <Pressable
         onPress={() => {
-          navigation.push(ROUTES.TESTS);
+          navigation.navigate(ROUTES.TESTS);
         }}
         style={bottomNavStyles.IconBehave}
         android_ripple={{ borderless: true, radius: 50 }}
