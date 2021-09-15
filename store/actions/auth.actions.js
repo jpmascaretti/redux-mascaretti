@@ -1,4 +1,4 @@
-import {URL_LOGIN_AUTH_API, URL_SIGNUP_AUTH_API} from "@env"
+import {URL_LOGIN_AUTH_API, URL_SIGNUP_AUTH_API} from '../../constants/database'
 
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
