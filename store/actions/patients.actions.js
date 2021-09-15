@@ -1,7 +1,7 @@
 export const SAVE_PATIENT = "SAVE_PATIENT";
 export const DELETE_PATIENT = "DELETE_PATIENT";
 
-import { URL_API } from '../../constants/database'
+import { URL_API } from "@env"
 
 export const deletePatient = (todeleteRecord) => ({
   type: DELETE_PATIENT,
