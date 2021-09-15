@@ -1,17 +1,15 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ROUTES from "../../routes/routes";
 //Screens
 import Doses from "../Screens/Doses";
+import ROUTES from "../../routes/routes";
+import React from "react";
 import Records from "../Screens/Records";
 import Tests from "../Screens/Tests";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
-const Navigation = () => {
+const TabsNavigator = () => {
   return (
-    <NavigationContainer>
       <Stack.Navigator
         initialRouteName={ROUTES.RECORDS}
         screenOptions={{
@@ -22,8 +20,7 @@ const Navigation = () => {
         <Stack.Screen name={ROUTES.DOSES} component={Doses} />
         <Stack.Screen name={ROUTES.TESTS} component={Tests} />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 };
 
-export default Navigation;
+export default TabsNavigator;

@@ -1,12 +1,13 @@
-import React from "react";
-import { globalStyles } from "./styles/globalStyles";
-import Navigation from "./components/Navigation/Navigation";
-import { View, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { useFonts } from "expo-font";
+import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
+
 import AppLoading from "expo-app-loading";
+import MainNavigator from "./components/Navigation/MainNavigator";
 import { Provider } from "react-redux";
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { globalStyles } from "./styles/globalStyles";
 import store from "./store";
+import { useFonts } from "expo-font";
 
 export default function App() {
   let [loaded] = useFonts({
@@ -21,7 +22,7 @@ export default function App() {
       <StatusBar backgroundColor="#BB22B5" style="light" />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={globalStyles.screen}>
-          <Navigation />
+          <MainNavigator />
         </View>
       </TouchableWithoutFeedback>
     </Provider>

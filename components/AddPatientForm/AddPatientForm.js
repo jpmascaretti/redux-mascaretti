@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { globalStyles } from "../../styles/globalStyles";
-import GenderCheckboxes from "../GenderCheckboxes/GenderCheckboxes";
-import { TextInput, Text, View, TouchableOpacity } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { savePatient } from "../../store/actions/patients.actions";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
+import GenderCheckboxes from "../GenderCheckboxes/GenderCheckboxes";
+import { globalStyles } from "../../styles/globalStyles";
+import { savePatient } from "../../store/actions/patients.actions";
 
 export default AddPatientForm = () => {
 
@@ -42,7 +42,7 @@ export default AddPatientForm = () => {
     if (inputText && (gender == "male" || gender == "female")) {
       dispatch(savePatient(
         {
-          id: Math.random().toString(),
+          id: Math.floor(Math.random().toString() * 100000),
           name: inputText,
           gender: gender,
         }
