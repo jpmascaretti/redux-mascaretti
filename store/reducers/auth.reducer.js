@@ -3,6 +3,7 @@ import { LOGIN, SIGNUP } from "../actions/auth.actions";
 const INITIAL_STATE = {
   token: null,
   userId: null,
+  error: null,
 };
 
 const AuthReducer = (state = INITIAL_STATE, action) => {
@@ -18,6 +19,7 @@ const AuthReducer = (state = INITIAL_STATE, action) => {
         ...state,
         token: action.token,
         userId: action.userId,
+        error: action.error,
       };
     default:
       return state;

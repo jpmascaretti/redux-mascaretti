@@ -1,9 +1,10 @@
+import { Text, View } from "react-native";
+
+import DefaultHeader from "../../DefaultHeader/DefaultHeader";
+import DosesTab from "../../BottomTabs/DosesTab";
 import React from "react";
-import { View, Text } from "react-native";
-import DefaultHeader from "../DefaultHeader/DefaultHeader";
-import { bottomNavStyles } from "../../styles/bottomNavStyles";
-import DosesTab from "../BottomTabs/DosesTab";
-import { globalStyles } from "../../styles/globalStyles";
+import { bottomNavStyles } from "../../../styles/bottomNavStyles";
+import { globalStyles } from "../../../styles/globalStyles";
 
 export default function Doses() {
   return (

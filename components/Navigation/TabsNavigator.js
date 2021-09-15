@@ -1,9 +1,9 @@
 //Screens
-import Doses from "../Screens/Doses";
+import Doses from "../Screens/main/Doses";
 import ROUTES from "../../routes/routes";
 import React from "react";
-import Records from "../Screens/Records";
-import Tests from "../Screens/Tests";
+import Records from "../Screens/main/Records";
+import Tests from "../Screens/main/Tests";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();

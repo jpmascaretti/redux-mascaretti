@@ -1,9 +1,10 @@
+import { Text, View } from "react-native";
+
+import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import React from "react";
-import { View, Text } from "react-native";
-import DefaultHeader from "../DefaultHeader/DefaultHeader";
-import { bottomNavStyles } from "../../styles/bottomNavStyles";
-import TestsTab from "../BottomTabs/TestsTab";
-import { globalStyles } from "../../styles/globalStyles";
+import TestsTab from "../../BottomTabs/TestsTab";
+import { bottomNavStyles } from "../../../styles/bottomNavStyles";
+import { globalStyles } from "../../../styles/globalStyles";
 
 export default function Tests() {
   return (
