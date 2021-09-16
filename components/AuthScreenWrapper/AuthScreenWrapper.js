@@ -7,11 +7,13 @@ import { useNavigation } from '@react-navigation/native';
 const AuthScreenWrapper = ({ children, title, message, buttonText, buttonPath }) => {
   const navigation = useNavigation();
   return (
+
     <KeyboardAvoidingView
       behavior="height"
       style={styles.screen}
     >
       <View style={styles.container}>
+
         <Text style={styles.title}>{title}</Text>
         {children}
         <View style={styles.prompt}>
@@ -20,6 +22,7 @@ const AuthScreenWrapper = ({ children, title, message, buttonText, buttonPath })
             <Text style={styles.promptButton}>{buttonText}</Text>
           </TouchableOpacity>
         </View>
+
       </View>
     </KeyboardAvoidingView>
   );
@@ -30,6 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   title: {
     fontSize: 24,
@@ -56,6 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.primary,
   },
+
 });
 
 export default AuthScreenWrapper;

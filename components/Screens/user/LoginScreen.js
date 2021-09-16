@@ -2,7 +2,9 @@ import React, { useCallback, useReducer } from "react";
 
 import AuthScreenWrapper from "../../AuthScreenWrapper/AuthScreenWrapper";
 import { Button } from "react-native-elements";
+import {COLORS} from "../../../constants/colors"
 import Input from "../../Input/Input";
+import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet } from "react-native";
 import { login } from "../../../store/actions/auth.actions";
 import { useDispatch } from "react-redux";
@@ -49,10 +51,14 @@ const LoginScreen = () => {
   );
 
   return (
+    <LinearGradient
+    colors={["#96EAEF", "white"]}
+    style={styles.linearGradient}
+  >
     <AuthScreenWrapper
-      title="INGRESAR"
-      message="¿Aún no tienes cuenta?"
-      buttonText="Ir al registro"
+      title="Log In"
+      message="¿Don't have a Dose+ account?"
+      buttonText="Sign Up"
       buttonPath="Signup"
     >
       <Input
@@ -60,7 +66,7 @@ const LoginScreen = () => {
         label="Email"
         keyboardType="email-address"
         autoCapitalize="none"
-        errorText="Por favor ingresa un email válido"
+        errorText="Please enter valid email"
         required
         email
         onInputChange={onInputChangeHandler}
@@ -70,20 +76,30 @@ const LoginScreen = () => {
         label="Password"
         secureTextEntry
         autoCapitalize="none"
-        errorText="wrong password"
+        errorText="Wrong password"
         required
         minLength={6}
         onInputChange={onInputChangeHandler}
       />
       <Button
-        title="REGISTRARME"
+        title="Log In"
         onPress={handleSignUp}
         buttonStyle={styles.button}
       />
     </AuthScreenWrapper>
+    </LinearGradient>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    button: {
+      backgroundColor: COLORS.primary,
+      marginVertical: 20,
+    },
+    linearGradient: {
+      width: "100%",
+      height: "100%",
+    },
+  });
 
 export default LoginScreen;

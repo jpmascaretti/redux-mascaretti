@@ -1,4 +1,4 @@
-import { SAVE_PATIENT, DELETE_PATIENT } from "../actions/patients.actions";
+import { DELETE_PATIENT, SAVE_PATIENT } from "../actions/patients.actions";
 
 const patients = [];
 
