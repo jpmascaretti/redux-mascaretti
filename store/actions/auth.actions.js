@@ -1,13 +1,15 @@
-import {URL_LOGIN_AUTH_API} from '../../constants/database'
-
+import {URL_LOGIN_AUTH_API, URL_SIGNUP_AUTH_API} from '../../constants/database'
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 
 export const signup = (email, password) => {
   return async (dispatch) => {
-    const response = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBcLw7hAzYKC7PAYBnJWHTe2f-Run77gkw", {
+    try {
+
+    const response = await fetch(URL_SIGNUP_AUTH_API, {
       method: "POST",
       headers: {
+        Accept: 'application/json',
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -18,12 +20,15 @@ export const signup = (email, password) => {
     });
 
     const data = await response.json();
-
+    console.log(data)
     dispatch({
       type: SIGNUP,
       token: data.idToken,
       userId: data.localId,
     });
+  } catch (err) {
+    console.log(err)
+  }
   };
 };
 
