@@ -1,13 +1,13 @@
-import {URL_LOGIN_AUTH_API, URL_SIGNUP_AUTH_API} from '../../constants/database'
+import {URL_LOGIN_AUTH_API} from '../../constants/database'
 
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 
 export const signup = (email, password) => {
   return async (dispatch) => {
-    const response = await fetch(URL_SIGNUP_AUTH_API, {
+    const response = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBcLw7hAzYKC7PAYBnJWHTe2f-Run77gkw", {
       method: "POST",
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -31,7 +31,7 @@ export const login = (email, password) => {
   return async (dispatch) => {
     const response = await fetch(URL_LOGIN_AUTH_API, {
       method: "POST",
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
