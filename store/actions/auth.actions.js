@@ -49,7 +49,7 @@ export const login = (email, password) => {
     const data = await response.json();
 
     if (!!data.error) {
-        //note: now that I pass the error I need to render a message in the frontend
+
       dispatch({
         type: LOGIN,
         token: data.idToken,

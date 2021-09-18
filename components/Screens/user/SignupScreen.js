@@ -1,8 +1,6 @@
 import { Alert, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import React, { useCallback, useReducer } from "react";
 import AuthScreenWrapper from "../../AuthScreenWrapper/AuthScreenWrapper";
-import { Button } from "react-native-elements";
-import { COLORS } from "../../../constants/colors";
 import Input from "../../Input/Input";
 import { LinearGradient } from "expo-linear-gradient";
 import { signup } from "../../../store/actions/auth.actions";

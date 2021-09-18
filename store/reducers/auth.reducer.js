@@ -13,6 +13,7 @@ const AuthReducer = (state = INITIAL_STATE, action) => {
         ...state,
         token: action.token,
         userId: action.userId,
+        error: action.error,
       };
     case LOGIN:
       return {
