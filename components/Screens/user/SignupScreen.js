@@ -43,10 +43,13 @@ const SignupScreen = () => {
     inputValues: {
       email: "",
       password: "",
+      confirmpassword: "",
     },
     inputValidities: {
       email: false,
       password: false,
+      confirmpassword: false,
+
     },
     formIsValid: false,
   });
@@ -104,6 +107,18 @@ const SignupScreen = () => {
             autoCapitalize="none"
             errorText="Password must have at least 6 characters"
             required
+            minLength={6}
+            onInputChange={onInputChangeHandler}
+          />
+          <Input
+            id="confirmpassword"
+            label="Confirm Password"
+            secureTextEntry
+            autoCapitalize="none"
+            errorText="Passwords do not match"
+            required
+            confirmpwd
+            inputpwd = {formState.inputValues.password}
             minLength={6}
             onInputChange={onInputChangeHandler}
           />

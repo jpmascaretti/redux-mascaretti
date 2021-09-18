@@ -42,7 +42,7 @@ const Input = props => {
     if (props.required && text.trim().length === 0) isValid = false;
     if (props.email && !emailRegex.test(text.toLowerCase())) isValid = false;
     if (props.minLength && text.length < props.minLength) isValid = false;
-
+    if (props.confirmpwd & props.inputpwd !== text) isValid= false;
     inputDispatch({
       type: INPUT_CHANGE,
       value: text,
