@@ -3,15 +3,15 @@ import React, { useCallback, useReducer } from "react";
 import AuthScreenWrapper from "../../AuthScreenWrapper/AuthScreenWrapper";
 import Input from "../../Input/Input";
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, TouchableOpacity, Alert, Text, View } from "react-native";
+import { TouchableOpacity, Alert, Text, View } from "react-native";
 import { login } from "../../../store/actions/auth.actions";
-import { useDispatch } from "react-redux";
-import { globalStyles } from "../../../styles/globalStyles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { globalStyles } from "../../../styles/globalStyles"; 
+import { authStyles } from "../../../styles/authStyles";
 
 const LOGIN_FORM_INPUT_UPDATE = "LOGIN_FORM_INPUT_UPDATE";
 
-const formReducer = (state, action) => {
+const loginFormReducer = (state, action) => {
   if (action.type === LOGIN_FORM_INPUT_UPDATE) {
     const inputValues = {
       ...state.inputValues,
@@ -39,9 +39,9 @@ const formReducer = (state, action) => {
 const LoginScreen = () => {
   const dispatch = useDispatch();
 
-  const loginErr = useSelector((state) => state.auth.error);
+  const loginErr = useSelector((state) => state.auth.loginError);
 
-  const [formState, formDispatch] = useReducer(formReducer, {
+  const [loginFormState, loginFormDispatch] = useReducer(loginFormReducer, {
     inputValues: {
       email: "",
       password: "",
@@ -56,9 +56,9 @@ const LoginScreen = () => {
 
   const handleSignUp = () => {
 
-    if (formState.formIsValid) {
+    if (loginFormState.formIsValid) {
       dispatch(
-        login(formState.inputValues.email, formState.inputValues.password)
+        login(loginFormState.inputValues.email, loginFormState.inputValues.password)
       );
     } else {
       Alert.alert("Invalid Form", "Enter valid email and password", [
@@ -70,18 +70,18 @@ const LoginScreen = () => {
 
   const onInputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
-      formDispatch({
+      loginFormDispatch({
         type: LOGIN_FORM_INPUT_UPDATE,
         value: inputValue,
         isValid: inputValidity,
         input: inputIdentifier,
       });
     },
-    [formDispatch]
+    [loginFormDispatch]
   );
 
   return (
-    <LinearGradient colors={["#96EAEF", "white"]} style={styles.linearGradient}>
+    <LinearGradient colors={["#96EAEF", "white"]} style={authStyles.linearGradient}>
       <AuthScreenWrapper
         title="Log in with your credentials"
         message="¿Don't have a DoSe+ account?"
@@ -108,53 +108,17 @@ const LoginScreen = () => {
           minLength={6}
           onInputChange={onInputChangeHandler}
         />
-        <TouchableOpacity style={styles.buttonHover} onPress={handleSignUp}>
+        <TouchableOpacity style={authStyles.buttonHover} onPress={handleSignUp}>
           <Text style={globalStyles.whiteBoldText}>Log In</Text>
         </TouchableOpacity>
         {loginErr && (
           <View>
-            <Text style={styles.loginError}>{loginErr.replace('_', ' ')}</Text>
+            <Text style={authStyles.authError}>{loginErr.replace('_', ' ').replace('_', ' ')}</Text>
           </View>
         )}
       </AuthScreenWrapper>
     </LinearGradient>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: "#BB22B5",
-    marginVertical: 20,
-  },
-  linearGradient: {
-    width: "100%",
-    height: "100%",
-  },
-  buttonHover: {
-    marginTop: 20,
-    borderRadius: 5,
-    height: 40,
-    width: 60,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    shadowColor: "rgba(46, 229, 157, 0.7)",
-    shadowOpacity: 1.5,
-    elevation: 8,
-    shadowRadius: 20,
-    shadowOffset: { width: 1, height: 13 },
-    backgroundColor: "#BB22B5",
-    color: "#FFFFFF",
-    alignSelf: "center",
-  },
-  loginError: {
-    alignSelf: 'center',
-    textAlign: 'center',
-    color: 'red',
-    fontWeight: 'bold',
-    marginTop: 10,
-  }
-});
 
 export default LoginScreen;

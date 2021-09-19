@@ -1,15 +1,16 @@
-import { Alert, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { Alert, View, Text, TouchableOpacity } from "react-native";
 import React, { useCallback, useReducer } from "react";
 import AuthScreenWrapper from "../../AuthScreenWrapper/AuthScreenWrapper";
 import Input from "../../Input/Input";
 import { LinearGradient } from "expo-linear-gradient";
 import { signup } from "../../../store/actions/auth.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../../styles/globalStyles";
+import { authStyles } from "../../../styles/authStyles";
 
 const SIGNUP_FORM_INPUT_UPDATE = "SIGNUP_FORM_INPUT_UPDATE";
 
-const formReducer = (state, action) => {
+const signupFormReducer = (state, action) => {
   if (action.type === SIGNUP_FORM_INPUT_UPDATE) {
     const inputValues = {
       ...state.inputValues,
@@ -37,7 +38,10 @@ const formReducer = (state, action) => {
 
 const SignupScreen = () => {
   const dispatch = useDispatch();
-  const [formState, formDispatch] = useReducer(formReducer, {
+
+  const signupErr = useSelector((state) => state.auth.signupError);
+
+  const [signupFormState, signupFormDispatch] = useReducer(signupFormReducer, {
     inputValues: {
       email: "",
       password: "",
@@ -47,15 +51,17 @@ const SignupScreen = () => {
       email: false,
       password: false,
       confirmpassword: false,
-
     },
     formIsValid: false,
   });
 
   const handleSignUp = () => {
-    if (formState.formIsValid) {
+    if (signupFormState.formIsValid) {
       dispatch(
-        signup(formState.inputValues.email, formState.inputValues.password)
+        signup(
+          signupFormState.inputValues.email,
+          signupFormState.inputValues.password
+        )
       );
     } else {
       Alert.alert("Invalid Form", "Enter valid email and password", [
@@ -66,21 +72,21 @@ const SignupScreen = () => {
 
   const onInputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
-      formDispatch({
+      signupFormDispatch({
         type: SIGNUP_FORM_INPUT_UPDATE,
         value: inputValue,
         isValid: inputValidity,
         input: inputIdentifier,
       });
     },
-    [formDispatch]
+    [signupFormDispatch]
   );
 
   return (
     <View>
       <LinearGradient
         colors={["#96EAEF", "white"]}
-        style={styles.linearGradient}
+        style={authStyles.linearGradient}
       >
         <AuthScreenWrapper
           title="Sign up with your credentials"
@@ -116,47 +122,28 @@ const SignupScreen = () => {
             errorText="Passwords do not match"
             required
             confirmpwd
-            inputpwd = {formState.inputValues.password}
+            inputpwd={signupFormState.inputValues.password}
             minLength={6}
             onInputChange={onInputChangeHandler}
           />
 
-          <TouchableOpacity style={styles.buttonHover} onPress={handleSignUp}>
+          <TouchableOpacity
+            style={authStyles.buttonHover}
+            onPress={handleSignUp}
+          >
             <Text style={globalStyles.whiteBoldText}>Sign up</Text>
           </TouchableOpacity>
+          {signupErr && (
+            <View>
+              <Text style={authStyles.authError}>
+                {signupErr.replace("_", " ")}
+              </Text>
+            </View>
+          )}
         </AuthScreenWrapper>
       </LinearGradient>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: "#BB22B5",
-    marginVertical: 20,
-  },
-  linearGradient: {
-    width: "100%",
-    height: "100%",
-  },
-  buttonHover: {
-    marginTop: 20,
-    borderRadius: 5,
-    height: 40,
-    width: 80,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 15,
-    paddingRight: 15,
-    shadowColor: "rgba(46, 229, 157, 0.7)",
-    shadowOpacity: 1.5,
-    elevation: 8,
-    shadowRadius: 20,
-    shadowOffset: { width: 1, height: 13 },
-    backgroundColor: "#BB22B5",
-    color: "#FFFFFF",
-    alignSelf: "center",
-  },
-});
 
 export default SignupScreen;
