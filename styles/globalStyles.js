@@ -176,24 +176,24 @@ export const globalStyles = StyleSheet.create({
   safeAreaView: {
     backgroundColor: "white",
     flex: 1,
-    
-  },  pickersView: {
+  },
+  pickersView: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 15,
   },
   pickersBox: {
     borderWidth: 2,
     borderRadius: 5,
     borderColor: "#C4C4C4",
-    width: '80%',
-    height: 50
+    width: "80%",
+    height: 50,
   },
   pickersBoxPink: {
     borderWidth: 2,
     borderRadius: 5,
     borderColor: "#BB22B5",
-    width: '80%',
+    width: "80%",
     height: 50,
   },
   noRecordsMessage: {
@@ -209,5 +209,64 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14,
     alignSelf: "center",
+  },
+  pickerBox: {
+    flex: 1,
+    alignSelf: "center",
+    textAlign: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  formLabel: {
+    marginTop: 15,
+    alignSelf: "flex-start",
+    marginLeft: "10%",
+    color: "#C4C4C4",
+  },
+  formLabelPink: {
+    marginTop: 15,
+    alignSelf: "flex-start",
+    marginLeft: "10%",
+    color: "#BB22B5",
+  },
+  drugLabel: {
+    alignSelf: "flex-start",
+    marginLeft: "10%",
+    color: "#C4C4C4",
+  },
+  drugLabelPink: {
+    alignSelf: "flex-start",
+    marginLeft: "10%",
+    color: "#BB22B5",
+  },
+  banner: {
+    width: "100%",
+    height: 35,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    backgroundColor: "#96EAEF",
+    marginTop: 30,
+  },
+  bannerOff: {
+    width: "100%",
+    height: 35,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    backgroundColor: "#c4c4c4",
+    marginTop: 30,
+  },
+  switchTextContainer: {
+    marginLeft: 20,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+  },
+  bannerText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    marginLeft: 5,
   },
 });
