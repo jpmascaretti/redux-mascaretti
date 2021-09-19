@@ -108,7 +108,7 @@ const LoginScreen = () => {
           minLength={6}
           onInputChange={onInputChangeHandler}
         />
-        <TouchableOpacity style={authStyles.buttonHover} onPress={handleSignUp}>
+        <TouchableOpacity style={authStyles.loginButton} onPress={handleSignUp}>
           <Text style={globalStyles.whiteBoldText}>Log In</Text>
         </TouchableOpacity>
         {loginErr && (

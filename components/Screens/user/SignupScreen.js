@@ -128,7 +128,7 @@ const SignupScreen = () => {
           />
 
           <TouchableOpacity
-            style={authStyles.buttonHover}
+            style={authStyles.signupButton}
             onPress={handleSignUp}
           >
             <Text style={globalStyles.whiteBoldText}>Sign up</Text>

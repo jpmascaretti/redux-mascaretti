@@ -176,6 +176,25 @@ export const globalStyles = StyleSheet.create({
   safeAreaView: {
     backgroundColor: "white",
     flex: 1,
+    
+  },  pickersView: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 15,
+  },
+  pickersBox: {
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: "#C4C4C4",
+    width: '80%',
+    height: 50
+  },
+  pickersBoxPink: {
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: "#BB22B5",
+    width: '80%',
+    height: 50,
   },
   noRecordsMessage: {
     flexDirection: "column",
