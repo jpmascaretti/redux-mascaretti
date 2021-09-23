@@ -12,10 +12,13 @@ const initialState = {
 
 const PatientReducer = (state = initialState, action) => {
   switch (action.type) {
+    
     case SAVE_PATIENT:
+
       return {
-        list: [...state.list, ...action.record],
+        list: [...state.list, action.record],
       };
+
     case GET_PATIENTS:
       return {
         list: [...action.patients],

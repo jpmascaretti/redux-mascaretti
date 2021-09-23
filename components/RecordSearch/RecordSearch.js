@@ -8,11 +8,11 @@ import { getPatients } from "../../store/actions/patients.actions";
 export default RecordSearch = () => {
 
   const dispatch = useDispatch();
+  const userID = useSelector((state) => state.auth.userId);
   const patientsList = useSelector((state) => state.patientsRecords.list);
 
   useEffect(() => {
-    
-    dispatch(getPatients())
+    dispatch(getPatients(userID))
   }, [])
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,7 +21,7 @@ export default RecordSearch = () => {
 
   return (
     <>
-      {patientsList.length > 0 ? (
+      {!!patientsList && patientsList.length > 0 ? (
         <View style={globalStyles.searchBarContainer}>
           <Searchbar
             placeholder="Search Patient"

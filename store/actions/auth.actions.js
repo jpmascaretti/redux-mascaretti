@@ -1,7 +1,7 @@
 import {
   URL_LOGIN_AUTH_API,
   URL_SIGNUP_AUTH_API,
-  URL_API
+  URL_API,
 } from "../../constants/database";
 
 export const SIGNUP = "SIGNUP";
@@ -47,7 +47,7 @@ export const signup = (email, password) => {
               drugs: drugs,
             }),
           });
-      
+
           const drugResult = await drugResponse.json();
         } catch (error) {
           console.log(error.message);
@@ -63,7 +63,6 @@ export const signup = (email, password) => {
     }
   };
 };
-
 
 export const login = (email, password) => {
   return async (dispatch) => {

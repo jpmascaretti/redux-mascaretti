@@ -21,10 +21,10 @@ const PatientRecords = () => {
   const patientsList = useSelector((state) => state.patientsRecords.list);
   const userID = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
-
+  console.log(patientsList)
   useEffect(() => {
     dispatch(getPatients(userID));
-  }, [patientsList]);
+  }, []);
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
@@ -51,6 +51,7 @@ const PatientRecords = () => {
         <FlatList
           data={patientsList}
           renderItem={(data) => {
+            console.log(data.item)
             return (
               <TouchableOpacity
                 onPress={() => {
@@ -89,9 +90,9 @@ const PatientRecords = () => {
               </TouchableOpacity>
             );
           }}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
+          keyExtractor={(item) => 
+            item.id
+          }
         />
       </View>
 

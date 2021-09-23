@@ -8,11 +8,12 @@ import DrugPicker from "../../Pickers/DrugPicker";
 import FormPicker from "../../Pickers/FormPicker";
 import Banner from "../../Banners/Banner";
 import SliderDisplay from "../../SliderDisplay/SliderDisplay";
+import { getDrugs } from "../../../store/actions/drugs.actions";
 
 export default function Doses() {
   const [selectedDrug, setSelectedDrug] = useState("Select Drug");
   const [selectedForm, setSelectedForm] = useState("Select Form");
-
+  
   const [weightSwitchEnabled, setWeightSwitchEnabled] = useState(false);
   const [heightSwitchEnabled, setHeightSwitchEnabled] = useState(false);
 

@@ -2,7 +2,6 @@ export const SAVE_PATIENT = "SAVE_PATIENT";
 export const DELETE_PATIENT = "DELETE_PATIENT";
 export const GET_PATIENTS = "GET_PATIENTS";
 import { URL_API } from "../../constants/database";
-import { drugs } from "../../constants/drugs";
 
 const filterByUserID = (data, queryUserId) => {
   const patients = [];
@@ -29,12 +28,19 @@ export const getPatients = (userID) => {
       const result = await response.json();
       const patients = filterByUserID(result, userID);
 
+      patients.length === 0 ?
+        dispatch({
+          type: GET_PATIENTS,
+          patients: [],
+        })
+      : 
       dispatch({
         type: GET_PATIENTS,
         patients: patients,
-      });
+      })
+
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       //need to add error handling logic here and render in UI
     }
   };
@@ -56,13 +62,13 @@ export const savePatient = (inputPatientRecord, userId) => {
       });
 
       const result = await response.json();
-
+      
       dispatch({
         type: SAVE_PATIENT,
         record: inputPatientRecord,
       });
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       //need to add error handling logic here and render in UI
     }
   };
