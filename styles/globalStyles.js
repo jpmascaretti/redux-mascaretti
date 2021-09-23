@@ -251,7 +251,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "row",
     backgroundColor: "#96EAEF",
-    marginTop: 30,
+    marginTop: 20,
   },
   bannerOff: {
     width: "100%",
@@ -260,7 +260,7 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "row",
     backgroundColor: "#c4c4c4",
-    marginTop: 30,
+    marginTop: 20,
   },
   switchTextContainer: {
     marginLeft: 20,
@@ -280,5 +280,35 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
+  },
+  sliderBubble: {
+    borderWidth: 3,
+    borderRadius: 50,
+    borderColor: "#96EAEF",
+    width: 65,
+    height: 65,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  sliderBubbleText: {
+    color: "#C4C4C4",
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  calculateButton: {
+    backgroundColor: "#BB22B5",
+    width: 90,
+    height: 40,
+    borderRadius: 5,
+    marginTop: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  calculateButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: 'bold'
   },
 });
