@@ -2,18 +2,16 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import DosesTab from "../../BottomTabs/DosesTab";
-import Slider from "@react-native-community/slider";
 import { bottomNavStyles } from "../../../styles/bottomNavStyles";
 import { globalStyles } from "../../../styles/globalStyles";
 import DrugPicker from "../../Pickers/DrugPicker";
 import FormPicker from "../../Pickers/FormPicker";
 import Banner from "../../Banners/Banner";
+import SliderDisplay from "../../SliderDisplay/SliderDisplay";
 
 export default function Doses() {
   const [selectedDrug, setSelectedDrug] = useState("Select Drug");
   const [selectedForm, setSelectedForm] = useState("Select Form");
-  const [weightSliderValue, setWeightSliderValue] = useState(0);
-  const [heightSliderValue, setHeightSliderValue] = useState(0);
 
   const [weightSwitchEnabled, setWeightSwitchEnabled] = useState(false);
   const [heightSwitchEnabled, setHeightSwitchEnabled] = useState(false);
@@ -35,48 +33,35 @@ export default function Doses() {
           switchEnabled={weightSwitchEnabled}
           setSwitchEnabled={setWeightSwitchEnabled}
         />
-        <Slider
-          style={{ width: 250, height: 40 }}
-          minimumValue={0}
-          maximumValue={30}
-          step={0.5}
-          minimumTrackTintColor="#DD41E0"
-          maximumTrackTintColor="#EEA0F0"
-          thumbTintColor="#DD41E0"
-          value={weightSliderValue}
-          onValueChange={(value) => setWeightSliderValue(value)}
+        <SliderDisplay
+          switchEnabled={weightSwitchEnabled}
+          minValue={0}
+          maxValue={30}
+          unit={"kg"}
         />
-        <View style={globalStyles.sliderBubble}>
-          <Text style={globalStyles.sliderBubbleText}>
-            {weightSliderValue} kg
-          </Text>
-        </View>
         <Banner
           bannerText="Height (cm)"
           switchEnabled={heightSwitchEnabled}
           setSwitchEnabled={setHeightSwitchEnabled}
         />
-
-        <Slider
-          style={{ width: 250, height: 40 }}
-          minimumValue={0}
-          maximumValue={100}
-          step={0.5}
-          minimumTrackTintColor="#DD41E0"
-          maximumTrackTintColor="#EEA0F0"
-          thumbTintColor="#DD41E0"
-          value={heightSliderValue}
-          onValueChange={(value) => setHeightSliderValue(value)}
+        <SliderDisplay
+          switchEnabled={heightSwitchEnabled}
+          minValue={0}
+          maxValue={100}
+          unit={"cm"}
         />
-        <View style={globalStyles.sliderBubble}>
-          <Text style={globalStyles.sliderBubbleText}>
-            {heightSliderValue} cm
-          </Text>
-        </View>
-        <TouchableOpacity style={[globalStyles.calculateButton, globalStyles.bottomShadow]}>
-          <Text style={globalStyles.calculateButtonText}>Calculate</Text>
+        <TouchableOpacity
+          style={
+            !(heightSwitchEnabled || weightSwitchEnabled)
+              ? [globalStyles.calculateButtonOff, globalStyles.bottomShadow]
+              : [globalStyles.calculateButton, globalStyles.bottomShadow]
+          }
+          disabled={
+            !(heightSwitchEnabled || weightSwitchEnabled) ? true : false
+          }
+        >
+          <Text style={globalStyles.calculateButtonText}>CALCULATE</Text>
         </TouchableOpacity>
-        
       </View>
 
       <View style={bottomNavStyles.NavContainerFlex}>

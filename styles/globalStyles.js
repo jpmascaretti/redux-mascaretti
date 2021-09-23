@@ -291,6 +291,16 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
   },
+  sliderBubbleOff: {
+    borderWidth: 3,
+    borderRadius: 50,
+    borderColor: "white",
+    width: 65,
+    height: 65,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
   sliderBubbleText: {
     color: "#C4C4C4",
     fontSize: 16,
@@ -305,10 +315,22 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    
+  },
+  calculateButtonOff: {
+    backgroundColor: "#C4C4C4",
+    width: 90,
+    height: 40,
+    borderRadius: 5,
+    marginTop: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    
   },
   calculateButtonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold'
   },
 });
