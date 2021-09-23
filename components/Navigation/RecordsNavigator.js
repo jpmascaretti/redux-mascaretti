@@ -1,7 +1,7 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Records from '../Screens/main/Records';
-import Archive from '../Screens/records/Archive'
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Records from "../Screens/main/Records";
+import Archive from "../Screens/records/Archive";
 const Stack = createNativeStackNavigator();
 
 const RecordsNavigator = () => (

@@ -10,16 +10,16 @@ const Stack = createNativeStackNavigator();
 
 const TabsNavigator = () => {
   return (
-      <Stack.Navigator
-        initialRouteName={ROUTES.RECORDSNAV}
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name={ROUTES.RECORDSNAV} component={RecordsNavigator} />
-        <Stack.Screen name={ROUTES.DOSES} component={Doses} />
-        <Stack.Screen name={ROUTES.TESTS} component={Tests} />
-      </Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName={ROUTES.RECORDSNAV}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name={ROUTES.RECORDSNAV} component={RecordsNavigator} />
+      <Stack.Screen name={ROUTES.DOSES} component={Doses} />
+      <Stack.Screen name={ROUTES.TESTS} component={Tests} />
+    </Stack.Navigator>
   );
 };
 
