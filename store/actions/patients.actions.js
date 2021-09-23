@@ -1,7 +1,6 @@
 export const SAVE_PATIENT = "SAVE_PATIENT";
 export const DELETE_PATIENT = "DELETE_PATIENT";
 export const GET_PATIENTS = "GET_PATIENTS";
-import store from "../index";
 import { URL_API } from "../../constants/database";
 
 const filterByUserID = (data, queryUserId) => {
@@ -16,10 +15,10 @@ export const deletePatient = (todeleteRecord) => ({
   record: todeleteRecord,
 });
 
-export const getPatients = () => {
+export const getPatients = (userID) => {
   //I can move this state to get the user ID so that I pass it as a function parameter from within the component
   //also will help eliminate duplicate code here
-  const state = store.getState();
+  // const state = store.getState();
 
   return async (dispatch) => {
     try {
@@ -32,7 +31,7 @@ export const getPatients = () => {
 
       const result = await response.json();
       // console.log(result)
-      const patients = filterByUserID(result, state.auth.userId);
+      const patients = filterByUserID(result, userID);
 
 
 
@@ -47,8 +46,8 @@ export const getPatients = () => {
   };
 };
 
-export const savePatient = (inputPatientRecord) => {
-  const state = store.getState();
+export const savePatient = (inputPatientRecord, userId) => {
+  // const state = store.getState();
 
   return async (dispatch) => {
     try {
@@ -60,7 +59,7 @@ export const savePatient = (inputPatientRecord) => {
         body: JSON.stringify({
           date: Date.now(),
           items: { ...inputPatientRecord },
-          authUserId: state.auth.userId,
+          authUserId: userId,
         }),
       });
 
