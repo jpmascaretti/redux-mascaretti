@@ -10,6 +10,7 @@ export default AddPatientForm = () => {
 
   const dispatch = useDispatch();
   const patientsList = useSelector(state => state.patientsRecords.list)
+  const userID = useSelector((state) => state.auth.userId);
 
   const [maleSelected, setMaleSelection] = useState(false);
   const [femaleSelected, setFemaleSelection] = useState(false);
@@ -45,7 +46,7 @@ export default AddPatientForm = () => {
           id: Math.floor(Math.random().toString() * 100000),
           name: inputText,
           gender: gender,
-        }
+        }, userID
       ))
 
       setInputText("");

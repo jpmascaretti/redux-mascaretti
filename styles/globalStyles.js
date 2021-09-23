@@ -280,5 +280,5 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
-  }
+  },
 });

@@ -24,7 +24,7 @@ const PatientRecords = () => {
 
   useEffect(() => {
     dispatch(getPatients(userID));
-  }, []);
+  }, [patientsList]);
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
