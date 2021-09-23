@@ -2,6 +2,7 @@ export const SAVE_PATIENT = "SAVE_PATIENT";
 export const DELETE_PATIENT = "DELETE_PATIENT";
 export const GET_PATIENTS = "GET_PATIENTS";
 import { URL_API } from "../../constants/database";
+import { drugs } from "../../constants/drugs";
 
 const filterByUserID = (data, queryUserId) => {
   const patients = [];
@@ -40,7 +41,6 @@ export const getPatients = (userID) => {
 };
 
 export const savePatient = (inputPatientRecord, userId) => {
-  
   return async (dispatch) => {
     try {
       const response = await fetch(`${URL_API}/patients.json`, {

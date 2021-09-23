@@ -1,10 +1,13 @@
 import {
   URL_LOGIN_AUTH_API,
   URL_SIGNUP_AUTH_API,
+  URL_API
 } from "../../constants/database";
 
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
+
+import { drugs } from "../../constants/drugs";
 
 export const signup = (email, password) => {
   return async (dispatch) => {
@@ -24,23 +27,43 @@ export const signup = (email, password) => {
 
       const data = await response.json();
 
-      !!data.error
-        ? dispatch({
-            type: SIGNUP,
-            token: data.idToken,
-            userId: data.localId,
-            signupError: data.error.message,
-          })
-        : dispatch({
-            type: SIGNUP,
-            token: data.idToken,
-            userId: data.localId,
+      if (!!data.error) {
+        dispatch({
+          type: SIGNUP,
+          token: data.idToken,
+          userId: data.localId,
+          signupError: data.error.message,
+        });
+      } else {
+        try {
+          const drugResponse = await fetch(`${URL_API}/drugs.json`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: Date.now(),
+              authUserId: data.localId,
+              drugs: drugs,
+            }),
           });
+      
+          const drugResult = await drugResponse.json();
+        } catch (error) {
+          console.log(error.message);
+        }
+        dispatch({
+          type: SIGNUP,
+          token: data.idToken,
+          userId: data.localId,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
   };
 };
+
 
 export const login = (email, password) => {
   return async (dispatch) => {
