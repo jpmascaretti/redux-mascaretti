@@ -1,7 +1,7 @@
 const ROUTES = {
-    RECORDS: "records",
-    DOSES: "doses",
-    TESTS: "tests",
+    RECORDSNAV: "RecordsNavigator",
+    DOSES: "Doses",
+    TESTS: "Tests",
   };
   
 export default ROUTES;

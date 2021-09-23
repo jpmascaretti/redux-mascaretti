@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Searchbar } from "react-native-paper";
 import { globalStyles } from "../../styles/globalStyles";
 import { Text, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getPatients } from "../../store/actions/patients.actions";
 
 export default RecordSearch = () => {
 
-  const patientsList = useSelector(state => state.patientsRecords.list)
+  const dispatch = useDispatch();
+  const patientsList = useSelector((state) => state.patientsRecords.list);
+
+  useEffect(() => {
+    
+    dispatch(getPatients())
+  }, [])
 
   const [searchQuery, setSearchQuery] = useState("");
 

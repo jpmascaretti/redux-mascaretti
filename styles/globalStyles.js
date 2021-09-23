@@ -21,6 +21,11 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
+  btrText: {
+    color: "#C4C4C4",
+    fontSize: 16,
+    marginLeft: 5,
+  },
   searchBarContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -269,4 +274,11 @@ export const globalStyles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 5,
   },
+  backToRecords: {
+    marginTop: 10,
+    marginLeft: 5,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+  }
 });

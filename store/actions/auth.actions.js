@@ -23,6 +23,8 @@ export const signup = (email, password) => {
       });
 
       const data = await response.json();
+
+      
       !!data.error
         ? dispatch({
             type: SIGNUP,

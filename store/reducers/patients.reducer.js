@@ -1,4 +1,4 @@
-import { DELETE_PATIENT, SAVE_PATIENT } from "../actions/patients.actions";
+import { DELETE_PATIENT, SAVE_PATIENT, GET_PATIENTS } from "../actions/patients.actions";
 
 const patients = [];
 
@@ -12,6 +12,10 @@ const PatientReducer = (state = initialState, action) => {
       return {
         list: [...state.list, action.record],
       };
+    case GET_PATIENTS:
+        return {
+          list: [...action.patients],
+        };
     case DELETE_PATIENT:
       const updatedList = [...state.list].filter(
         (record) => record.id !== action.record.id

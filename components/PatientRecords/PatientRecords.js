@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { Entypo, Ionicons, AntDesign } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/globalStyles";
 import { modalStyles } from "../../styles/modalStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { deletePatient } from "../../store/actions/patients.actions";
+import { useNavigation } from "@react-navigation/native";
+import { getPatients } from "../../store/actions/patients.actions";
+
 import {
   Button,
   Text,
@@ -14,9 +17,14 @@ import {
 } from "react-native";
 
 const PatientRecords = () => {
+
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const patientsList = useSelector((state) => state.patientsRecords.list);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPatients())
+  }, [])
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
@@ -39,24 +47,33 @@ const PatientRecords = () => {
 
   return (
     <>
+
       <View style={globalStyles.listColumn}>
         <FlatList
           data={patientsList}
           renderItem={(data) => {
             return (
+              <TouchableOpacity onPress={() => {
+                navigation.navigate("Archive", {
+                  patientName: data.item.items.name,
+                  patientGender: data.item.items.gender
+                });
+              }}>
               <View
                 style={
-                  data.item.gender == "male"
+                  data.item.items.gender == "male"
                     ? [globalStyles.item, globalStyles.bottomShadow]
                     : [globalStyles.itemFemale, globalStyles.bottomShadow]
                 }
               >
-                {data.item.gender == "male" ? (
+                {data.item.items.gender == "male" ? (
                   <Ionicons name="md-male" size={30} color="#96EAEF" />
                 ) : (
                   <Ionicons name="md-female" size={30} color="#FAA7F6" />
                 )}
-                <Text style={globalStyles.patientName}>{data.item.name}</Text>
+                
+                <Text style={globalStyles.patientName}>{data.item.items.name}</Text>
+                
                 <TouchableOpacity onPress={() => handleModal(data.item.id)}>
                   <Entypo
                     name="dots-three-vertical"
@@ -66,11 +83,14 @@ const PatientRecords = () => {
                   />
                 </TouchableOpacity>
               </View>
+              </TouchableOpacity>
             );
           }}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => { item.id
+          }}
         />
       </View>
+
 
       <Modal animationType="slide" visible={deleteModalVisible} transparent>
         <View style={modalStyles.modalContainer}>
