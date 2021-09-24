@@ -9,10 +9,7 @@ const filterByUserID = (data, queryUserId) => {
   return patients.filter((item) => item.authUserId === queryUserId);
 };
 
-export const deletePatient = (todeleteRecord) => ({
-  type: DELETE_PATIENT,
-  record: todeleteRecord,
-});
+
 
 export const getPatients = (userID) => {
   //need to add loading patients status
@@ -75,6 +72,33 @@ export const savePatient = (inputPatientRecord, userId) => {
         type: SAVE_PATIENT,
         record: newRecord,
       });
+    } catch (error) {
+      console.log(error);
+      //need to add error handling logic here and render in UI
+    }
+  };
+};
+
+
+export const deletePatient = (toDeleteRecord) => {
+  //need to add loading patients status
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${URL_API}/patients/${toDeleteRecord.id}.json`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result = await response.json();
+
+
+        dispatch({
+          type: DELETE_PATIENT,
+          toDeletePatient: toDeleteRecord,
+        })
+
     } catch (error) {
       console.log(error);
       //need to add error handling logic here and render in UI

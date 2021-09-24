@@ -23,8 +23,9 @@ const PatientReducer = (state = initialState, action) => {
         list: [...action.patients],
       };
     case DELETE_PATIENT:
+      
       const updatedList = [...state.list].filter(
-        (record) => record.id !== action.record.id
+        (record) => record.id !== action.toDeletePatient.id
       );
       return {
         list: updatedList,

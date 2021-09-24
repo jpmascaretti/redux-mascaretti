@@ -27,16 +27,16 @@ const PatientRecords = () => {
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
-  const [patientSelected, setPatientSelected] = useState({});
+  const [patientSelected, setPatientSelected] = useState(null);
 
   const handleConfirmDelete = () => {
     dispatch(deletePatient(patientSelected));
     setDeleteModalVisible(false);
-    setPatientSelected({});
+    setPatientSelected(null);
   };
 
   const handleModal = (id) => {
-    setPatientSelected(patientsList.find((item) => item.items.id === id));
+    setPatientSelected(patientsList.find((item) => item.id === id));
     setDeleteModalVisible(true);
   };
 
@@ -50,7 +50,6 @@ const PatientRecords = () => {
         <FlatList
           data={patientsList}
           renderItem={(data) => {
-
             return (
               <TouchableOpacity
                 onPress={() => {
@@ -89,9 +88,7 @@ const PatientRecords = () => {
               </TouchableOpacity>
             );
           }}
-          keyExtractor={(item) => 
-            item.id
-          }
+          keyExtractor={(item) => item.id}
         />
       </View>
 
@@ -109,7 +106,11 @@ const PatientRecords = () => {
             <Text style={modalStyles.modalMessage}>
               Delete medical record of:
             </Text>
-            <Text style={modalStyles.modalTitle}>{patientSelected.name}</Text>
+            {!!patientSelected && (
+              <Text style={modalStyles.modalTitle}>
+                {patientSelected.items.name}
+              </Text>
+            )}
             <View>
               <Button
                 onPress={handleConfirmDelete}
