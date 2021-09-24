@@ -62,10 +62,18 @@ export const savePatient = (inputPatientRecord, userId) => {
       });
 
       const result = await response.json();
-      
+
+      const newRecord = {
+        authUserId: userId,
+        date: Date.now(),
+        id: result.name,
+        items: { ...inputPatientRecord },
+      }
+
+
       dispatch({
         type: SAVE_PATIENT,
-        record: inputPatientRecord,
+        record: newRecord,
       });
     } catch (error) {
       console.log(error);

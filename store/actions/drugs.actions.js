@@ -22,7 +22,7 @@ export const getDrugs = (userID) => {
         const result = await response.json();
         const drugs = filterDrugsByUserID(result, userID);
         
-        console.log(drugs)
+        // console.log(drugs)
         dispatch({
           type: GET_DRUGS,
           drugList: drugs,

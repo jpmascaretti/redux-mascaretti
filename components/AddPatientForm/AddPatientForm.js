@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import GenderCheckboxes from "../GenderCheckboxes/GenderCheckboxes";
 import { globalStyles } from "../../styles/globalStyles";
-import { getPatients, savePatient } from "../../store/actions/patients.actions";
+import { savePatient } from "../../store/actions/patients.actions";
 
 export default AddPatientForm = () => {
 
@@ -28,8 +28,8 @@ export default AddPatientForm = () => {
 
   const handleAddItem = () => {
     if (
-      patientsList.find(
-        (patient) => patient.name === inputText && patient.gender === gender
+      !!patientsList.find(
+        (patient) => patient.items.name === inputText && patient.items.gender === gender
       )
     ) {
       setInputText("");
@@ -43,9 +43,9 @@ export default AddPatientForm = () => {
     if (inputText && (gender == "male" || gender == "female")) {
       dispatch(savePatient(
         {
-          "id": Math.floor(Math.random().toString() * 100000),
-          "name": inputText,
-          "gender": gender,
+          id: Math.floor(Math.random().toString() * 100000),
+          name: inputText,
+          gender: gender,
         }, userID
       ))
 

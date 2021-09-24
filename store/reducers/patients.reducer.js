@@ -14,7 +14,6 @@ const PatientReducer = (state = initialState, action) => {
   switch (action.type) {
     
     case SAVE_PATIENT:
-
       return {
         list: [...state.list, action.record],
       };

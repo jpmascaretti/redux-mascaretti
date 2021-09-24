@@ -21,7 +21,6 @@ const PatientRecords = () => {
   const patientsList = useSelector((state) => state.patientsRecords.list);
   const userID = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
-  console.log(patientsList)
   useEffect(() => {
     dispatch(getPatients(userID));
   }, []);
@@ -37,7 +36,7 @@ const PatientRecords = () => {
   };
 
   const handleModal = (id) => {
-    setPatientSelected(patientsList.find((item) => item.id === id));
+    setPatientSelected(patientsList.find((item) => item.items.id === id));
     setDeleteModalVisible(true);
   };
 
@@ -51,7 +50,7 @@ const PatientRecords = () => {
         <FlatList
           data={patientsList}
           renderItem={(data) => {
-            console.log(data.item)
+
             return (
               <TouchableOpacity
                 onPress={() => {
