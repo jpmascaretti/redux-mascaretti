@@ -6,9 +6,11 @@ const INITIAL_DRUG_STATE = {
 
 const DrugReducer = (state = INITIAL_DRUG_STATE, action) => {
     switch (action.type) {
+      
       case GET_DRUGS:
-        return {
-          drugs: action.drugList,
+      
+      return {
+          drugs: action.drugList.drugs,
         };
       default:
         return state;

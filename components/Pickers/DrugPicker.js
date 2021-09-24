@@ -3,7 +3,7 @@ import React from "react";
 import { globalStyles } from "../../styles/globalStyles";
 import { Picker } from "@react-native-picker/picker";
 
-const DrugPicker = ({ selectedDrug, setSelectedDrug }) => {
+const DrugPicker = ({ selectedDrug, setSelectedDrug, drugList }) => {
   return (
     <>
       <Text
@@ -34,8 +34,9 @@ const DrugPicker = ({ selectedDrug, setSelectedDrug }) => {
             value="Select Drug"
             color="#C4C4C4"
           />
-          <Picker.Item label="Ibuprophene" value="Ibuprophene" />
-          <Picker.Item label="Dexametrosene" value="Dexametrosene" />
+        {drugList.map((element, i) => (
+          <Picker.Item key={i} label={element.drug} value={element.drug} />
+      ))}
         </Picker>
       </View>
     </>

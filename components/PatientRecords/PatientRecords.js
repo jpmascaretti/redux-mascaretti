@@ -21,6 +21,7 @@ const PatientRecords = () => {
   const patientsList = useSelector((state) => state.patientsRecords.list);
   const userID = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getPatients(userID));
   }, []);

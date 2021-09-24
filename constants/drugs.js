@@ -1,5 +1,6 @@
-export const drugs = {
-  Adenosine: {
+export const drugs = [
+  {
+    drug: "Adenosine",
     dose: 0.1,
     dosage: "mg/kg",
     dissolve: 3,
@@ -8,7 +9,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Prepare",
   },
-  Adrenaline: {
+  {
+    drug: "Adrenaline",
     dose: 0.1,
     dosage: "ml/kg",
     dissolve: 1,
@@ -17,7 +19,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Prepare",
   },
-  Atropine: {
+  {
+    drug: "Atropine", 
     dose: 0.02,
     dosage: "mg/kg",
     dissolve: 1,
@@ -26,7 +29,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Prepare",
   },
-  Fentanyl: {
+  {
+    drug: "Fentanyl", 
     dose: 1,
     dosage: "mcg/kg",
     dissolve: 50,
@@ -35,7 +39,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Prepare",
   },
-  Ketamine: {
+  {
+    drug: "Ketamine",
     dose: 1,
     dosage: "mg/kg",
     dissolve: 50,
@@ -44,7 +49,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Prepare",
   },
-  Vecuronium: {
+  {
+    drug: "Vecuronium", 
     dose: 0.01,
     dosage: "mg/kg",
     dissolve: 10,
@@ -53,7 +59,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Dilute",
   },
-  Succinilcolina: {
+  {
+    drug: "Succinilcolina",
     dose: 1,
     dosage: "mg/kg",
     dissolve: 50,
@@ -62,7 +69,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Dilute",
   },
-  Lorazepam: {
+  {
+    drug: "Lorazepam",
     dose: 0.1,
     dosage: "ml/kg",
     dissolve: 4,
@@ -70,7 +78,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "No dilution needed. Take",
   },
-  Midazolam: {
+  {
+    drug: "Midazolam",
     dose: 0.1,
     dosage: "mg/kg",
     dissolve: 5,
@@ -79,7 +88,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Prepare",
   },
-  Morphine: {
+  {
+    drug: "Morphine",
     dose: 0.1,
     dosage: "mg/kg",
     dissolve: 10,
@@ -88,7 +98,8 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "Prepare",
   },
-  Flumazenil: {
+  {
+    drug: "Flumazenil",
     dose: 0.1,
     dosage: "ml/kg",
     dissolve: 0.5,
@@ -97,4 +108,4 @@ export const drugs = {
     diluteUnit: "ml",
     indication: "No dilution needed. Take",
   },
-};
+];

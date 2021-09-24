@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import DosesTab from "../../BottomTabs/DosesTab";
 import { bottomNavStyles } from "../../../styles/bottomNavStyles";
@@ -9,8 +9,18 @@ import FormPicker from "../../Pickers/FormPicker";
 import Banner from "../../Banners/Banner";
 import SliderDisplay from "../../SliderDisplay/SliderDisplay";
 import { getDrugs } from "../../../store/actions/drugs.actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Doses() {
+  const drugList = useSelector((state) => state.drugs.drugs);
+  const userID = useSelector((state) => state.auth.userId);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDrugs(userID));
+  }, []);
+
+
   const [selectedDrug, setSelectedDrug] = useState("Select Drug");
   const [selectedForm, setSelectedForm] = useState("Select Form");
   
@@ -23,6 +33,7 @@ export default function Doses() {
       <View style={globalStyles.pickersView}>
         <DrugPicker
           selectedDrug={selectedDrug}
+          drugList={drugList}
           setSelectedDrug={setSelectedDrug}
         />
         <FormPicker
