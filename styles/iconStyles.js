@@ -8,4 +8,7 @@ export const iconStyles = StyleSheet.create({
   closeIconStyle: {
     marginLeft: 220,
   },
+  textDoseModal: {
+    marginLeft: 260,
+  },
 });

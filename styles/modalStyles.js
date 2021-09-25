@@ -13,6 +13,7 @@ export const modalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 15,
+    
   },
   modalMessage: {
     fontSize: 18,
@@ -21,5 +22,15 @@ export const modalStyles = StyleSheet.create({
     fontSize: 30,
     marginTop: 10,
     marginBottom: 20,
+  },
+  doseModalContent: {
+    padding: 10,
+    backgroundColor: "white",
+    alignItems: "center",
+    flexDirection: 'column',
+    borderRadius: 15,
+    width: '80%',
+    height: '70%'
+    
   },
 });

@@ -3,9 +3,7 @@ import React, {useState} from "react";
 import { globalStyles } from "../../styles/globalStyles";
 import { View, Text } from "react-native";
 
-const SliderDisplay = ({switchEnabled, minValue, maxValue, unit}) => {
-
-    const [sliderValue, setSliderValue] = useState(0);
+const SliderDisplay = ({switchEnabled, minValue, maxValue, unit, sliderValue, setSliderValue}) => {
 
     return (
         <>

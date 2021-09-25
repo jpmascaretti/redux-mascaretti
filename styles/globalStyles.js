@@ -182,6 +182,10 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
   },
+  safeAreaViewModal: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    flex: 1,
+  },
   pickersView: {
     flex: 1,
     alignItems: "center",
