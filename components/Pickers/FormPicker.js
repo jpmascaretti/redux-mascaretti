@@ -3,7 +3,8 @@ import React from "react";
 import { globalStyles } from "../../styles/globalStyles";
 import { Picker } from "@react-native-picker/picker";
 
-const FormPicker = ({ selectedForm, setSelectedForm }) => {
+const FormPicker = ({ selectedForm, setSelectedForm, dosageFormList }) => {
+  
   return (
     <>
       <Text
@@ -34,8 +35,9 @@ const FormPicker = ({ selectedForm, setSelectedForm }) => {
             value="Select Form"
             color="#C4C4C4"
           />
-          <Picker.Item label="Form One" value="one" />
-          <Picker.Item label="Form Two" value="two" />
+        {dosageFormList.map((element, i) => (
+          <Picker.Item key={i} label={`${element.amount} ${element.unit}`} value={`${element.amount} ${element.unit}`} />
+      ))}
         </Picker>
       </View>
     </>

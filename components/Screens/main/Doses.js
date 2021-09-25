@@ -9,21 +9,21 @@ import FormPicker from "../../Pickers/FormPicker";
 import Banner from "../../Banners/Banner";
 import SliderDisplay from "../../SliderDisplay/SliderDisplay";
 import { getDrugs } from "../../../store/actions/drugs.actions";
+import { getForms } from "../../../store/actions/dosageform.actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Doses() {
   const drugList = useSelector((state) => state.drugs.drugs);
+  const dosageFormList = useSelector((state) => state.forms.forms);
   const userID = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getDrugs(userID));
+    dispatch(getForms(userID));
   }, []);
-
 
   const [selectedDrug, setSelectedDrug] = useState("Select Drug");
   const [selectedForm, setSelectedForm] = useState("Select Form");
-  
   const [weightSwitchEnabled, setWeightSwitchEnabled] = useState(false);
   const [heightSwitchEnabled, setHeightSwitchEnabled] = useState(false);
 
@@ -31,15 +31,20 @@ export default function Doses() {
     <View style={globalStyles.safeAreaView}>
       <DefaultHeader />
       <View style={globalStyles.pickersView}>
-        <DrugPicker
-          selectedDrug={selectedDrug}
-          drugList={drugList}
-          setSelectedDrug={setSelectedDrug}
-        />
-        <FormPicker
-          selectedForm={selectedForm}
-          setSelectedForm={setSelectedForm}
-        />
+        {!!drugList && !!dosageFormList && (
+          <>
+            <DrugPicker
+              selectedDrug={selectedDrug}
+              drugList={drugList}
+              setSelectedDrug={setSelectedDrug}
+            />
+            <FormPicker
+              selectedForm={selectedForm}
+              dosageFormList={dosageFormList}
+              setSelectedForm={setSelectedForm}
+            />
+          </>
+        )}
         <Banner
           bannerText="Weight (kg)"
           switchEnabled={weightSwitchEnabled}
@@ -64,12 +69,18 @@ export default function Doses() {
         />
         <TouchableOpacity
           style={
+            selectedDrug === "Select Drug" ||
+            selectedForm === "Select Form" ||
             !(heightSwitchEnabled || weightSwitchEnabled)
               ? [globalStyles.calculateButtonOff, globalStyles.bottomShadow]
               : [globalStyles.calculateButton, globalStyles.bottomShadow]
           }
           disabled={
-            !(heightSwitchEnabled || weightSwitchEnabled) ? true : false
+            selectedDrug === "Select Drug" ||
+            selectedForm === "Select Form" ||
+            !(heightSwitchEnabled || weightSwitchEnabled)
+              ? true
+              : false
           }
         >
           <Text style={globalStyles.calculateButtonText}>CALCULATE</Text>

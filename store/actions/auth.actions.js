@@ -7,7 +7,8 @@ import {
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 
-import { drugs } from "../../constants/drugs";
+import { drugs } from "../../constants/drugs"; 
+import { dosageform } from "../../constants/dosageform"
 
 export const signup = (email, password) => {
   return async (dispatch) => {
@@ -49,6 +50,22 @@ export const signup = (email, password) => {
           });
 
           const drugResult = await drugResponse.json();
+        } catch (error) {
+          console.log(error.message);
+        }
+        try {
+          const formResponse = await fetch(`${URL_API}/dosageforms.json`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: Date.now(),
+              authUserId: data.localId,
+              forms: dosageform,
+            }),
+          });
+
         } catch (error) {
           console.log(error.message);
         }

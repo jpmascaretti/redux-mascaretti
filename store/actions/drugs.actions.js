@@ -1,5 +1,4 @@
 export const GET_DRUGS = "GET_DRUGS";
-import { Picker } from "react-native";
 import { URL_API } from "../../constants/database";
 
 const filterDrugsByUserID = (data, queryUserId) => {
