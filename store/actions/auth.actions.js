@@ -7,8 +7,9 @@ import {
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 
-import { drugs } from "../../constants/drugs"; 
-import { dosageform } from "../../constants/dosageform"
+import { drugs } from "../../constants/drugs";
+import { dosageform } from "../../constants/dosageform";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const signup = (email, password) => {
   return async (dispatch) => {
@@ -31,8 +32,8 @@ export const signup = (email, password) => {
       if (!!data.error) {
         dispatch({
           type: SIGNUP,
-          token: data.idToken,
-          userId: data.localId,
+          token: null,
+          userId: null,
           signupError: data.error.message,
         });
       } else {
@@ -65,10 +66,13 @@ export const signup = (email, password) => {
               forms: dosageform,
             }),
           });
-
         } catch (error) {
           console.log(error.message);
         }
+
+        await AsyncStorage.setItem('@token', data.idToken)
+        await AsyncStorage.setItem('@userId', data.localId)
+
         dispatch({
           type: SIGNUP,
           token: data.idToken,
@@ -111,3 +115,20 @@ export const login = (email, password) => {
         });
   };
 };
+
+
+export const persistentAuthentication = () => {
+  return async dispatch => {
+    const token = await AsyncStorage.getItem("@token")
+    const userId = await AsyncStorage.getItem("@userId")
+
+    if (token !== null && userId !== null) {
+      dispatch( {
+        type: SIGNUP,
+        token: token,
+        userId: userId
+      })
+    }
+
+  }
+}
