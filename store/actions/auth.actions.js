@@ -70,8 +70,8 @@ export const signup = (email, password) => {
           console.log(error.message);
         }
 
-        await AsyncStorage.setItem('@token', data.idToken)
-        await AsyncStorage.setItem('@userId', data.localId)
+        await AsyncStorage.setItem("@token", data.idToken);
+        await AsyncStorage.setItem("@userId", data.localId);
 
         dispatch({
           type: SIGNUP,
@@ -116,19 +116,17 @@ export const login = (email, password) => {
   };
 };
 
-
 export const persistentAuthentication = () => {
-  return async dispatch => {
-    const token = await AsyncStorage.getItem("@token")
-    const userId = await AsyncStorage.getItem("@userId")
+  return async (dispatch) => {
+    const token = await AsyncStorage.getItem("@token");
+    const userId = await AsyncStorage.getItem("@userId");
 
     if (token !== null && userId !== null) {
-      dispatch( {
+      dispatch({
         type: SIGNUP,
         token: token,
-        userId: userId
-      })
+        userId: userId,
+      });
     }
-
-  }
-}
+  };
+};

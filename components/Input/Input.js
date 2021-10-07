@@ -1,11 +1,11 @@
-import React, { useEffect, useReducer } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useEffect, useReducer } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
-const INPUT_CHANGE = 'INPUT_CHANGE';
-const INPUT_BLUR = 'INPUT_BLUR';
+const INPUT_CHANGE = "INPUT_CHANGE";
+const INPUT_BLUR = "INPUT_BLUR";
 
 const inputReducer = (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case INPUT_CHANGE:
       return {
         ...state,
@@ -22,9 +22,9 @@ const inputReducer = (state, action) => {
   }
 };
 
-const Input = props => {
+const Input = (props) => {
   const [inputState, inputDispatch] = useReducer(inputReducer, {
-    value: '',
+    value: "",
     isValid: false,
     touched: false,
   });
@@ -33,22 +33,23 @@ const Input = props => {
 
   useEffect(() => {
     onInputChange(id, inputState.value, inputState.isValid);
-  }, [onInputChange, id, inputState])
+  }, [onInputChange, id, inputState]);
 
-  const handleChangeText = text => {
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const handleChangeText = (text) => {
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let isValid = true;
 
     if (props.required && text.trim().length === 0) isValid = false;
     if (props.email && !emailRegex.test(text.toLowerCase())) isValid = false;
     if (props.minLength && text.length < props.minLength) isValid = false;
-    if (props.confirmpwd & props.inputpwd !== text) isValid= false;
+    if (props.confirmpwd & (props.inputpwd !== text)) isValid = false;
     inputDispatch({
       type: INPUT_CHANGE,
       value: text,
       isValid: isValid,
     });
-  }
+  };
 
   const handleBlur = () => inputDispatch({ type: INPUT_BLUR });
 
@@ -64,7 +65,7 @@ const Input = props => {
       />
       {!inputState.isValid && inputState.touched && (
         <View>
-            <Text style={styles.errorText}>{props.errorText}</Text>
+          <Text style={styles.errorText}>{props.errorText}</Text>
         </View>
       )}
     </View>
@@ -73,7 +74,7 @@ const Input = props => {
 
 const styles = StyleSheet.create({
   formControl: {
-    width: '100%',
+    width: "100%",
   },
   label: {
     marginVertical: 8,
@@ -81,13 +82,13 @@ const styles = StyleSheet.create({
   input: {
     paddingHorizontal: 2,
     paddingVertical: 5,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     borderBottomWidth: 1,
   },
   errorText: {
     marginVertical: 5,
-    color: '#cc7755'
-  }
+    color: "#cc7755",
+  },
 });
 
 export default Input;

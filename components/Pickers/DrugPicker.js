@@ -44,3 +44,5 @@ const DrugPicker = ({ selectedDrug, setSelectedDrug, drugList }) => {
 };
 
 export default DrugPicker;
+
+

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Modal } from "react-native";
+import { View, Text, TouchableOpacity, Modal, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import DosesTab from "../../BottomTabs/DosesTab";
@@ -29,27 +29,62 @@ export default function Doses() {
   const [selectedForm, setSelectedForm] = useState("Select Form");
   const [weightSwitchEnabled, setWeightSwitchEnabled] = useState(false);
   const [heightSwitchEnabled, setHeightSwitchEnabled] = useState(false);
-  const [doseModalMessage, setDoseModalMessage] = useState("")
-  const [doseModalMessageAdministration, setDoseModalMessageAdministration] = useState("")
+  const [doseModalMessage, setDoseModalMessage] = useState("");
+  const [drugImage, setDrugImage] = useState("");
+  const [doseModalMessageAdministration, setDoseModalMessageAdministration] =
+    useState("");
   const [weightSliderValue, setWeightSliderValue] = useState(0);
   const [heightSliderValue, setHeightSliderValue] = useState(0);
 
   const [doseModalVisible, DosePatientModalVisible] = useState(false);
 
   function handleDoseModal() {
-    DosePatientModalVisible(true)
-    const modalDrug = drugList.find((drugs) => drugs.drug === selectedDrug)
-    const modalForm = dosageFormList.find((form) => `${form.amount} ${form.unit}` === selectedForm)
-    setDoseModalMessage(`${parseFloat(modalDrug.dose * weightSliderValue * (1 + heightSliderValue/100) * (modalDrug.dilute / modalDrug.dissolve)).toPrecision(3)} ${modalDrug.diluteUnit} of ${modalDrug.drug}`)
-    setDoseModalMessageAdministration(`${modalDrug.indication} ${parseFloat((modalDrug.dose * weightSliderValue * (1 + heightSliderValue/100 )* modalDrug.dissolve).toPrecision(3))} ${modalDrug.dissolveUnit} in ${parseFloat((modalDrug.dose * weightSliderValue * (1 + heightSliderValue/100)* modalDrug.dilute).toPrecision(3))} ${modalDrug.diluteUnit}`)
+    DosePatientModalVisible(true);
+    const modalDrug = drugList.find((drugs) => drugs.drug === selectedDrug);
+    const modalForm = dosageFormList.find(
+      (form) => `${form.amount} ${form.unit}` === selectedForm
+    );
+    setDrugImage(modalDrug.imageURL);
+    setDoseModalMessage(
+      `${parseFloat(
+        modalDrug.dose *
+          weightSliderValue *
+          (1 + heightSliderValue / 100) *
+          (modalDrug.dilute / modalDrug.dissolve)
+      ).toPrecision(3)} ${modalDrug.diluteUnit} of ${modalDrug.drug}`
+    );
+    setDoseModalMessageAdministration(
+      `${modalDrug.indication} ${parseFloat(
+        (
+          modalDrug.dose *
+          weightSliderValue *
+          (1 + heightSliderValue / 100) *
+          modalDrug.dissolve
+        ).toPrecision(3)
+      )} ${modalDrug.dissolveUnit} in ${parseFloat(
+        (
+          modalDrug.dose *
+          weightSliderValue *
+          (1 + heightSliderValue / 100) *
+          modalDrug.dilute
+        ).toPrecision(3)
+      )} ${modalDrug.diluteUnit}`
+    );
   }
 
   function handleCloseDoseModal() {
-    DosePatientModalVisible(false)
+    DosePatientModalVisible(false);
   }
+  console.log(drugImage);
 
   return (
-    <View style={doseModalVisible ? globalStyles.safeAreaViewModal : globalStyles.safeAreaView}>
+    <View
+      style={
+        doseModalVisible
+          ? globalStyles.safeAreaViewModal
+          : globalStyles.safeAreaView
+      }
+    >
       <DefaultHeader />
       <View style={globalStyles.pickersView}>
         {!!drugList && !!dosageFormList && (
@@ -112,16 +147,18 @@ export default function Doses() {
           <Text style={globalStyles.calculateButtonText}>CALCULATE</Text>
         </TouchableOpacity>
       </View>
-        {!doseModalVisible &&
-      <View style={bottomNavStyles.NavContainerFlex}>
-        <View style={bottomNavStyles.NavContainer}>
-          <DosesTab />
+      {!doseModalVisible && (
+        <View style={bottomNavStyles.NavContainerFlex}>
+          <View style={bottomNavStyles.NavContainer}>
+            <DosesTab />
+          </View>
         </View>
-      </View>
-      }
+      )}
       <Modal animationType="fade" visible={doseModalVisible} transparent>
         <View style={modalStyles.modalContainer}>
-          <View style={[modalStyles.doseModalContent, globalStyles.bottomShadow]}>
+          <View
+            style={[modalStyles.doseModalContent, globalStyles.bottomShadow]}
+          >
             <TouchableOpacity onPress={handleCloseDoseModal}>
               <AntDesign
                 name="close"
@@ -132,6 +169,15 @@ export default function Doses() {
             </TouchableOpacity>
             <Text>Dose:</Text>
             <Text>{doseModalMessage}</Text>
+
+            <Image
+              style={{ width: 300, height: 300 }}
+              source={{
+                uri: drugImage,
+              }}
+              resizeMode={"cover"} // cover or contain its upto you view look
+            />
+
             <Text>Preparation:</Text>
             <Text>{doseModalMessageAdministration}</Text>
           </View>

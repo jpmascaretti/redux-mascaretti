@@ -1,3 +1,4 @@
+
 export const drugs = [
   {
     drug: "Adenosine",
@@ -8,9 +9,10 @@ export const drugs = [
     dilute: 10,
     diluteUnit: "ml",
     indication: "Prepare",
+    imageURL: "https://i.ibb.co/4gnRP92/adenosine.jpg",
   },
   {
-    drug: "Adrenaline",
+    drug: "Adrenalin",
     dose: 0.1,
     dosage: "ml/kg",
     dissolve: 1,
@@ -18,6 +20,7 @@ export const drugs = [
     dilute: 10,
     diluteUnit: "ml",
     indication: "Prepare",
+    imageURL: "https://i.ibb.co/bKKL84P/adrenalin.jpg",
   },
   {
     drug: "Atropine", 
@@ -28,6 +31,7 @@ export const drugs = [
     dilute: 10,
     diluteUnit: "ml",
     indication: "Prepare",
+    imageURL: "https://i.ibb.co/f8JmMGz/atropine.jpg",
   },
   {
     drug: "Fentanyl", 
@@ -38,6 +42,7 @@ export const drugs = [
     dilute: 5,
     diluteUnit: "ml",
     indication: "Prepare",
+    imageURL: "https://i.ibb.co/chdPRVv/fentanyl.jpg",
   },
   {
     drug: "Ketamine",
@@ -48,6 +53,7 @@ export const drugs = [
     dilute: 5,
     diluteUnit: "ml",
     indication: "Prepare",
+    imageURL: "https://i.ibb.co/V99ZSPT/ketamine.jpg",
   },
   {
     drug: "Vecuronium", 
@@ -58,9 +64,10 @@ export const drugs = [
     dilute: 10,
     diluteUnit: "ml",
     indication: "Dilute",
+    imageURL: "https://i.ibb.co/MGHqD2L/vecuronium.jpg",
   },
   {
-    drug: "Succinilcolina",
+    drug: "Succinylcholine",
     dose: 1,
     dosage: "mg/kg",
     dissolve: 50,
@@ -68,6 +75,8 @@ export const drugs = [
     dilute: 10,
     diluteUnit: "ml",
     indication: "Dilute",
+    imageURL: "https://i.ibb.co/5sMh0kk/succinylcholine.jpg",
+
   },
   {
     drug: "Lorazepam",
@@ -77,6 +86,7 @@ export const drugs = [
     dilute: 1,
     diluteUnit: "ml",
     indication: "No dilution needed. Take",
+    imageURL: "https://i.ibb.co/VMwhB5f/lorazepam.jpg",
   },
   {
     drug: "Midazolam",
@@ -87,6 +97,7 @@ export const drugs = [
     dilute: 5,
     diluteUnit: "ml",
     indication: "Prepare",
+    imageURL: "https://i.ibb.co/7yhHMKD/midazolam.jpg",
   },
   {
     drug: "Morphine",
@@ -97,6 +108,7 @@ export const drugs = [
     dilute: 10,
     diluteUnit: "ml",
     indication: "Prepare",
+    imageURL: "https://i.ibb.co/BwjryQM/morphine.jpg",
   },
   {
     drug: "Flumazenil",
@@ -107,5 +119,6 @@ export const drugs = [
     dilute: 5,
     diluteUnit: "ml",
     indication: "No dilution needed. Take",
+    imageURL: "https://i.ibb.co/3ktRywR/flumazenil.jpg",
   },
 ];
