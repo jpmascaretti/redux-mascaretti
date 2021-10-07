@@ -8,7 +8,7 @@ export const drugs = [
     dissolveUnit: "mg",
     dilute: 10,
     diluteUnit: "ml",
-    indication: "Prepare",
+    indication: "Dilute",
     imageURL: "https://i.ibb.co/4gnRP92/adenosine.jpg",
   },
   {
@@ -19,7 +19,7 @@ export const drugs = [
     dissolveUnit: "mg",
     dilute: 10,
     diluteUnit: "ml",
-    indication: "Prepare",
+    indication: "Dilute",
     imageURL: "https://i.ibb.co/bKKL84P/adrenalin.jpg",
   },
   {
@@ -30,7 +30,7 @@ export const drugs = [
     dissolveUnit: "mg",
     dilute: 10,
     diluteUnit: "ml",
-    indication: "Prepare",
+    indication: "Dilute",
     imageURL: "https://i.ibb.co/f8JmMGz/atropine.jpg",
   },
   {
@@ -41,7 +41,7 @@ export const drugs = [
     dissolveUnit: "mcg",
     dilute: 5,
     diluteUnit: "ml",
-    indication: "Prepare",
+    indication: "Mix and stir",
     imageURL: "https://i.ibb.co/chdPRVv/fentanyl.jpg",
   },
   {
@@ -52,7 +52,7 @@ export const drugs = [
     dissolveUnit: "mg",
     dilute: 5,
     diluteUnit: "ml",
-    indication: "Prepare",
+    indication: "Dilute",
     imageURL: "https://i.ibb.co/V99ZSPT/ketamine.jpg",
   },
   {
@@ -83,6 +83,7 @@ export const drugs = [
     dose: 0.1,
     dosage: "ml/kg",
     dissolve: 4,
+    dissolveUnit: "ml",
     dilute: 1,
     diluteUnit: "ml",
     indication: "No dilution needed. Take",
@@ -96,7 +97,7 @@ export const drugs = [
     dissolveUnit: "mg",
     dilute: 5,
     diluteUnit: "ml",
-    indication: "Prepare",
+    indication: "Dilute",
     imageURL: "https://i.ibb.co/7yhHMKD/midazolam.jpg",
   },
   {
@@ -107,7 +108,7 @@ export const drugs = [
     dissolveUnit: "mg",
     dilute: 10,
     diluteUnit: "ml",
-    indication: "Prepare",
+    indication: "Dilute",
     imageURL: "https://i.ibb.co/BwjryQM/morphine.jpg",
   },
   {

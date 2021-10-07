@@ -13,7 +13,6 @@ import { getForms } from "../../../store/actions/dosageform.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { AntDesign } from "@expo/vector-icons";
 import { modalStyles } from "../../../styles/modalStyles";
-import { iconStyles } from "../../../styles/iconStyles";
 
 export default function Doses() {
   const drugList = useSelector((state) => state.drugs.drugs);
@@ -47,35 +46,34 @@ export default function Doses() {
     setDrugImage(modalDrug.imageURL);
     setDoseModalMessage(
       `${parseFloat(
-        modalDrug.dose *
+        modalDrug.dose * parseFloat(modalForm.amount/10).toPrecision(3) *
           weightSliderValue *
           (1 + heightSliderValue / 100) *
           (modalDrug.dilute / modalDrug.dissolve)
-      ).toPrecision(3)} ${modalDrug.diluteUnit} of ${modalDrug.drug}`
+      ).toPrecision(3)} ${modalDrug.diluteUnit} of`
     );
     setDoseModalMessageAdministration(
       `${modalDrug.indication} ${parseFloat(
         (
-          modalDrug.dose *
+          modalDrug.dose * parseFloat(modalForm.amount/10).toPrecision(3) *
           weightSliderValue *
           (1 + heightSliderValue / 100) *
           modalDrug.dissolve
         ).toPrecision(3)
-      )} ${modalDrug.dissolveUnit} in ${parseFloat(
+      )} ${modalDrug.dissolveUnit} of ${modalDrug.drug} in ${parseFloat(
         (
-          modalDrug.dose *
+          modalDrug.dose * parseFloat(modalForm.amount/10).toPrecision(3) *
           weightSliderValue *
           (1 + heightSliderValue / 100) *
           modalDrug.dilute
         ).toPrecision(3)
-      )} ${modalDrug.diluteUnit}`
+      )} ${modalDrug.diluteUnit} of saline solution.`
     );
   }
 
   function handleCloseDoseModal() {
     DosePatientModalVisible(false);
   }
-  console.log(drugImage);
 
   return (
     <View
@@ -159,27 +157,35 @@ export default function Doses() {
           <View
             style={[modalStyles.doseModalContent, globalStyles.bottomShadow]}
           >
-            <TouchableOpacity onPress={handleCloseDoseModal}>
-              <AntDesign
-                name="close"
-                size={20}
-                color="#BB22B5"
-                style={iconStyles.closeIconStyleDoseModal}
+            <View style={modalStyles.topDrugBar}>
+              <Text style={modalStyles.topDugBarText}>{selectedDrug} {selectedForm}</Text>
+              <TouchableOpacity onPress={handleCloseDoseModal}>
+                <AntDesign
+                  name="close"
+                  size={20}
+                  color="white"
+                  style={modalStyles.closeIconStyleDoseModal}
+                />
+              </TouchableOpacity>
+            </View>
+            <View>
+              <View style={modalStyles.doseTextContainer}>
+              <Text style={modalStyles.doseTextBold}>Dose:</Text>
+              <Text style={modalStyles.doseTextCorpus}>{doseModalMessage}</Text>
+              <Text style={modalStyles.doseTextDrugCorpus}>{selectedDrug}</Text>
+              </View>
+              <Image
+                style={{ marginLeft: 7.5, width: 300, height: 300 }}
+                source={{
+                  uri: drugImage,
+                }}
+                resizeMode={"cover"} // cover or contain its upto you view look
               />
-            </TouchableOpacity>
-            <Text>Dose:</Text>
-            <Text>{doseModalMessage}</Text>
-
-            <Image
-              style={{ width: 300, height: 300 }}
-              source={{
-                uri: drugImage,
-              }}
-              resizeMode={"cover"} // cover or contain its upto you view look
-            />
-
-            <Text>Preparation:</Text>
-            <Text>{doseModalMessageAdministration}</Text>
+              <View style={modalStyles.modalSeparator}><Text style={modalStyles.modalPrepText}>Preparation:</Text></View>
+              <View style={modalStyles.prepTextContainer}>
+              <Text style={modalStyles.doseTextPrep}>{doseModalMessageAdministration}</Text>
+              </View>
+            </View>
           </View>
         </View>
       </Modal>
