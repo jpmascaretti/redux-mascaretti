@@ -18,7 +18,8 @@ export const addCustomDrug = (drugInfo, image) => {
         }
 
         dispatch({type: ADD_IMAGE, payload: {
-
+            drugInfo: drugInfo,
+            image: Path,
         }})
     }
 }
