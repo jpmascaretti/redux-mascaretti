@@ -183,7 +183,7 @@ export default function Doses() {
               <Text style={modalStyles.doseTextDrugCorpus}>{selectedDrug}</Text>
               </View>
               <Image
-                style={{ marginLeft: 7.5, width: 300, height: 300 }}
+                style={{ marginLeft: 7.5, width: 300, height: 300, borderRadius: 15 }}
                 source={{
                   uri: drugImage,
                 }}

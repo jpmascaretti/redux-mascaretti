@@ -40,8 +40,17 @@ export const modalStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
-    
-  },
+    },
+    topCustomDrugBar: {
+      width: '100%',
+      height: 40,
+      backgroundColor: "#BB22B5",
+      borderTopRightRadius: 15,
+      borderTopLeftRadius: 15,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center'
+      },
   closeIconStyleDoseModal: {
     marginRight: 10,
   },
@@ -107,4 +116,10 @@ export const modalStyles = StyleSheet.create({
     height: '75%',
     marginBottom: 50
   },
+  topCustomDrugBarText: {
+    marginLeft: 75,
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
 });

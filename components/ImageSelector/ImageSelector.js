@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { View, Button, Image, Text, StyleSheet, Alert } from "react-native";
+import { View, Image, Text, StyleSheet, Alert, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { TouchableOpacity } from "react-native";
+
 
 export const ImageSelector = (props) => {
   const [pickedUri, setPickedUri] = useState();
@@ -37,16 +40,20 @@ export const ImageSelector = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.preview}>
+      <View style={!pickedUri ? styles.preview : styles.addedImage}>
         {!pickedUri ? (
-          <Text>NO hay imagen...</Text>
+          <>
+          <TouchableOpacity onPress={handleTakePicture}>
+          <MaterialCommunityIcons name="image-plus" size={56} color="#BB22B5" />
+          <Text style={styles.addImageText}>Add Image</Text>
+          </TouchableOpacity>
+          </>
         ) : (
           <Image style={styles.image} source={{ uri: pickedUri }}></Image>
         )}
       </View>
-      <Button title="Add Picture" color="red" onPress={handleTakePicture} />
     </View>
-  );
+  ); 
 };
 
 const styles = StyleSheet.create({
@@ -54,16 +61,36 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   preview: {
+    marginTop: 10,
     width: 260,
-    height: 200,
+    height: 100,
     marginBottom: 10,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: 'column',
     borderColor: "black",
-    borderWidth: 1,
+    backgroundColor: "#C3F7FA",
+    borderRadius: 15,
   },
   image: {
     width: "100%",
     height: "100%",
+    borderRadius: 15,
   },
+  addImageText: {
+    fontSize: 16,
+    color: '#BB22B5',
+  },
+  addedImage: {
+    marginTop: 10,
+    width: 260,
+    height: 260,
+    marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: 'column',
+    borderColor: "black",
+    backgroundColor: "#C3F7FA",
+    borderRadius: 15,
+  }
 });

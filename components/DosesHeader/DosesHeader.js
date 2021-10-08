@@ -6,6 +6,7 @@ import { modalStyles } from "../../styles/modalStyles";
 import { AntDesign } from "@expo/vector-icons";
 import { iconStyles } from "../../styles/iconStyles";
 import { ImageSelector } from "../ImageSelector/ImageSelector";
+import { ScrollView } from "react-native";
 export default DosesHeader = ({ handleOpenBackdrop, handleCloseBackdrop }) => {
   const [addDrugModalVisible, setAddDrugModalVisible] = useState(false);
 
@@ -35,25 +36,51 @@ export default DosesHeader = ({ handleOpenBackdrop, handleCloseBackdrop }) => {
           <View
             style={[modalStyles.addDrugModalContent, globalStyles.bottomShadow]}
           >
-            <TouchableOpacity onPress={handleCloseAddDrugModal}>
-              <AntDesign
-                name="close"
-                size={20}
-                color="#BB22B5"
-                style={iconStyles.closeIconStyle}
-              />
-            </TouchableOpacity>
-            <ImageSelector></ImageSelector>
-            <View style={globalStyles.addButtonContainer}>
-              <TouchableOpacity style={globalStyles.addButton}>
-                <Text style={globalStyles.whiteBoldText}>
-                  Add Custom Drug Image
-                </Text>
+            <View style={modalStyles.topCustomDrugBar}>
+              <Text style={modalStyles.topCustomDrugBarText}>
+                {" "}
+                Add Custom Drug:
+              </Text>
+              <TouchableOpacity onPress={handleCloseAddDrugModal}>
+                <AntDesign
+                  name="close"
+                  size={20}
+                  color="white"
+                  style={iconStyles.closeCusomDrugIcon}
+                />
               </TouchableOpacity>
             </View>
+            <ImageSelector></ImageSelector>
+            <ScrollView>
+              <Text>hey</Text>
+              <Text>hey</Text>
+              <Text>hey</Text>
+              <Text>hey</Text>
+              <Text>hey</Text>
+              <Text>hey</Text>
+
+            </ScrollView>
           </View>
         </View>
       </Modal>
     </>
   );
 };
+
+{
+  /* <View style={modalStyles.modalContainer}>
+          <View
+            style={[modalStyles.doseModalContent, globalStyles.bottomShadow]}
+          >
+            <View style={modalStyles.topDrugBar}>
+              <Text style={modalStyles.topDugBarText}>{selectedDrug} {selectedForm}</Text>
+              <TouchableOpacity onPress={handleCloseDoseModal}>
+                <AntDesign
+                  name="close"
+                  size={20}
+                  color="white"
+                  style={modalStyles.closeIconStyleDoseModal}
+                />
+              </TouchableOpacity>
+            </View> */
+}
