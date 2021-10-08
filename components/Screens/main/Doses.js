@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity, Modal, Image } from "react-native";
 import React, { useState, useEffect } from "react";
-import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import DosesTab from "../../BottomTabs/DosesTab";
 import { bottomNavStyles } from "../../../styles/bottomNavStyles";
 import { globalStyles } from "../../../styles/globalStyles";
@@ -13,6 +12,7 @@ import { getForms } from "../../../store/actions/dosageform.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { AntDesign } from "@expo/vector-icons";
 import { modalStyles } from "../../../styles/modalStyles";
+import DosesHeader from "../../DosesHeader/DosesHeader";
 
 export default function Doses() {
   const drugList = useSelector((state) => state.drugs.drugs);
@@ -35,10 +35,11 @@ export default function Doses() {
   const [weightSliderValue, setWeightSliderValue] = useState(0);
   const [heightSliderValue, setHeightSliderValue] = useState(0);
 
-  const [doseModalVisible, DosePatientModalVisible] = useState(false);
+  const [doseModalVisible, setDosePatientModalVisible] = useState(false);
+  const [addDrugModalBackdrop, setAddDrugModalBackdrop] = useState(false);
 
   function handleDoseModal() {
-    DosePatientModalVisible(true);
+    setDosePatientModalVisible(true);
     const modalDrug = drugList.find((drugs) => drugs.drug === selectedDrug);
     const modalForm = dosageFormList.find(
       (form) => `${form.amount} ${form.unit}` === selectedForm
@@ -71,19 +72,26 @@ export default function Doses() {
     );
   }
 
+  const handleOpenBackdrop = () => {
+    setAddDrugModalBackdrop(true);    
+  };
+
+  function handleCloseBackdrop() {
+    setAddDrugModalBackdrop(false);  }
+    
   function handleCloseDoseModal() {
-    DosePatientModalVisible(false);
+    setDosePatientModalVisible(false);
   }
 
   return (
     <View
       style={
-        doseModalVisible
+        (doseModalVisible || addDrugModalBackdrop)
           ? globalStyles.safeAreaViewModal
           : globalStyles.safeAreaView
       }
     >
-      <DefaultHeader />
+      <DosesHeader handleOpenBackdrop={handleOpenBackdrop} handleCloseBackdrop={handleCloseBackdrop}/>
       <View style={globalStyles.pickersView}>
         {!!drugList && !!dosageFormList && (
           <>
@@ -148,7 +156,7 @@ export default function Doses() {
       {!doseModalVisible && (
         <View style={bottomNavStyles.NavContainerFlex}>
           <View style={bottomNavStyles.NavContainer}>
-            <DosesTab />
+            <DosesTab setAddDrugModalBackdrop={setAddDrugModalBackdrop}/>
           </View>
         </View>
       )}

@@ -5,7 +5,7 @@ import { URL_API } from "../../constants/database";
 
 const filterByUserID = (data, queryUserId) => {
   const patients = [];
-  Object.keys(data).forEach((key) => patients.push({ id: key, ...data[key] }));
+  !!data && Object.keys(data).forEach((key) => patients.push({ id: key, ...data[key] }));
   return patients.filter((item) => item.authUserId === queryUserId);
 };
 

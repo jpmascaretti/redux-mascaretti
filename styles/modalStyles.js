@@ -98,4 +98,13 @@ export const modalStyles = StyleSheet.create({
     justifyContent: 'center',
     padding: 30
   },
+  addDrugModalContent: {
+    backgroundColor: "white",
+    alignItems: "center",
+    flexDirection: 'column',
+    borderRadius: 15,
+    width: '80%',
+    height: '75%',
+    marginBottom: 50
+  },
 });

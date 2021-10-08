@@ -337,4 +337,24 @@ export const globalStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold'
   },
+  addDrugButton: {
+    marginRight: 20,
+  },
+  drugsHeaderContainer: {
+    height: 50,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#96EAEF",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  drugsHeaderText: {
+    fontFamily: "Roboto",
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 26,
+    alignContent: "center",
+    marginLeft: 160,
+  }
 });
