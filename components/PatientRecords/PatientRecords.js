@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deletePatient } from "../../store/actions/patients.actions";
 import { useNavigation } from "@react-navigation/native";
 import { getPatients } from "../../store/actions/patients.actions";
+import { Searchbar } from "react-native-paper";
 
 import {
   Button,
@@ -21,10 +22,24 @@ const PatientRecords = () => {
   const patientsList = useSelector((state) => state.patientsRecords.list);
   const userID = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
-  
+  const [patientSearchList, setPatientSearchList] = useState(patientsList);
+
   useEffect(() => {
     dispatch(getPatients(userID));
   }, []);
+
+  useEffect(() => {
+    setPatientSearchList(patientsList);
+  }, [patientsList]);
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const onChangeSearch = (query) => {
+    setSearchQuery(query);
+    setPatientSearchList(
+      patientsList.filter((patient) => patient.items.name.includes(query))
+    );
+  };
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
@@ -47,9 +62,29 @@ const PatientRecords = () => {
 
   return (
     <>
+      <>
+        {!!patientsList && patientsList.length > 0 ? (
+          <View style={globalStyles.searchBarContainer}>
+            <Searchbar
+              placeholder="Search Patient"
+              onChangeText={onChangeSearch}
+              value={searchQuery}
+              icon="magnify"
+              style={globalStyles.searchBar}
+            />
+          </View>
+        ) : (
+          <View style={globalStyles.noRecordsMessage}>
+            <Text style={globalStyles.headline}>No patients found</Text>
+            <Text style={globalStyles.headlineBottom}>
+              Please add patients to medical records
+            </Text>
+          </View>
+        )}
+      </>
       <View style={globalStyles.listColumn}>
         <FlatList
-          data={patientsList}
+          data={patientSearchList}
           renderItem={(data) => {
             return (
               <TouchableOpacity

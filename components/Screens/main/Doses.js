@@ -18,6 +18,7 @@ export default function Doses() {
   const drugList = useSelector((state) => state.drugs.drugs);
   const dosageFormList = useSelector((state) => state.forms.forms);
   const userID = useSelector((state) => state.auth.userId);
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDrugs(userID));
