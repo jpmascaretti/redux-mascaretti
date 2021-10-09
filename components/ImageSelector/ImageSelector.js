@@ -3,9 +3,10 @@ import { View, Image, Text, StyleSheet, Alert, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { TouchableOpacity } from "react-native";
+import { iconStyles } from "../../styles/iconStyles";
 
 
-export const ImageSelector = (props) => {
+export const ImageSelector = ({retrieveImageURL}) => {
   const [pickedUri, setPickedUri] = useState();
 
   const verifyPermissions = async () => {
@@ -31,10 +32,9 @@ export const ImageSelector = (props) => {
           aspect: [16,9],
           quality: 0.8,
       })
-      console.log(image)
+
       setPickedUri(image.uri)
-      //from within this component I can pass the uri to parent component
-      //call dispatch and send the url to the database and append the drug to druglist
+      retrieveImageURL(image.uri)
       
   }
 
@@ -44,7 +44,7 @@ export const ImageSelector = (props) => {
         {!pickedUri ? (
           <>
           <TouchableOpacity onPress={handleTakePicture}>
-          <MaterialCommunityIcons name="image-plus" size={56} color="#BB22B5" />
+          <MaterialCommunityIcons name="image-plus" size={56} color="#BB22B5" style={iconStyles.addImageIcon}/>
           <Text style={styles.addImageText}>Add Image</Text>
           </TouchableOpacity>
           </>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   addedImage: {
     marginTop: 10,
     width: 260,
-    height: 260,
+    height: 100,
     marginBottom: 10,
     justifyContent: "center",
     alignItems: "center",

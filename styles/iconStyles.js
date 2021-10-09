@@ -8,7 +8,10 @@ export const iconStyles = StyleSheet.create({
   closeIconStyle: {
     marginLeft: 220,
   },
-  closeCusomDrugIcon: {
+  closeCustomDrugIcon: {
     marginLeft: 60,
+  },
+  addImageIcon: {
+    marginLeft: 10,
   }
 });

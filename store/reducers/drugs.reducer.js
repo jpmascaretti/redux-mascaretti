@@ -1,4 +1,5 @@
 import { GET_DRUGS } from "../actions/drugs.actions";
+import { ADD_DRUG } from "../actions/drugs.actions";
 
 const INITIAL_DRUG_STATE = {
   drugs: []
@@ -11,6 +12,12 @@ const DrugReducer = (state = INITIAL_DRUG_STATE, action) => {
       
       return {
           drugs: action.drugList.drugs,
+        };
+
+      case ADD_DRUG:
+
+      return {
+          drugs: action.newDrugList,
         };
       default:
         return state;

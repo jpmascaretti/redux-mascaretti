@@ -356,5 +356,12 @@ export const globalStyles = StyleSheet.create({
     fontSize: 26,
     alignContent: "center",
     marginLeft: 160,
-  }
+  },
+  addDrugButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 15,
+    marginTop: 15,
+  },
 });
