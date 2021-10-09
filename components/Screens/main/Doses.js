@@ -182,13 +182,13 @@ export default function Doses() {
               <Text style={modalStyles.doseTextCorpus}>{doseModalMessage}</Text>
               <Text style={modalStyles.doseTextDrugCorpus}>{selectedDrug}</Text>
               </View>
-              <Image
+              {drugImage !== 'nourl' && <Image
                 style={{ marginLeft: 7.5, width: 300, height: 300, borderRadius: 15 }}
                 source={{
                   uri: drugImage,
                 }}
                 resizeMode={"cover"} // cover or contain its upto you view look
-              />
+              />}
               <View style={modalStyles.modalSeparator}><Text style={modalStyles.modalPrepText}>Preparation:</Text></View>
               <View style={modalStyles.prepTextContainer}>
               <Text style={modalStyles.doseTextPrep}>{doseModalMessageAdministration}</Text>

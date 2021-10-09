@@ -71,7 +71,9 @@ export default DosesHeader = ({ handleOpenBackdrop, handleCloseBackdrop }) => {
       imageURL: "nourl",
     };
 
-    dispatch(addCustomDrug(newDrug, drugList, tempImageUrl));
+    dispatch(addCustomDrug(newDrug, drugList, tempImageUrl, userID));
+    setAddDrugModalVisible(false);
+    handleCloseAddDrugModal()
   }
   return (
     <SafeAreaView>

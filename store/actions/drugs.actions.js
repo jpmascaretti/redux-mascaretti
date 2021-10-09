@@ -37,7 +37,7 @@ export const getDrugs = (userID) => {
   };
 };
 
-export const addCustomDrug = (newDrug, oldDrugList, imageURL) => {
+export const addCustomDrug = (newDrug, oldDrugList, imageURL, userID) => {
   return async (dispatch) => {
     const fileName = imageURL.split("/").pop();
     const Path = FileSystem.documentDirectory + fileName;
@@ -55,7 +55,41 @@ export const addCustomDrug = (newDrug, oldDrugList, imageURL) => {
     newDrug.imageURL = Path;
     const newDrugList = oldDrugList;
     newDrugList.push(newDrug);
-    console.log(newDrug);
+
+    try {
+      const response = await fetch(`${URL_API}/drugs.json`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result = await response.json();
+      const drugs = filterDrugsByUserID(result, userID);
+      const drugsID = Object.keys(result)[0]
+      if (drugs.length > 0) {
+        try {
+          
+          const updateDrugs = await fetch(`${URL_API}/drugs/${drugsID}.json`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: Date.now(),
+              drugs: { ...newDrugList },
+              authUserId: userID,
+            }),
+          });
+
+        } catch (err) {
+          throw err;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      //need to add error handling logic here and render in UI
+    }
 
     dispatch({
       type: ADD_DRUG,
