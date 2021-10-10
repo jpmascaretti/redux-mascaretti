@@ -7,9 +7,10 @@ import { globalStyles } from "../../../styles/globalStyles";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation, CommonActions } from "@react-navigation/native";
 
 export default function Tests() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <View style={globalStyles.safeAreaView}>
@@ -19,9 +20,7 @@ export default function Tests() {
           colors={["#BB22B5", "#96EAEF"]}
           style={styles.linearGradient}
         >
-          <TouchableOpacity
-
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("Glasgow")}>
             <View style={styles.testsCard}>
               <MaterialCommunityIcons
                 name="head-check-outline"
@@ -37,9 +36,7 @@ export default function Tests() {
           colors={["#BB22B5", "#96EAEF"]}
           style={styles.linearGradientApgar}
         >
-          <TouchableOpacity
-
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("Apgar")}>
             <View style={styles.testsCard}>
               <FontAwesome
                 style={styles.glasgowIcon}

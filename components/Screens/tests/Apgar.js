@@ -5,7 +5,7 @@ import { bottomNavStyles } from "../../../styles/bottomNavStyles";
 import { globalStyles } from "../../../styles/globalStyles";
 import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import { AntDesign } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, CommonActions } from "@react-navigation/native";
 
 export default function Apgar() {
   const navigation = useNavigation();
@@ -15,15 +15,12 @@ export default function Apgar() {
       <DefaultHeader />
       <TouchableOpacity
         style={globalStyles.backToRecords}
-        onPress={() => {
-          navigation.navigate('Tests', {screen: 'Tests'});
-        }}
+        onPress={() => navigation.navigate("Tests")}
       >
         <AntDesign name="arrowleft" size={24} color="#C4C4C4" />
         <Text style={globalStyles.btrText}>Back to Records</Text>
       </TouchableOpacity>
-      <Text>{patientName}</Text>
-      <Text>Patient records go here</Text>
+      <Text>Apgar Test</Text>
       <View style={bottomNavStyles.NavContainerFlex}>
         <View style={bottomNavStyles.NavContainer}>
           <RecordsTab />

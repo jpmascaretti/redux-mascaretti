@@ -1,7 +1,9 @@
 const ROUTES = {
     RECORDSNAV: "RecordsNavigator",
     DOSES: "Doses",
-    TESTSNAV: "TestsNavigator",
+    TESTS: "Tests",
+    APGAR: "Apgar",
+    GLASGOW: "Glasgow"
   };
   
 export default ROUTES;
