@@ -16,7 +16,7 @@ export default function Glasgow() {
       <TouchableOpacity
         style={globalStyles.backToRecords}
         onPress={() => {
-          navigation.navigate('Tests', {screen: 'Tests'});
+          navigation.navigate('Tests', {}, {screen: 'Tests'});
         }}
       >
         <AntDesign name="arrowleft" size={24} color="#C4C4C4" />
