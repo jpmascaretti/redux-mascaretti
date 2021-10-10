@@ -1,5 +1,5 @@
 import Slider from "@react-native-community/slider";
-import React, {useState} from "react";
+import React from "react";
 import { globalStyles } from "../../styles/globalStyles";
 import { View, Text } from "react-native";
 

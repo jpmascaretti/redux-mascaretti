@@ -7,9 +7,8 @@ import { globalStyles } from "../../styles/globalStyles";
 import { savePatient } from "../../store/actions/patients.actions";
 
 export default AddPatientForm = () => {
-
   const dispatch = useDispatch();
-  const patientsList = useSelector(state => state.patientsRecords.list)
+  const patientsList = useSelector((state) => state.patientsRecords.list);
   const userID = useSelector((state) => state.auth.userId);
 
   const [maleSelected, setMaleSelection] = useState(false);
@@ -29,7 +28,8 @@ export default AddPatientForm = () => {
   const handleAddItem = () => {
     if (
       !!patientsList.find(
-        (patient) => patient.items.name === inputText && patient.items.gender === gender
+        (patient) =>
+          patient.items.name === inputText && patient.items.gender === gender
       )
     ) {
       setInputText("");
@@ -41,13 +41,16 @@ export default AddPatientForm = () => {
       return setDuplicateRecordError("Patient is already in the records");
     }
     if (inputText && (gender == "male" || gender == "female")) {
-      dispatch(savePatient(
-        {
-          id: Math.floor(Math.random().toString() * 100000),
-          name: inputText,
-          gender: gender,
-        }, userID
-      ))
+      dispatch(
+        savePatient(
+          {
+            id: Math.floor(Math.random().toString() * 100000),
+            name: inputText,
+            gender: gender,
+          },
+          userID
+        )
+      );
 
       setInputText("");
       setNameError("");
