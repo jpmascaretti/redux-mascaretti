@@ -3,7 +3,13 @@ import React, { useCallback, useReducer } from "react";
 import AuthScreenWrapper from "../../AuthScreenWrapper/AuthScreenWrapper";
 import Input from "../../Input/Input";
 import { LinearGradient } from "expo-linear-gradient";
-import { TouchableOpacity, Alert, Text, View } from "react-native";
+import {
+  TouchableOpacity,
+  Alert,
+  Text,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import { login } from "../../../store/actions/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../../../styles/globalStyles";
@@ -40,6 +46,7 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const loginErr = useSelector((state) => state.auth.loginError);
+  const loadingActivity = useSelector((state) => state.auth.loadingStatus);
 
   const [loginFormState, loginFormDispatch] = useReducer(loginFormReducer, {
     inputValues: {
@@ -85,43 +92,52 @@ const LoginScreen = () => {
       colors={["#96EAEF", "white"]}
       style={authStyles.linearGradient}
     >
-      <AuthScreenWrapper
-        title="Log in with your credentials"
-        message="¿Don't have a DoSe+ account?"
-        buttonText="Sign Up"
-        buttonPath="Signup"
-      >
-        <Input
-          id="email"
-          label="Email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          errorText="Please enter valid email"
-          required
-          email
-          onInputChange={onInputChangeHandler}
-        />
-        <Input
-          id="password"
-          label="Password"
-          secureTextEntry
-          autoCapitalize="none"
-          errorText="Wrong password"
-          required
-          minLength={6}
-          onInputChange={onInputChangeHandler}
-        />
-        <TouchableOpacity style={authStyles.loginButton} onPress={handleSignUp}>
-          <Text style={globalStyles.whiteBoldText}>Log In</Text>
-        </TouchableOpacity>
-        {loginErr && (
-          <View>
-            <Text style={authStyles.authError}>
-              {loginErr.replace("_", " ").replace("_", " ")}
-            </Text>
-          </View>
-        )}
-      </AuthScreenWrapper>
+      {loadingActivity === "loading" ? (
+        <View style={globalStyles.loaderContainer}>
+          <ActivityIndicator size="large" color="#BB22B5" />
+        </View>
+      ) : (
+        <AuthScreenWrapper
+          title="Log in with your credentials"
+          message="¿Don't have a DoSe+ account?"
+          buttonText="Sign Up"
+          buttonPath="Signup"
+        >
+          <Input
+            id="email"
+            label="Email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            errorText="Please enter valid email"
+            required
+            email
+            onInputChange={onInputChangeHandler}
+          />
+          <Input
+            id="password"
+            label="Password"
+            secureTextEntry
+            autoCapitalize="none"
+            errorText="Wrong password"
+            required
+            minLength={6}
+            onInputChange={onInputChangeHandler}
+          />
+          <TouchableOpacity
+            style={authStyles.loginButton}
+            onPress={handleSignUp}
+          >
+            <Text style={globalStyles.whiteBoldText}>Log In</Text>
+          </TouchableOpacity>
+          {loginErr && (
+            <View>
+              <Text style={authStyles.authError}>
+                {loginErr.replace("_", " ").replace("_", " ")}
+              </Text>
+            </View>
+          )}
+        </AuthScreenWrapper>
+      )}
     </LinearGradient>
   );
 };

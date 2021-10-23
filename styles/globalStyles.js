@@ -537,4 +537,11 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 15,
   },
+  loaderContainer: {
+    width: '100%',
+    height: '100%',
+    justifyContent: "center",
+    alignContent: "center"
+    
+  },
 });

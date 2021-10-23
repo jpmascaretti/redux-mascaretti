@@ -13,6 +13,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const signup = (email, password) => {
   return async (dispatch) => {
+    dispatch({
+      type: SIGNUP,
+      loading: 'loading'
+    })
     try {
       const response = await fetch(URL_SIGNUP_AUTH_API, {
         method: "POST",
@@ -35,6 +39,7 @@ export const signup = (email, password) => {
           token: null,
           userId: null,
           signupError: data.error.message,
+          loading: 'loaded'
         });
       } else {
         try {
@@ -77,6 +82,7 @@ export const signup = (email, password) => {
           type: SIGNUP,
           token: data.idToken,
           userId: data.localId,
+          loading: 'loaded'
         });
       }
     } catch (err) {
@@ -87,6 +93,12 @@ export const signup = (email, password) => {
 
 export const login = (email, password) => {
   return async (dispatch) => {
+
+    dispatch({
+      type: LOGIN,
+      loading: 'loading'
+    }
+    )
     const response = await fetch(URL_LOGIN_AUTH_API, {
       method: "POST",
       headers: {
@@ -107,11 +119,13 @@ export const login = (email, password) => {
           token: data.idToken,
           userId: data.localId,
           loginError: data.error.message,
+          loading: 'loaded'
         })
       : dispatch({
           type: LOGIN,
           token: data.idToken,
           userId: data.localId,
+          loading: 'loaded'
         });
   };
 };

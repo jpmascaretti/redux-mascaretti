@@ -1,4 +1,4 @@
-import { Alert, View, Text, TouchableOpacity } from "react-native";
+import { Alert, View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import React, { useCallback, useReducer } from "react";
 import AuthScreenWrapper from "../../AuthScreenWrapper/AuthScreenWrapper";
 import Input from "../../Input/Input";
@@ -40,6 +40,7 @@ const SignupScreen = () => {
   const dispatch = useDispatch();
 
   const signupErr = useSelector((state) => state.auth.signupError);
+  const loadingActivity = useSelector((state) => state.auth.loadingStatus);
 
   const [signupFormState, signupFormDispatch] = useReducer(signupFormReducer, {
     inputValues: {
@@ -88,59 +89,63 @@ const SignupScreen = () => {
         colors={["#96EAEF", "white"]}
         style={authStyles.linearGradient}
       >
-        <AuthScreenWrapper
-          title="Sign up with your credentials"
-          message="¿Already have a DoSe+ account?"
-          buttonText="Log In"
-          buttonPath="Login"
-        >
-          <Input
-            id="email"
-            label="Email"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            errorText="Please enter valid email"
-            required
-            email
-            onInputChange={onInputChangeHandler}
-          />
-          <Input
-            id="password"
-            label="Password"
-            secureTextEntry
-            autoCapitalize="none"
-            errorText="Password must have at least 6 characters"
-            required
-            minLength={6}
-            onInputChange={onInputChangeHandler}
-          />
-          <Input
-            id="confirmpassword"
-            label="Confirm Password"
-            secureTextEntry
-            autoCapitalize="none"
-            errorText="Passwords do not match"
-            required
-            confirmpwd
-            inputpwd={signupFormState.inputValues.password}
-            minLength={6}
-            onInputChange={onInputChangeHandler}
-          />
-
-          <TouchableOpacity
-            style={authStyles.signupButton}
-            onPress={handleSignUp}
+        {loadingActivity === "loading" ?
+          <View style={globalStyles.loaderContainer}>
+            <ActivityIndicator size="large" color="#BB22B5" />
+          </View> :
+          <AuthScreenWrapper
+            title="Sign up with your credentials"
+            message="¿Already have a DoSe+ account?"
+            buttonText="Log In"
+            buttonPath="Login"
           >
-            <Text style={globalStyles.whiteBoldText}>Sign up</Text>
-          </TouchableOpacity>
-          {signupErr && (
-            <View>
-              <Text style={authStyles.authError}>
-                {signupErr.replace("_", " ")}
-              </Text>
-            </View>
-          )}
-        </AuthScreenWrapper>
+            <Input
+              id="email"
+              label="Email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              errorText="Please enter valid email"
+              required
+              email
+              onInputChange={onInputChangeHandler}
+            />
+            <Input
+              id="password"
+              label="Password"
+              secureTextEntry
+              autoCapitalize="none"
+              errorText="Password must have at least 6 characters"
+              required
+              minLength={6}
+              onInputChange={onInputChangeHandler}
+            />
+            <Input
+              id="confirmpassword"
+              label="Confirm Password"
+              secureTextEntry
+              autoCapitalize="none"
+              errorText="Passwords do not match"
+              required
+              confirmpwd
+              inputpwd={signupFormState.inputValues.password}
+              minLength={6}
+              onInputChange={onInputChangeHandler}
+            />
+
+            <TouchableOpacity
+              style={authStyles.signupButton}
+              onPress={handleSignUp}
+            >
+              <Text style={globalStyles.whiteBoldText}>Sign up</Text>
+            </TouchableOpacity>
+            {signupErr && (
+              <View>
+                <Text style={authStyles.authError}>
+                  {signupErr.replace("_", " ")}
+                </Text>
+              </View>
+            )}
+          </AuthScreenWrapper>}
       </LinearGradient>
     </View>
   );

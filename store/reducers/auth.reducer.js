@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   userId: null,
   loginError: null,
   signupError: null,
+  loadingStatus: 'inactive'
 };
 
 const AuthReducer = (state = INITIAL_STATE, action) => {
@@ -15,6 +16,7 @@ const AuthReducer = (state = INITIAL_STATE, action) => {
         token: action.token,
         userId: action.userId,
         signupError: action.signupError,
+        loadingStatus: action.loading
       };
     case LOGIN:
       return {
@@ -22,6 +24,7 @@ const AuthReducer = (state = INITIAL_STATE, action) => {
         token: action.token,
         userId: action.userId,
         loginError: action.loginError,
+        loadingStatus: action.loading
       };
     default:
       return state;
