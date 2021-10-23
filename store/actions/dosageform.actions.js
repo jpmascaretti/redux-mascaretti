@@ -2,11 +2,9 @@ export const GET_FORMS = "GET_FORMS";
 import { URL_API } from "../../constants/database";
 
 const filterFormsByUserID = (data, queryUserId) => {
-
-    const forms = [];
-    Object.keys(data).forEach((key) => forms.push({ id: key, ...data[key] }));
-    return forms.filter((item) => item.authUserId === queryUserId);
-
+  const forms = [];
+  Object.keys(data).forEach((key) => forms.push({ id: key, ...data[key] }));
+  return forms.filter((item) => item.authUserId === queryUserId);
 };
 
 export const getForms = (userID) => {
@@ -22,13 +20,13 @@ export const getForms = (userID) => {
 
       const result = await response.json();
       const forms = filterFormsByUserID(result, userID);
-    //   console.log(forms)
+      //   console.log(forms)
 
-        forms.length > 0 && dispatch({
+      forms.length > 0 &&
+        dispatch({
           type: GET_FORMS,
           dosageFormList: forms[0],
-        }) 
-
+        });
     } catch (error) {
       console.log(error);
       //need to add error handling logic here and render in UI

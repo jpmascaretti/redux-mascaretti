@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import TestsTab from "../../BottomTabs/TestsTab";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { bottomNavStyles } from "../../../styles/bottomNavStyles";
 import { globalStyles } from "../../../styles/globalStyles";
 import DefaultHeader from "../../DefaultHeader/DefaultHeader";
@@ -20,7 +14,6 @@ export default function Glasgow() {
   const [selectedEyeOpeningValue, setSelectedEyeOpeningValue] = useState(null);
   const [selectedVerbalValue, setSelectedVerbalValue] = useState(null);
   const [selectedMotorValue, setSelectedMotorValue] = useState(null);
-
 
   return (
     <View style={globalStyles.safeAreaView}>
@@ -40,7 +33,10 @@ export default function Glasgow() {
           </Text>
         </View>
         <View style={globalStyles.scrollViewHeight}>
-         <GlasgowScrollview responseArray={TESTRESPONSES.eyeResponses} setValue={setSelectedEyeOpeningValue}/>
+          <GlasgowScrollview
+            responseArray={TESTRESPONSES.eyeResponses}
+            setValue={setSelectedEyeOpeningValue}
+          />
         </View>
 
         <View style={globalStyles.glasgowBanner}>
@@ -49,9 +45,11 @@ export default function Glasgow() {
           </Text>
         </View>
         <View style={globalStyles.scrollViewHeight}>
-        <GlasgowScrollview responseArray={TESTRESPONSES.verbalResponses} setValue={setSelectedVerbalValue}/>
+          <GlasgowScrollview
+            responseArray={TESTRESPONSES.verbalResponses}
+            setValue={setSelectedVerbalValue}
+          />
         </View>
-
 
         <View style={globalStyles.glasgowBanner}>
           <Text style={globalStyles.glasgowBannerText}>
@@ -59,22 +57,20 @@ export default function Glasgow() {
           </Text>
         </View>
         <View style={globalStyles.scrollViewHeight}>
-        <GlasgowScrollview responseArray={TESTRESPONSES.motorResponses} setValue={setSelectedMotorValue}/>
+          <GlasgowScrollview
+            responseArray={TESTRESPONSES.motorResponses}
+            setValue={setSelectedMotorValue}
+          />
         </View>
 
-        
         <TouchableOpacity
           style={
-            selectedEyeOpeningValue &&
-            selectedVerbalValue &&
-            selectedMotorValue
+            selectedEyeOpeningValue && selectedVerbalValue && selectedMotorValue
               ? [globalStyles.calculateButton, globalStyles.bottomShadow]
               : [globalStyles.calculateButtonOff, globalStyles.bottomShadow]
           }
           disabled={
-            selectedEyeOpeningValue &&
-            selectedVerbalValue &&
-            selectedMotorValue
+            selectedEyeOpeningValue && selectedVerbalValue && selectedMotorValue
               ? false
               : true
           }

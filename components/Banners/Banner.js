@@ -2,9 +2,7 @@ import React from "react";
 import { View, Switch, Text } from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
 
-
 const Banner = ({ bannerText, switchEnabled, setSwitchEnabled }) => {
-  
   const toggleSwitch = () =>
     setSwitchEnabled((previousState) => !previousState);
 
@@ -25,4 +23,3 @@ const Banner = ({ bannerText, switchEnabled, setSwitchEnabled }) => {
 };
 
 export default Banner;
-

@@ -1,5 +1,7 @@
 import React, { useEffect, useReducer } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
+import { globalStyles } from "../../styles/globalStyles";
+
 
 const INPUT_CHANGE = "INPUT_CHANGE";
 const INPUT_BLUR = "INPUT_BLUR";
@@ -54,41 +56,23 @@ const Input = (props) => {
   const handleBlur = () => inputDispatch({ type: INPUT_BLUR });
 
   return (
-    <View style={styles.formControl}>
-      <Text style={styles.label}>{props.label}</Text>
+    <View style={globalStyles.validationFormControl}>
+      <Text style={globalStyles.validationLabel}>{props.label}</Text>
       <TextInput
         {...props}
-        style={styles.input}
+        style={globalStyles.validaitonInput}
         value={inputState.value}
         onChangeText={handleChangeText}
         onBlur={handleBlur}
       />
       {!inputState.isValid && inputState.touched && (
         <View>
-          <Text style={styles.errorText}>{props.errorText}</Text>
+          <Text style={globalStyles.validationErrorText}>{props.errorText}</Text>
         </View>
       )}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  formControl: {
-    width: "100%",
-  },
-  label: {
-    marginVertical: 8,
-  },
-  input: {
-    paddingHorizontal: 2,
-    paddingVertical: 5,
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
-  },
-  errorText: {
-    marginVertical: 5,
-    color: "#cc7755",
-  },
-});
 
 export default Input;

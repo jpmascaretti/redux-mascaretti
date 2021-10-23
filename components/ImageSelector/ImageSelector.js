@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, Image, Text, StyleSheet, Alert, ScrollView } from "react-native";
+import { View, Image, Text, StyleSheet, Alert} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { TouchableOpacity } from "react-native";
 import { iconStyles } from "../../styles/iconStyles";
-
+import { globalStyles } from "../../styles/globalStyles";
 
 export const ImageSelector = ({retrieveImageURL}) => {
   const [pickedUri, setPickedUri] = useState();
@@ -39,58 +39,19 @@ export const ImageSelector = ({retrieveImageURL}) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={!pickedUri ? styles.preview : styles.addedImage}>
+    <View style={globalStyles.imageContainer}>
+      <View style={!pickedUri ? globalStyles.imagePreview : globalStyles.addedImage}>
         {!pickedUri ? (
           <>
           <TouchableOpacity onPress={handleTakePicture}>
           <MaterialCommunityIcons name="image-plus" size={56} color="#BB22B5" style={iconStyles.addImageIcon}/>
-          <Text style={styles.addImageText}>Add Image</Text>
+          <Text style={globalStyles.addImageText}>Add Image</Text>
           </TouchableOpacity>
           </>
         ) : (
-          <Image style={styles.image} source={{ uri: pickedUri }}></Image>
+          <Image style={globalStyles.image} source={{ uri: pickedUri }}></Image>
         )}
       </View>
     </View>
   ); 
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-  },
-  preview: {
-    marginTop: 10,
-    width: 260,
-    height: 100,
-    marginBottom: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: 'column',
-    borderColor: "black",
-    backgroundColor: "#C3F7FA",
-    borderRadius: 15,
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 15,
-  },
-  addImageText: {
-    fontSize: 16,
-    color: '#BB22B5',
-  },
-  addedImage: {
-    marginTop: 10,
-    width: 260,
-    height: 100,
-    marginBottom: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: 'column',
-    borderColor: "black",
-    backgroundColor: "#C3F7FA",
-    borderRadius: 15,
-  }
-});

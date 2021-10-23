@@ -34,9 +34,9 @@ const DrugPicker = ({ selectedDrug, setSelectedDrug, drugList }) => {
             value="Select Drug"
             color="#C4C4C4"
           />
-        {drugList.map((element, i) => (
-          <Picker.Item key={i} label={element.drug} value={element.drug} />
-      ))}
+          {drugList.map((element, i) => (
+            <Picker.Item key={i} label={element.drug} value={element.drug} />
+          ))}
         </Picker>
       </View>
     </>
@@ -44,5 +44,3 @@ const DrugPicker = ({ selectedDrug, setSelectedDrug, drugList }) => {
 };
 
 export default DrugPicker;
-
-

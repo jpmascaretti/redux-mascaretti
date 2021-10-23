@@ -183,7 +183,7 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
   },
   safeAreaViewModal: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: "rgba(0,0,0,0.5)",
     flex: 1,
   },
   pickersView: {
@@ -308,7 +308,7 @@ export const globalStyles = StyleSheet.create({
   sliderBubbleText: {
     color: "#C4C4C4",
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   calculateButton: {
     backgroundColor: "#BB22B5",
@@ -319,7 +319,6 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    
   },
   calculateButtonOff: {
     backgroundColor: "#C4C4C4",
@@ -330,12 +329,11 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    
   },
   calculateButtonText: {
     color: "white",
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   addDrugButton: {
     marginRight: 20,
@@ -425,5 +423,118 @@ export const globalStyles = StyleSheet.create({
   },
   scrollViewHeight: {
     height: "12%",
-  }
+  },
+  doseInput: {
+    height: 40,
+    width: 250,
+    marginTop: 10,
+    borderWidth: 2,
+    borderColor: "#C4C4C4",
+    padding: 10,
+    borderRadius: 5,
+  },
+  doseIndicationsInput: {
+    height: 80,
+    width: 250,
+    marginTop: 10,
+    borderWidth: 2,
+    borderColor: "#C4C4C4",
+    textAlign: "left",
+    padding: 10,
+    borderRadius: 5,
+    paddingBottom: 50,
+  },
+  imageContainer: {
+    alignItems: "center",
+  },
+  imagePreview: {
+    marginTop: 10,
+    width: 260,
+    height: 100,
+    marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    borderColor: "black",
+    backgroundColor: "#C3F7FA",
+    borderRadius: 15,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 15,
+  },
+  addImageText: {
+    fontSize: 16,
+    color: "#BB22B5",
+  },
+  addedImage: {
+    marginTop: 10,
+    width: 260,
+    height: 100,
+    marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    borderColor: "black",
+    backgroundColor: "#C3F7FA",
+    borderRadius: 15,
+  },
+  vaidationFormControl: {
+    width: "100%",
+  },
+  validationLabel: {
+    marginVertical: 8,
+  },
+  validationInput: {
+    paddingHorizontal: 2,
+    paddingVertical: 5,
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+  },
+  validationErrorText: {
+    marginVertical: 5,
+    color: "#cc7755",
+  },
+  testsContainer: {
+    flex: 1,
+    alignContent: "center",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  testsLinearGradient: {
+    width: "80%",
+    height: 90,
+    borderRadius: 15,
+  },
+  testsCard: {
+    width: "100%",
+    height: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  glasgowIcon: {
+    marginLeft: 25,
+  },
+  glasgowText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+    marginRight: 60,
+  },
+  apgarCard: {
+    width: "100%",
+    height: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  linearGradientApgar: {
+    width: "80%",
+    height: 90,
+    borderRadius: 15,
+    marginTop: 15,
+  },
 });

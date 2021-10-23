@@ -12,7 +12,6 @@ const initialState = {
 
 const PatientReducer = (state = initialState, action) => {
   switch (action.type) {
-    
     case SAVE_PATIENT:
       return {
         list: [...state.list, action.record],
@@ -23,7 +22,6 @@ const PatientReducer = (state = initialState, action) => {
         list: [...action.patients],
       };
     case DELETE_PATIENT:
-      
       const updatedList = [...state.list].filter(
         (record) => record.id !== action.toDeletePatient.id
       );

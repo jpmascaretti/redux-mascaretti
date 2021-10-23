@@ -6,7 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity, Alert, Text, View } from "react-native";
 import { login } from "../../../store/actions/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
-import { globalStyles } from "../../../styles/globalStyles"; 
+import { globalStyles } from "../../../styles/globalStyles";
 import { authStyles } from "../../../styles/authStyles";
 
 const LOGIN_FORM_INPUT_UPDATE = "LOGIN_FORM_INPUT_UPDATE";
@@ -49,16 +49,17 @@ const LoginScreen = () => {
     inputValidities: {
       email: false,
       password: false,
-
     },
     formIsValid: false,
   });
 
   const handleSignUp = () => {
-
     if (loginFormState.formIsValid) {
       dispatch(
-        login(loginFormState.inputValues.email, loginFormState.inputValues.password)
+        login(
+          loginFormState.inputValues.email,
+          loginFormState.inputValues.password
+        )
       );
     } else {
       Alert.alert("Invalid Form", "Enter valid email and password", [
@@ -66,7 +67,6 @@ const LoginScreen = () => {
       ]);
     }
   };
-
 
   const onInputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
@@ -81,7 +81,10 @@ const LoginScreen = () => {
   );
 
   return (
-    <LinearGradient colors={["#96EAEF", "white"]} style={authStyles.linearGradient}>
+    <LinearGradient
+      colors={["#96EAEF", "white"]}
+      style={authStyles.linearGradient}
+    >
       <AuthScreenWrapper
         title="Log in with your credentials"
         message="¿Don't have a DoSe+ account?"
@@ -113,7 +116,9 @@ const LoginScreen = () => {
         </TouchableOpacity>
         {loginErr && (
           <View>
-            <Text style={authStyles.authError}>{loginErr.replace('_', ' ').replace('_', ' ')}</Text>
+            <Text style={authStyles.authError}>
+              {loginErr.replace("_", " ").replace("_", " ")}
+            </Text>
           </View>
         )}
       </AuthScreenWrapper>

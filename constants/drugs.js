@@ -1,4 +1,3 @@
-
 export const drugs = [
   {
     drug: "Adenosine",
@@ -23,7 +22,7 @@ export const drugs = [
     imageURL: "https://i.ibb.co/bKKL84P/adrenalin.jpg",
   },
   {
-    drug: "Atropine", 
+    drug: "Atropine",
     dose: 0.02,
     dosage: "mg/kg",
     dissolve: 1,
@@ -34,7 +33,7 @@ export const drugs = [
     imageURL: "https://i.ibb.co/f8JmMGz/atropine.jpg",
   },
   {
-    drug: "Fentanyl", 
+    drug: "Fentanyl",
     dose: 1,
     dosage: "mcg/kg",
     dissolve: 50,
@@ -56,7 +55,7 @@ export const drugs = [
     imageURL: "https://i.ibb.co/V99ZSPT/ketamine.jpg",
   },
   {
-    drug: "Vecuronium", 
+    drug: "Vecuronium",
     dose: 0.01,
     dosage: "mg/kg",
     dissolve: 10,
@@ -76,7 +75,6 @@ export const drugs = [
     diluteUnit: "ml",
     indication: "Dilute",
     imageURL: "https://i.ibb.co/5sMh0kk/succinylcholine.jpg",
-
   },
   {
     drug: "Lorazepam",

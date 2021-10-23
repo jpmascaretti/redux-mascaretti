@@ -5,11 +5,12 @@ import { URL_API } from "../../constants/database";
 
 const filterByUserID = (data, queryUserId) => {
   const patients = [];
-  !!data && Object.keys(data).forEach((key) => patients.push({ id: key, ...data[key] }));
+  !!data &&
+    Object.keys(data).forEach((key) =>
+      patients.push({ id: key, ...data[key] })
+    );
   return patients.filter((item) => item.authUserId === queryUserId);
 };
-
-
 
 export const getPatients = (userID) => {
   //need to add loading patients status
@@ -25,17 +26,15 @@ export const getPatients = (userID) => {
       const result = await response.json();
       const patients = filterByUserID(result, userID);
 
-      patients.length === 0 ?
-        dispatch({
-          type: GET_PATIENTS,
-          patients: [],
-        })
-      : 
-      dispatch({
-        type: GET_PATIENTS,
-        patients: patients,
-      })
-
+      patients.length === 0
+        ? dispatch({
+            type: GET_PATIENTS,
+            patients: [],
+          })
+        : dispatch({
+            type: GET_PATIENTS,
+            patients: patients,
+          });
     } catch (error) {
       console.log(error);
       //need to add error handling logic here and render in UI
@@ -65,8 +64,7 @@ export const savePatient = (inputPatientRecord, userId) => {
         date: Date.now(),
         id: result.name,
         items: { ...inputPatientRecord },
-      }
-
+      };
 
       dispatch({
         type: SAVE_PATIENT,
@@ -79,26 +77,26 @@ export const savePatient = (inputPatientRecord, userId) => {
   };
 };
 
-
 export const deletePatient = (toDeleteRecord) => {
   //need to add loading patients status
   return async (dispatch) => {
     try {
-      const response = await fetch(`${URL_API}/patients/${toDeleteRecord.id}.json`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${URL_API}/patients/${toDeleteRecord.id}.json`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const result = await response.json();
 
-
-        dispatch({
-          type: DELETE_PATIENT,
-          toDeletePatient: toDeleteRecord,
-        })
-
+      dispatch({
+        type: DELETE_PATIENT,
+        toDeletePatient: toDeleteRecord,
+      });
     } catch (error) {
       console.log(error);
       //need to add error handling logic here and render in UI

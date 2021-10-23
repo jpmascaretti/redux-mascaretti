@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   Modal,
   TextInput,
-  StyleSheet,
   ScrollView,
   SafeAreaView,
 } from "react-native";
@@ -73,7 +72,7 @@ export default DosesHeader = ({ handleOpenBackdrop, handleCloseBackdrop }) => {
 
     dispatch(addCustomDrug(newDrug, drugList, tempImageUrl, userID));
     setAddDrugModalVisible(false);
-    handleCloseAddDrugModal()
+    handleCloseAddDrugModal();
   }
   return (
     <SafeAreaView>
@@ -110,52 +109,52 @@ export default DosesHeader = ({ handleOpenBackdrop, handleCloseBackdrop }) => {
             <ImageSelector retrieveImageURL={retrieveImageURL}></ImageSelector>
             <ScrollView>
               <TextInput
-                style={styles.input}
+                style={globalStyles.doseInput}
                 onChangeText={onChangeDrugName}
                 placeholder="Drug Name"
                 value={drugName}
               />
               <TextInput
-                style={styles.input}
+                style={globalStyles.doseInput}
                 onChangeText={onChangeDoseAmount}
                 value={doseAmount}
                 placeholder="Dose Amount"
                 keyboardType="numeric"
               />
               <TextInput
-                style={styles.input}
+                style={globalStyles.doseInput}
                 onChangeText={onChangeDosageUnit}
                 placeholder="Dosage Unit"
                 value={dosageUnit}
               />
               <TextInput
-                style={styles.input}
+                style={globalStyles.doseInput}
                 onChangeText={onChangeDissolventAmount}
                 value={dissolventAmount}
                 placeholder="Dissolvent Amount"
                 keyboardType="numeric"
               />
               <TextInput
-                style={styles.input}
+                style={globalStyles.doseInput}
                 onChangeText={onChangeDissolventUnit}
                 placeholder="Dissovent Unit"
                 value={dissolventUnit}
               />
               <TextInput
-                style={styles.input}
+                style={globalStyles.doseInput}
                 onChangeText={onChangeDiluteAmount}
                 value={diluteAmount}
                 placeholder="Dilute Amount"
                 keyboardType="numeric"
               />
               <TextInput
-                style={styles.input}
+                style={globalStyles.doseInput}
                 onChangeText={onChangeDiluteUnit}
                 placeholder="Dilute Unit"
                 value={diluteUnit}
               />
               <TextInput
-                style={styles.indicationsInput}
+                style={globalStyles.doseIndicationsInput}
                 onChangeText={onChangeIndications}
                 placeholder="Indications"
                 value={indications}
@@ -175,26 +174,3 @@ export default DosesHeader = ({ handleOpenBackdrop, handleCloseBackdrop }) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    width: 250,
-    marginTop: 10,
-    borderWidth: 2,
-    borderColor: "#C4C4C4",
-    padding: 10,
-    borderRadius: 5,
-  },
-  indicationsInput: {
-    height: 80,
-    width: 250,
-    marginTop: 10,
-    borderWidth: 2,
-    borderColor: "#C4C4C4",
-    textAlign: "left",
-    padding: 10,
-    borderRadius: 5,
-    paddingBottom: 50,
-  },
-});

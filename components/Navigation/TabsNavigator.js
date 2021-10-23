@@ -22,7 +22,6 @@ const TabsNavigator = () => {
       <Stack.Screen name={ROUTES.DOSES} component={Doses} />
       <Stack.Screen name={ROUTES.TESTS} component={Tests} />
       <Stack.Screen name={ROUTES.GLASGOW} component={Glasgow} />
-      {/* <Stack.Screen name={ROUTES.APGAR} component={Apgar} /> */}
     </Stack.Navigator>
   );
 };

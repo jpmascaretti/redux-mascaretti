@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import React from "react";
 import TestsTab from "../../BottomTabs/TestsTab";
@@ -8,7 +8,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import GlasgowCard from "../../GlasgowCard/GlasgowCard";
 
 export default function Tests() {
   const navigation = useNavigation();
@@ -16,36 +15,36 @@ export default function Tests() {
   return (
     <View style={globalStyles.safeAreaView}>
       <DefaultHeader />
-      <View style={styles.testsContainer}>
+      <View style={globalStyles.testsContainer}>
         <LinearGradient
           colors={["#BB22B5", "#96EAEF"]}
-          style={styles.linearGradient}
+          style={globalStyles.testsLinearGradient}
         >
           <TouchableOpacity onPress={() => navigation.navigate("Glasgow")}>
-            <View style={styles.testsCard}>
+            <View style={globalStyles.testsCard}>
               <MaterialCommunityIcons
                 name="head-check-outline"
                 size={70}
                 color="white"
-                style={styles.glasgowIcon}
+                style={globalStyles.glasgowIcon}
               />
-              <Text style={styles.glasgowText}>Glasgow Test</Text>
+              <Text style={globalStyles.glasgowText}>Glasgow Test</Text>
             </View>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient
           colors={["#BB22B5", "#96EAEF"]}
-          style={styles.linearGradientApgar}
+          style={globalStyles.linearGradientApgar}
         >
-          <TouchableOpacity >
-            <View style={styles.testsCard}>
+          <TouchableOpacity>
+            <View style={globalStyles.testsCard}>
               <FontAwesome
-                style={styles.glasgowIcon}
+                style={globalStyles.glasgowIcon}
                 name="heartbeat"
                 size={60}
                 color="white"
               />
-              <Text style={styles.glasgowText}>Apgar Test</Text>
+              <Text style={globalStyles.glasgowText}>Apgar Test</Text>
             </View>
           </TouchableOpacity>
         </LinearGradient>
@@ -58,47 +57,3 @@ export default function Tests() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  testsContainer: {
-    flex: 1,
-    alignContent: "center",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginTop: 20,
-  },
-  linearGradient: {
-    width: "80%",
-    height: 90,
-    borderRadius: 15,
-  },
-  testsCard: {
-    width: "100%",
-    height: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  glasgowIcon: {
-    marginLeft: 25,
-  },
-  glasgowText: {
-    color: "white",
-    fontSize: 24,
-    fontWeight: "bold",
-    marginRight: 60,
-  },
-  apgarCard: {
-    width: "100%",
-    height: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  linearGradientApgar: {
-    width: "80%",
-    height: 90,
-    borderRadius: 15,
-    marginTop: 15,
-  },
-});
