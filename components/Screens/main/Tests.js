@@ -7,7 +7,8 @@ import { globalStyles } from "../../../styles/globalStyles";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation, CommonActions } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import GlasgowCard from "../../GlasgowCard/GlasgowCard";
 
 export default function Tests() {
   const navigation = useNavigation();
@@ -36,7 +37,7 @@ export default function Tests() {
           colors={["#BB22B5", "#96EAEF"]}
           style={styles.linearGradientApgar}
         >
-          <TouchableOpacity onPress={() => navigation.navigate("Apgar")}>
+          <TouchableOpacity >
             <View style={styles.testsCard}>
               <FontAwesome
                 style={styles.glasgowIcon}

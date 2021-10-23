@@ -364,4 +364,66 @@ export const globalStyles = StyleSheet.create({
     marginBottom: 15,
     marginTop: 15,
   },
+  glasgowText: {
+    fontSize: 22,
+    color: "black",
+    fontWeight: "bold",
+    marginTop: 20,
+  },
+  glasgowView: {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  glasgowBanner: {
+    height: 40,
+    width: "100%",
+    backgroundColor: "#96EAEF",
+    marginTop: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  glasgowBannerText: {
+    fontSize: 16,
+    color: "#DD41E0",
+    fontWeight: "bold",
+  },
+  scrollViewContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  glasgowCard: {
+    width: 150,
+    height: 60,
+    backgroundColor: "#EDEDED",
+    margin: 10,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  selectedGlasgowCard: {
+    width: 150,
+    height: 60,
+    backgroundColor: "#FAA7F6",
+    margin: 10,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  glasgowCardText: {
+    fontSize: 16,
+    color: "black",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  selectedGlasgowCardText: {
+    fontSize: 16,
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  scrollViewHeight: {
+    height: "12%",
+  }
 });
