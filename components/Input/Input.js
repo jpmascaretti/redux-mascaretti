@@ -60,7 +60,7 @@ const Input = (props) => {
       <Text style={globalStyles.validationLabel}>{props.label}</Text>
       <TextInput
         {...props}
-        style={globalStyles.validaitonInput}
+        style={globalStyles.validationInput}
         value={inputState.value}
         onChangeText={handleChangeText}
         onBlur={handleBlur}
