@@ -14,12 +14,14 @@ import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { KeyboardAvoidingView } from "react-native";
 
 export default function Records({ route }) {
   const { patientName, patientGender } = route.params;
   const navigation = useNavigation();
   const [displayRecordCreation, setDisplayRecordCreation] = useState(false);
+  const [individualPatientRecords, setIndividualPatientRecords] = useState([]);
+  const [selectedFolder, setSelectedFolder] = useState(null);
+
 
   const [recordDate, setRecordDate] = useState(null);
   const [recordWeight, setRecordWeight] = useState(null);
@@ -27,8 +29,23 @@ export default function Records({ route }) {
   const [recordDose, setRecordDose] = useState(null);
   const [recordApgar, setRecordApgar] = useState(null);
   const [recordGlasgow, setRecordGlasgow] = useState(null);
-  const [recordObservations, setRecordObservations] = useState(null);
 
+  function createIndividualPatientRecord() {
+    const newIndividualRecord = {
+      recordDate: recordDate,
+      recordWeight: recordWeight,
+      recordHeight: recordHeight,
+      recordDose: recordDose,
+      recordApgar: recordApgar,
+      recordGlasgow: recordGlasgow,
+      recordObservations: recordObservations,
+    };
+    individualPatientRecords.push(newIndividualRecord);
+    setIndividualPatientRecords(individualPatientRecords);
+    console.log(individualPatientRecords[0])
+    cancelCreateRecordForm()
+
+  }
   function cancelCreateRecordForm() {
     setDisplayRecordCreation(false);
     setRecordDate(null);
@@ -94,8 +111,8 @@ export default function Records({ route }) {
           }
         >
           {displayRecordCreation ? (
-            <KeyboardAvoidingView>
-              <ScrollView
+
+              <ScrollView keyboardShouldPersistTaps={'handled'}
                 contentContainerStyle={{
                   flexDirection: "column",
                   flexWrap: "nowrap",
@@ -150,16 +167,20 @@ export default function Records({ route }) {
                   numberOfLines={4}
                 />
                 <View style={styles.buttonContainer}>
-                  <TouchableOpacity style={styles.cancelButton} onPress={()=> cancelCreateRecordForm()}>
+                  <TouchableOpacity
+                    style={styles.cancelButton}
+                    onPress={() => cancelCreateRecordForm()}
+                  >
                     <Text style={globalStyles.whiteBoldText}>Cancel</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.createRecordButton}>
-                    <Text style={globalStyles.whiteBoldText}>Create Record</Text>
+                  <TouchableOpacity style={styles.createRecordButton} onPress={() => createIndividualPatientRecord()}>
+                    <Text style={globalStyles.whiteBoldText}>
+                      Create Record
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </ScrollView>
-            </KeyboardAvoidingView>
-          ) : (
+          ) : individualPatientRecords.length > 0 ? (
             <ScrollView
               contentContainerStyle={{
                 flexDirection: "row",
@@ -168,17 +189,16 @@ export default function Records({ route }) {
                 justifyContent: "flex-start",
               }}
             >
-              <TouchableOpacity>
-                <View style={styles.recordFolder}>
-                  <Text style={styles.recordFolderText}>02/02/2019</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.recordFolder}>
-                  <Text style={styles.recordFolderText}>02/02/2019</Text>
-                </View>
-              </TouchableOpacity>
+              {individualPatientRecords.map((record, i) => (
+                <TouchableOpacity key={i} onPress={() => console.log('navigate to individual record')}>
+                  <View style={styles.recordFolder}>
+                    <Text style={styles.recordFolderText}>{record.recordDate}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
             </ScrollView>
+          ) : (
+            <Text>Please Create Patient Record</Text>
           )}
         </View>
       </View>
@@ -271,7 +291,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   folderIcon: {
-    marginLeft: 200,
+    marginLeft: 180,
   },
   recordInput: {
     height: 40,
@@ -295,29 +315,31 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   buttonContainer: {
-    alignSelf: 'center',
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginTop: 10
+    alignSelf: "center",
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+    marginTop: 10,
   },
   cancelButton: {
     backgroundColor: "red",
-    height: 30,
+    height: 40,
     width: 120,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
     marginRight: 10,
+    marginBottom: 10,
   },
   createRecordButton: {
     backgroundColor: "#BB22B5",
-    height: 30,
+    height: 40,
     width: 120,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
     marginLeft: 10,
+    marginBottom: 10,
   },
 });
