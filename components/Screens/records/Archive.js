@@ -20,8 +20,6 @@ export default function Records({ route }) {
   const navigation = useNavigation();
   const [displayRecordCreation, setDisplayRecordCreation] = useState(false);
   const [individualPatientRecords, setIndividualPatientRecords] = useState([]);
-  const [selectedFolder, setSelectedFolder] = useState(null);
-
 
   const [recordDate, setRecordDate] = useState(null);
   const [recordWeight, setRecordWeight] = useState(null);
@@ -29,6 +27,7 @@ export default function Records({ route }) {
   const [recordDose, setRecordDose] = useState(null);
   const [recordApgar, setRecordApgar] = useState(null);
   const [recordGlasgow, setRecordGlasgow] = useState(null);
+  const [recordObservations, setRecordObservations] = useState(null);
 
   function createIndividualPatientRecord() {
     const newIndividualRecord = {
@@ -42,9 +41,8 @@ export default function Records({ route }) {
     };
     individualPatientRecords.push(newIndividualRecord);
     setIndividualPatientRecords(individualPatientRecords);
-    console.log(individualPatientRecords[0])
-    cancelCreateRecordForm()
-
+    console.log(individualPatientRecords[0]);
+    cancelCreateRecordForm();
   }
   function cancelCreateRecordForm() {
     setDisplayRecordCreation(false);
@@ -111,75 +109,76 @@ export default function Records({ route }) {
           }
         >
           {displayRecordCreation ? (
-
-              <ScrollView keyboardShouldPersistTaps={'handled'}
-                contentContainerStyle={{
-                  flexDirection: "column",
-                  flexWrap: "nowrap",
-                  alignContent: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <TextInput
-                  style={styles.recordInput}
-                  onChangeText={setRecordDate}
-                  placeholder="Date (DD/MM/YYYY)"
-                  value={recordDate}
-                />
-                <TextInput
-                  style={styles.recordInput}
-                  onChangeText={setRecordWeight}
-                  value={recordWeight}
-                  placeholder="Weight (cm)"
-                  keyboardType="numeric"
-                />
-                <TextInput
-                  style={styles.recordInput}
-                  onChangeText={setRecordHeight}
-                  value={recordHeight}
-                  placeholder="Height (cm)"
-                  keyboardType="numeric"
-                />
-                <TextInput
-                  style={styles.recordInput}
-                  onChangeText={setRecordDose}
-                  value={recordDose}
-                  placeholder="Dose"
-                />
-                <TextInput
-                  style={styles.recordInput}
-                  onChangeText={setRecordGlasgow}
-                  value={recordGlasgow}
-                  placeholder="Glasgow Result"
-                />
-                <TextInput
-                  style={styles.recordInput}
-                  onChangeText={setRecordApgar}
-                  value={recordApgar}
-                  placeholder="Apgar Result"
-                />
-                <TextInput
-                  style={styles.observationsInput}
-                  onChangeText={setRecordObservations}
-                  value={recordObservations}
-                  placeholder="Observations"
-                  multiline
-                  numberOfLines={4}
-                />
-                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                    style={styles.cancelButton}
-                    onPress={() => cancelCreateRecordForm()}
-                  >
-                    <Text style={globalStyles.whiteBoldText}>Cancel</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.createRecordButton} onPress={() => createIndividualPatientRecord()}>
-                    <Text style={globalStyles.whiteBoldText}>
-                      Create Record
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </ScrollView>
+            <ScrollView
+              keyboardShouldPersistTaps={"handled"}
+              contentContainerStyle={{
+                flexDirection: "column",
+                flexWrap: "nowrap",
+                alignContent: "center",
+                justifyContent: "center",
+              }}
+            >
+              <TextInput
+                style={styles.recordInput}
+                onChangeText={setRecordDate}
+                placeholder="Date (DD/MM/YYYY)"
+                value={recordDate}
+              />
+              <TextInput
+                style={styles.recordInput}
+                onChangeText={setRecordWeight}
+                value={recordWeight}
+                placeholder="Weight (cm)"
+                keyboardType="numeric"
+              />
+              <TextInput
+                style={styles.recordInput}
+                onChangeText={setRecordHeight}
+                value={recordHeight}
+                placeholder="Height (cm)"
+                keyboardType="numeric"
+              />
+              <TextInput
+                style={styles.recordInput}
+                onChangeText={setRecordDose}
+                value={recordDose}
+                placeholder="Dose"
+              />
+              <TextInput
+                style={styles.recordInput}
+                onChangeText={setRecordGlasgow}
+                value={recordGlasgow}
+                placeholder="Glasgow Result"
+              />
+              <TextInput
+                style={styles.recordInput}
+                onChangeText={setRecordApgar}
+                value={recordApgar}
+                placeholder="Apgar Result"
+              />
+              <TextInput
+                style={styles.observationsInput}
+                onChangeText={setRecordObservations}
+                value={recordObservations}
+                placeholder="Observations"
+                multiline
+                numberOfLines={4}
+              />
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                  style={styles.cancelButton}
+                  onPress={() => cancelCreateRecordForm()}
+                >
+                  <Text style={globalStyles.whiteBoldText}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.createRecordButton}
+                  onPress={() => createIndividualPatientRecord()}
+                >
+                  <Text style={globalStyles.whiteBoldText}>Create Record</Text>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
           ) : individualPatientRecords.length > 0 ? (
             <ScrollView
               contentContainerStyle={{
@@ -190,9 +189,20 @@ export default function Records({ route }) {
               }}
             >
               {individualPatientRecords.map((record, i) => (
-                <TouchableOpacity key={i} onPress={() => console.log('navigate to individual record')}>
+                <TouchableOpacity
+                  key={i}
+                  onPress={() =>
+                    navigation.navigate("IndividualRecord", {
+                      individualRecord: record,
+                      patientName: patientName,
+                      patientGender: patientGender,
+                    })
+                  }
+                >
                   <View style={styles.recordFolder}>
-                    <Text style={styles.recordFolderText}>{record.recordDate}</Text>
+                    <Text style={styles.recordFolderText}>
+                      {record.recordDate}
+                    </Text>
                   </View>
                 </TouchableOpacity>
               ))}
