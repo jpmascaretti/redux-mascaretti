@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import RecordsTab from "../../BottomTabs/RecordsTab";
 import {
   View,
@@ -59,10 +59,39 @@ export default function IndividualRecord({ route }) {
           )}
           <Text style={styles.patientRecordBannerText}>{patientName}</Text>
         </View>
-        <View style={styles.displayBox}></View>
+        <View style={styles.displayBox}>
+            <View style={styles.recordDisplay}>
+            <Text style={styles.recordText}>Date: </Text>
+            {individualRecord.recordDate && <Text style={styles.recordTextInfo}>{individualRecord.recordDate}</Text>}
+            </View>
+            <View style={styles.recordDisplay}>
+            <Text style={styles.recordText}>Weight (kg): </Text>
+            {individualRecord.recordWeight && <Text style={styles.recordTextInfo}>{individualRecord.recordWeight}</Text>}
+            </View>
+            <View style={styles.recordDisplay}>
+            <Text style={styles.recordText}>Height (cm): </Text>
+            {individualRecord.recordHeight && <Text style={styles.recordTextInfo}>{individualRecord.recordHeight}</Text>}
+            </View>
+            <View style={styles.recordDisplay}>
+            <Text style={styles.recordText}>Height (cm): </Text>
+            {individualRecord.recordHeight && <Text style={styles.recordTextInfo}>{individualRecord.recordHeight}</Text>}
+            </View>
+            <View style={styles.recordDisplay}>
+            <Text style={styles.recordText}>Dose: </Text>
+            {individualRecord.recordDose && <Text style={styles.recordTextInfo}>{individualRecord.recordDose}</Text>}
+            </View>
+            <View style={styles.recordDisplay}>
+            <Text style={styles.recordText}>Glasgow: </Text>
+            {individualRecord.recordGlasgow && <Text style={styles.recordTextInfo}>{individualRecord.recordGlasgow}</Text>}
+            </View>
+            <View style={styles.recordDisplay}>
+            <Text style={styles.recordText}>Apgar: </Text>
+            {individualRecord.recordApgar && <Text style={styles.recordTextInfo}>{individualRecord.recordApgar}</Text>}
+            </View>
+        </View>
         <View style={styles.observationsBox}>
             <ScrollView>
-                <Text >Observations: </Text>
+                <Text style={styles.recordText}>Observations: </Text>
                 {individualRecord.recordObservations && <Text style={{fontFamily: 'pinyon-script-regular', fontSize: 26, marginLeft:0}} >{individualRecord.recordObservations}</Text>}
             </ScrollView>
         </View>
@@ -120,6 +149,8 @@ const styles = StyleSheet.create({
     width: "90%",
     height: "50%",
     borderTopWidth: 0,
+    justifyContent: 'space-evenly'
+
   },
   observationsBox: {
     borderWidth: 1,
@@ -206,4 +237,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 10,
   },
+  recordDisplay: {
+      flexDirection: 'row',
+      marginLeft: 5
+  },
+  recordText: {
+      fontWeight: 'bold',
+      color: '#C4C4C4',
+      fontSize: 16
+  },
+  recordTextInfo: {
+    fontSize: 16
+}
 });

@@ -128,7 +128,7 @@ export default function Records({ route }) {
                 style={styles.recordInput}
                 onChangeText={setRecordWeight}
                 value={recordWeight}
-                placeholder="Weight (cm)"
+                placeholder="Weight (kg)"
                 keyboardType="numeric"
               />
               <TextInput
