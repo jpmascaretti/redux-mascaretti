@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RecordsTab from "../../BottomTabs/RecordsTab";
 import {
   View,
@@ -14,12 +14,25 @@ import DefaultHeader from "../../DefaultHeader/DefaultHeader";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addRecord } from "../../../store/actions/records.actions";
+import { getRecords } from "../../../store/actions/records.actions";
 
 export default function Records({ route }) {
   const { patientName, patientGender } = route.params;
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
+  const individualPatientRecords = useSelector(
+    (state) => state.records.records
+  );
+  const userID = useSelector((state) => state.auth.userId);
+
+  useEffect(() => {
+    dispatch(getRecords(userID, patientName, patientGender));
+  }, []);
+
   const [displayRecordCreation, setDisplayRecordCreation] = useState(false);
-  const [individualPatientRecords, setIndividualPatientRecords] = useState([]);
 
   const [recordDate, setRecordDate] = useState(null);
   const [recordWeight, setRecordWeight] = useState(null);
@@ -39,9 +52,15 @@ export default function Records({ route }) {
       recordGlasgow: recordGlasgow,
       recordObservations: recordObservations,
     };
-    individualPatientRecords.push(newIndividualRecord);
-    setIndividualPatientRecords(individualPatientRecords);
-    console.log(individualPatientRecords[0]);
+    dispatch(
+      addRecord(
+        newIndividualRecord,
+        individualPatientRecords,
+        userID,
+        patientName,
+        patientGender
+      )
+    );
     cancelCreateRecordForm();
   }
   function cancelCreateRecordForm() {

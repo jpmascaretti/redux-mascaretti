@@ -13,6 +13,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native";
+import { getRecords } from "../../../store/actions/records.actions";
+
 
 export default function IndividualRecord({ route }) {
   const { individualRecord, patientGender, patientName } = route.params;
