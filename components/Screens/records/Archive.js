@@ -34,40 +34,34 @@ export default function Records({ route }) {
           }
         >
           {patientGender == "male" ? (
-            <Ionicons name="md-male" size={30} color="white" />
+            <Ionicons style={styles.genderIcon} name="md-male" size={30} color="white" />
           ) : (
-            <Ionicons name="md-female" size={30} color="white" />
+            <Ionicons style={styles.genderIcon} name="md-female" size={30} color="white" />
           )}
           <Text style={styles.patientRecordBannerText}>{patientName}</Text>
         </View>
         <View style={styles.belowBannerBox}>
         <ScrollView contentContainerStyle={{ flexDirection: "row", flexWrap: "wrap", alignContent: "center", justifyContent: "flex-start"}}>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-            <View style={styles.blackBox}></View>
-
+            <TouchableOpacity>
+            <View style={styles.recordFolder}>
+              <Text style={styles.recordFolderText}>02/02/2019</Text>
+            </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+            <View style={styles.recordFolder}>
+              <Text style={styles.recordFolderText}>02/02/2019</Text>
+            </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+            <View style={styles.recordFolder}>
+              <Text style={styles.recordFolderText}>02/02/2019</Text>
+            </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+            <View style={styles.recordFolder}>
+              <Text style={styles.recordFolderText}>02/02/2019</Text>
+            </View>
+            </TouchableOpacity>
         </ScrollView>
         </View>
       </View>
@@ -124,15 +118,30 @@ const styles = StyleSheet.create({
     width: "90%",
     height: "80%",
     borderTopWidth: 0,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
   },
-  blackBox: {
+  recordFolder: {
     width: 90,
-    height: 70,
-    backgroundColor: 'black',
+    height: 60,
+    borderWidth: 1,
+    borderTopWidth: 8,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    borderColor: '#C4C4C4',
     margin: 10,
     marginRight: 0,
-    marginLeft: 20
+    marginLeft: 20,
+    borderBottomRightRadius: 3,
+    borderBottomLeftRadius: 3,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  recordFolderText: {
+    fontWeight: 'bold',
+    color: '#C4C4C4'
+  },
+  genderIcon: {
+    marginLeft: 10,
   }
 });
