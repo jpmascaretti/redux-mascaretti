@@ -13,7 +13,6 @@ export const modalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 15,
-    
   },
   modalMessage: {
     fontSize: 18,
@@ -26,100 +25,112 @@ export const modalStyles = StyleSheet.create({
   doseModalContent: {
     backgroundColor: "white",
     alignItems: "center",
-    flexDirection: 'column',
+    flexDirection: "column",
     borderRadius: 15,
-    width: '80%',
-    height: '70%'
+    width: "80%",
+    height: "70%",
   },
   topDrugBar: {
-    width: '100%',
+    width: "100%",
     height: 40,
     backgroundColor: "#BB22B5",
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-    },
-    topCustomDrugBar: {
-      width: '100%',
-      height: 40,
-      backgroundColor: "#BB22B5",
-      borderTopRightRadius: 15,
-      borderTopLeftRadius: 15,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center'
-      },
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  topCustomDrugBar: {
+    width: "100%",
+    height: 40,
+    backgroundColor: "#BB22B5",
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   closeIconStyleDoseModal: {
     marginRight: 10,
   },
   topDugBarText: {
     marginLeft: 10,
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   doseTextContainer: {
-    width: '100%',
+    width: "100%",
     height: 40,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   doseTextBold: {
-    fontWeight: 'bold',
-    fontSize: 16
+    fontWeight: "bold",
+    fontSize: 16,
   },
   doseTextCorpus: {
     marginLeft: 5,
-    fontSize: 16
+    fontSize: 16,
   },
   doseTextDrugCorpus: {
     marginLeft: 5,
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#BB22B5'
+    fontWeight: "bold",
+    color: "#BB22B5",
   },
   modalSeparator: {
     marginTop: 30,
     width: 315,
     height: 30,
     backgroundColor: "#BB22B5",
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   modalPrepText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   doseTextPrep: {
     fontSize: 16,
   },
   prepTextContainer: {
-    width: '100%',
+    width: "100%",
     height: 40,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 30
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 30,
   },
   addDrugModalContent: {
     backgroundColor: "white",
     alignItems: "center",
-    flexDirection: 'column',
+    flexDirection: "column",
     borderRadius: 15,
-    width: '80%',
-    height: '75%',
-    marginBottom: 50
+    width: "80%",
+    height: "75%",
+    marginBottom: 50,
   },
   topCustomDrugBarText: {
     marginLeft: 75,
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: 'bold',
-  }
+    fontWeight: "bold",
+  },
+  glasgowScoreModalText: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "white",
+  },
+  glasgowModalContent: {
+    padding: 10,
+    backgroundColor: "#BB22B5",
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 15,
+  },
 });

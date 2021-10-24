@@ -18,7 +18,7 @@ export default function Doses() {
   const drugList = useSelector((state) => state.drugs.drugs);
   const dosageFormList = useSelector((state) => state.forms.forms);
   const userID = useSelector((state) => state.auth.userId);
-  
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDrugs(userID));
@@ -48,7 +48,8 @@ export default function Doses() {
     setDrugImage(modalDrug.imageURL);
     setDoseModalMessage(
       `${parseFloat(
-        modalDrug.dose * parseFloat(modalForm.amount/10).toPrecision(3) *
+        modalDrug.dose *
+          parseFloat(modalForm.amount / 10).toPrecision(3) *
           weightSliderValue *
           (1 + heightSliderValue / 100) *
           (modalDrug.dilute / modalDrug.dissolve)
@@ -57,14 +58,16 @@ export default function Doses() {
     setDoseModalMessageAdministration(
       `${modalDrug.indication} ${parseFloat(
         (
-          modalDrug.dose * parseFloat(modalForm.amount/10).toPrecision(3) *
+          modalDrug.dose *
+          parseFloat(modalForm.amount / 10).toPrecision(3) *
           weightSliderValue *
           (1 + heightSliderValue / 100) *
           modalDrug.dissolve
         ).toPrecision(3)
       )} ${modalDrug.dissolveUnit} of ${modalDrug.drug} in ${parseFloat(
         (
-          modalDrug.dose * parseFloat(modalForm.amount/10).toPrecision(3) *
+          modalDrug.dose *
+          parseFloat(modalForm.amount / 10).toPrecision(3) *
           weightSliderValue *
           (1 + heightSliderValue / 100) *
           modalDrug.dilute
@@ -74,12 +77,13 @@ export default function Doses() {
   }
 
   const handleOpenBackdrop = () => {
-    setAddDrugModalBackdrop(true);    
+    setAddDrugModalBackdrop(true);
   };
 
   function handleCloseBackdrop() {
-    setAddDrugModalBackdrop(false);  }
-    
+    setAddDrugModalBackdrop(false);
+  }
+
   function handleCloseDoseModal() {
     setDosePatientModalVisible(false);
   }
@@ -87,12 +91,15 @@ export default function Doses() {
   return (
     <View
       style={
-        (doseModalVisible || addDrugModalBackdrop)
+        doseModalVisible || addDrugModalBackdrop
           ? globalStyles.safeAreaViewModal
           : globalStyles.safeAreaView
       }
     >
-      <DosesHeader handleOpenBackdrop={handleOpenBackdrop} handleCloseBackdrop={handleCloseBackdrop}/>
+      <DosesHeader
+        handleOpenBackdrop={handleOpenBackdrop}
+        handleCloseBackdrop={handleCloseBackdrop}
+      />
       <View style={globalStyles.pickersView}>
         {!!drugList && !!dosageFormList && (
           <>
@@ -157,7 +164,7 @@ export default function Doses() {
       {!doseModalVisible && (
         <View style={bottomNavStyles.NavContainerFlex}>
           <View style={bottomNavStyles.NavContainer}>
-            <DosesTab setAddDrugModalBackdrop={setAddDrugModalBackdrop}/>
+            <DosesTab setAddDrugModalBackdrop={setAddDrugModalBackdrop} />
           </View>
         </View>
       )}
@@ -167,7 +174,9 @@ export default function Doses() {
             style={[modalStyles.doseModalContent, globalStyles.bottomShadow]}
           >
             <View style={modalStyles.topDrugBar}>
-              <Text style={modalStyles.topDugBarText}>{selectedDrug} {selectedForm}</Text>
+              <Text style={modalStyles.topDugBarText}>
+                {selectedDrug} {selectedForm}
+              </Text>
               <TouchableOpacity onPress={handleCloseDoseModal}>
                 <AntDesign
                   name="close"
@@ -179,20 +188,35 @@ export default function Doses() {
             </View>
             <View>
               <View style={modalStyles.doseTextContainer}>
-              <Text style={modalStyles.doseTextBold}>Dose:</Text>
-              <Text style={modalStyles.doseTextCorpus}>{doseModalMessage}</Text>
-              <Text style={modalStyles.doseTextDrugCorpus}>{selectedDrug}</Text>
+                <Text style={modalStyles.doseTextBold}>Dose:</Text>
+                <Text style={modalStyles.doseTextCorpus}>
+                  {doseModalMessage}
+                </Text>
+                <Text style={modalStyles.doseTextDrugCorpus}>
+                  {selectedDrug}
+                </Text>
               </View>
-              {drugImage !== 'nourl' && <Image
-                style={{ marginLeft: 7.5, width: 300, height: 300, borderRadius: 15 }}
-                source={{
-                  uri: drugImage,
-                }}
-                resizeMode={"cover"} // cover or contain its upto you view look
-              />}
-              <View style={modalStyles.modalSeparator}><Text style={modalStyles.modalPrepText}>Preparation:</Text></View>
+              {drugImage !== "nourl" && (
+                <Image
+                  style={{
+                    marginLeft: 7.5,
+                    width: 300,
+                    height: 300,
+                    borderRadius: 15,
+                  }}
+                  source={{
+                    uri: drugImage,
+                  }}
+                  resizeMode={"cover"} // cover or contain its upto you view look
+                />
+              )}
+              <View style={modalStyles.modalSeparator}>
+                <Text style={modalStyles.modalPrepText}>Preparation:</Text>
+              </View>
               <View style={modalStyles.prepTextContainer}>
-              <Text style={modalStyles.doseTextPrep}>{doseModalMessageAdministration}</Text>
+                <Text style={modalStyles.doseTextPrep}>
+                  {doseModalMessageAdministration}
+                </Text>
               </View>
             </View>
           </View>
