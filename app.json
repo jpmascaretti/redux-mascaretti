@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DoSe+",
-    "slug": "DoSe+",
+    "slug": "doseplus",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
